@@ -11,10 +11,10 @@
 	 */
 	function initiate(){
 		// Functions that should run as this file loads
-		beforePageLoad();
+		duringPageLoad();
 		afterPageLoad();
 	}
-	function beforePageLoad(){
+	function duringPageLoad(){
 		// Do not wait for page to load
 		googleAnalytics( 'UA-60673215-1' );
 	}
