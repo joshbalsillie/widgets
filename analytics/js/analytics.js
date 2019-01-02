@@ -17,6 +17,7 @@
 	function duringPageLoad(){
 		// Do not wait for page to load
 		googleAnalytics( 'UA-60673215-1' );
+		addGoogleScriptTag( 'UA-60673215-1' );
 	}
 	function afterPageLoad(){
 		// Wait for page to load
@@ -31,11 +32,13 @@
 		gtag('js', new Date());
 		gtag('config', id );
 	}
-	function modifyScript(){
-		// Alter, add or remove details to the script calling this file
-		var script = retrieveElement( "script" ); // Retrieve the HTML tag calling this file
+	function addGoogleScriptTag( id ){
+		// Add the necessary google script tag to the HTML file
+		var head = document.getElementsByTagName( "head" )[ 0 ];
+		var script = document.createElement( "script" );
 		script.element.setAttribute( "async", "");
-		script.element.setAttribute( "src", "https://www.googletagmanager.com/gtag/js?id=UA-60673215-1" );
+		script.element.setAttribute( "src", "https://www.googletagmanager.com/gtag/js?id=" + id );
+		head.appendChild( script );
 	}
 	/*
 	 * SECTION : Functions not specific to this Javascript file
