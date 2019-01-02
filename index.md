@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# Widgets
+Custom website widgets developed to be organized, high performance, and modular.
 
-You can use the [editor on GitHub](https://github.com/joshbalsillie/widgets/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## Overview
+Each widget is a self contained piece of functionality that can be added to a website.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I will try to always provide a working example if possible, or adequate setup instructions, but I do not guarantee this for all items in this repository. I will also try to reference or document external content, whether it be libraries or frameworks, used or required to edit source code. I'm a believer in less is more, so I will strive to minimize the number of dependencies.
 
-### Markdown
+## Contributing
+I do not offer the ability to contribute at this time, as this is my personal repository. However I am open to collaborating on a separate repository to include some or all of my public repositories.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Support or Contact
+I do not offer support, but you may contact me if you wish through my website at [joshuabalsillie.com](https://joshuabalsillie.com)
 
-```markdown
-Syntax highlighted code block
+## Licence
+Copyright 2019 to present Joshua Balsillie
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/joshbalsillie/widgets/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Licensed under the [MIT](https://github.com/joshbalsillie/widgets/blob/master/licence.md) License.
