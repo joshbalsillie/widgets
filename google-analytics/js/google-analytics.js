@@ -16,21 +16,14 @@
 	}
 	function duringPageLoad(){
 		// Do not wait for page to load
-		googleAnalytics( 'UA-60673215-1' );
 		addGoogleScriptTag( 'UA-60673215-1' );
+		googleTag( 'UA-60673215-1' );
 	}
 	function afterPageLoad(){
 		// Wait for page to load
 		document.addEventListener("DOMContentLoaded", function( event ){
 			// Listen for event, then perform the following
 		});
-	}
-	function googleAnalytics( id ){
-		// The google analytics function
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', id );
 	}
 	function addGoogleScriptTag( id ){
 		// Add the necessary google script tag to the HTML file
@@ -39,5 +32,12 @@
 		script.setAttribute( "async", "");
 		script.setAttribute( "src", "https://www.googletagmanager.com/gtag/js?id=" + id );
 		head.appendChild( script );
+	}
+	function googleTag( id ){
+		// The google analytics function
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', id );
 	}
 })();
