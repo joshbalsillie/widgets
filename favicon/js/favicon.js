@@ -41,11 +41,8 @@
 	function convertToHtmlElement( htmlString ){
 		// remove the dom and return the html element
 		// does not work for <!doctype>, <html>, <head>, <body>
-		if( typeof htmlString !== "string" ){
-			// check that the provided variable is a string, otherwise throw an error
-			throw( "error: " + htmlString + ' is not not of type "string"' );
-		}
-		else{
+		if( typeof htmlString === "string" ){
+			// check that the provided variable is a string
 			var domParser = new DOMParser();
 			var dom = domParser.parseFromString( htmlString, "text/html" );
 
@@ -58,6 +55,9 @@
 			else if( body.firstChild ){
 				return body.childNodes[0];
 			}
+		}
+		else{
+			throw( "error: " + htmlString + ' is not not of type "string"' );
 		}
 	}
 	function createFaviconTags(){
