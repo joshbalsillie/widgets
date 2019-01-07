@@ -1,0 +1,27 @@
+@charset "utf-8";
+/*
+Author: Joshua Balsillie
+Date Created: 2016-05-24
+Description: define scrollbar formatting
+*/
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+	width:1rem;
+	
+	&-thumb, &-track {
+		border-radius: 0.4rem;
+		border-width: 0.15rem;
+		border-style: solid;
+		background-clip: content-box;
+	}
+	&-thumb {
+		background-color: red;
+		border-color: transparent;
+	}
+	&-track {
+		background-color:transparent;
+		border-color:transparent;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	}
+}

@@ -1,0 +1,16 @@
+@charset "utf-8";
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2019-01-06
+ * Description: Import scss styles into the website
+ * 
+ * References
+ * Define ID: #id {
+ * Define class: .class {
+ * Define all: * {
+ * Define child: > {
+ * Define import css: @import "folder/_file.scss";
+ * Setup and use: http://sass-lang.com/guide
+*/
+
+@import "../css/_scrollbar.scss";
