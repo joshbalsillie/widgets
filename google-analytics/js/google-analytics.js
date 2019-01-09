@@ -4,6 +4,13 @@
  * @since: 2018-12-20
 */
 
+// The global google analytics function
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+
+// Add commands to the global google analytics function
+ga('create', 'UA-60673215-1', 'auto'); // create new tracker object
+ga('send', 'pageview'); // send pageview to Google Analytics
+
 (function(){
 	initiate();
 	/*
@@ -16,8 +23,10 @@
 	}
 	function duringPageLoad(){
 		// Do not wait for page to load
-		addGoogleScriptTag( 'UA-60673215-1' );
-		googleTag( 'UA-60673215-1' );
+		var head = document.getElementsByTagName( "head" )[ 0 ];
+		var script = asynchronousGoogleCall();
+
+		head.appendChild( script );
 	}
 	function afterPageLoad(){
 		// Wait for page to load
@@ -25,19 +34,12 @@
 			// Listen for event, then perform the following
 		});
 	}
-	function addGoogleScriptTag( id ){
+	function asynchronousGoogleCall(){
 		// Add the necessary google script tag to the HTML file
-		var head = document.getElementsByTagName( "head" )[ 0 ];
 		var script = document.createElement( "script" );
 		script.setAttribute( "async", "");
-		script.setAttribute( "src", "https://www.googletagmanager.com/gtag/js?id=" + id );
-		head.appendChild( script );
-	}
-	function googleTag( id ){
-		// The google analytics function
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', id );
+		script.setAttribute( "src", "https://www.google-analytics.com/analytics.js" );
+
+		return script;
 	}
 })();

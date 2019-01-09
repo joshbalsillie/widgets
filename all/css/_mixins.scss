@@ -1,0 +1,56 @@
+@charset "utf-8";
+/*
+ * Author: Joshua Balsillie
+ * Description: define mixins for sass/scss files
+*/
+
+@mixin browserSupport( $property, $value ) {
+	/* Browser attribute support */
+	#{ -webkit- + $property }: $value;
+	#{ -moz- + $property }: $value;
+	#{ -ms- + $property }: $value;
+	#{ -o- + $property }: $value;
+	#{ $property }: $value;
+}
+
+@mixin languageSupport( $language, $property, $valueLtr, $valueRtl ) {
+	@if ($language == "english") or ($language == "eng") or ($language == "en") {
+		#{ $property }: $valueLtr;
+	}
+	@else if ($language == "french") or ($language == "fra") or ($language == "fre") or ($language == "fr") {
+		#{ $property }: $valueLtr;
+	}
+}
+
+@mixin flip( $property, $valueLtr, $valueRtl ) {
+	/* Text direction affected property value assignment */
+	@if $defaultTextDirection == "ltr" {
+		#{ $property }: $valueLtr;
+	}
+	@else if $defaultTextDirection == "rtl" {
+		#{ $property }: $valueRtl;
+	}
+}
+
+@mixin responsive( $property, $valueDispayLarge, $valueDisplaySmall ) {
+	/* Responsive value assignment */
+	@include display-large() {
+		#{ $property }: $valueDispayLarge;
+	}
+	@include display-small() {
+		#{ $property }: $valueDisplaySmall;
+	}
+}
+
+@mixin display-large() {
+	/* Large screen definition */
+	@media only screen and (min-width: 651px) {
+		@content;
+	}
+}
+@mixin display-small() {
+	/* Small screen definition */
+	@media only screen and (max-width: 650px) {
+		@content;
+	}
+}
