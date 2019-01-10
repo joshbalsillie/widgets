@@ -86,7 +86,6 @@
 				return true;
 			}
 			else{
-				console.error( '"' + value + '" (type: ' + typeof value + ') is not of type "' + dataType + '"' );
 				return false;
 			}
 		}
@@ -110,12 +109,22 @@
 	function createTags( stringOrStringArray ){
 		// create the HTML elements required for the favicon
 		// https://realfavicongenerator.net/ for generating favicon files
-		var htmlElements = []; // Placeholder
-
-		for( var countStrings = 0; countStrings < stringOrStringArray.length; ++countStrings ){
-			// for each defined html element
-			htmlElements.push( convertToHtmlElement( stringOrStringArray[ countStrings ] ));
+		if( checkDataTypeOf( stringOrStringArray, 'string' )){
+			// if the provided variable is a string
+			return convertToHtmlElement( stringOrStringArray );
 		}
-		return htmlElements;
+		else if( checkDataTypeOf( stringOrStringArray, 'object' )){
+			// if the provided variable is an object
+			if( Array.isArray( stringOrStringArray )){
+				// if the provided variable is an array
+				var htmlElements = []; // Placeholder
+
+				for( var countStrings = 0; countStrings < stringOrStringArray.length; ++countStrings ){
+					// for each defined html element
+					htmlElements.push( convertToHtmlElement( stringOrStringArray[ countStrings ] ));
+				}
+				return htmlElements;
+			}
+		}
 	}
 })();
