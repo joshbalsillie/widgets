@@ -4,15 +4,15 @@
  * @since: 2019-01-03
 */
 
-(function(){
+(async function(){
 	initiate();
 	/*
 	 * Section : Functions for this Javascript file
 	 */
 	function initiate(){
 		// Functions that should run as this file loads
-		duringPageLoad();
-		afterPageLoad();
+		duringPageLoad(); // placeholder call, comment out if not used
+		//afterPageLoad(); // placeholder call, comment out if not used
 	}
 	function getVariables(){
 		// get the variables required for this javascript file

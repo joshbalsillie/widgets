@@ -11,20 +11,20 @@ window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-60673215-1', 'auto'); // create new tracker object
 ga('send', 'pageview'); // send pageview to Google Analytics
 
-(function(){
+(async function(){
 	initiate();
 	/*
 	 * Section : Functions for this Javascript file
 	 */
 	function initiate(){
 		// Functions that should run as this file loads
-		duringPageLoad();
-		afterPageLoad();
+		duringPageLoad(); // placeholder call, comment out if not used
+		//afterPageLoad(); // placeholder call, comment out if not used
 	}
 	function duringPageLoad(){
 		// Do not wait for page to load
 		var head = document.getElementsByTagName( "head" )[ 0 ];
-		var script = asynchronousGoogleCall();
+		var script = getGoogleScript();
 
 		head.appendChild( script );
 	}
@@ -34,7 +34,7 @@ ga('send', 'pageview'); // send pageview to Google Analytics
 			// Listen for event, then perform the following
 		});
 	}
-	function asynchronousGoogleCall(){
+	function getGoogleScript(){
 		// Add the necessary google script tag to the HTML file
 		var script = document.createElement( "script" );
 		script.setAttribute( "async", "");
