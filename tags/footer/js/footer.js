@@ -1,30 +1,28 @@
 /*
  * @author: Joshua Balsillie
  * @version: 1.0
- * @since: 2019-01-03
+ * @since: 2019-01-20
 */
 
 (async function(){
 	// Functions that should run as this file loads
-	var parentTag = document.getElementsByTagName( 'head' )[ 0 ];
+	var footerTag = document.createElement( "footer" );
 	var variables = getVariables();
 	var childTags = createTags( variables );
 	
-	addChildrenTo( parentTag, childTags );
+	addChildrenTo( footerTag, childTags );
+
+	document.addEventListener("DOMContentLoaded", function( event ){
+		// Listen for event, then perform the following
+		var parentTag = document.getElementsByTagName( 'body' )[ 0 ];
+		parentTag.appendChild( footerTag );
+	});
 
 	function getVariables(){
 		// get the variables required for this javascript file
 		var variables = [
 			// copy and paste html elements as they would appear in the <head> tag, example: '<tagname attribute="value">'
-			'<link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">',
-			'<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">',
-			'<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">',
-			'<link rel="manifest" href="../images/site.webmanifest">',
-			'<link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">',
-			'<link rel="shortcut icon" href="../images/favicon.ico">',
-			'<meta name="msapplication-TileColor" content="#00aba9">',
-			'<meta name="msapplication-config" content="../image/browserconfig.xml">',
-			'<meta name="theme-color" content="#ffffff">'
+			'<p>Copywrite ⓒ ' + new Date().getFullYear() + ' your name</p>'
 		];
 		return variables;
 	}
