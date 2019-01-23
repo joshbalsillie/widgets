@@ -4,7 +4,7 @@
  * @since: 2019-01-12
 */
 
-(async function(){
+(function(){
 	initiate();
 	/*
 	 * Section : Functions for this Javascript file
