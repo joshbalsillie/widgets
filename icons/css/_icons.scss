@@ -1,0 +1,30 @@
+/*
+Author:Joshua Balsillie
+Date Created:2016-09-07
+Description:define media attributes
+*/
+
+.icons {
+	display:inline-block;
+	
+	& > a {
+		display:inline-block;
+		
+		& > img {
+			border-radius:50%;
+			max-width:$iconSize;
+			
+			border-width:0;
+			border-style:none;
+		}
+	}
+	&.left > * {
+		margin-left:0;
+	}
+	&.center > * {
+		
+	}
+	&.right > * {
+		margin-right:0;
+	}
+}

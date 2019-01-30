@@ -10,7 +10,7 @@
 
 	function initiate(){
 		// Primary function that controls this file
-		if( typeof window.tagBuilder === 'function' ){
+		if( dependenciesAreLoaded() ){
 			// if the tagBuilder function is in global scope
 			var tagBuilder = window.tagBuilder();
 			var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
@@ -20,7 +20,7 @@
 			tagBuilder.addChildren( childTags );
 		}
 		else{
-			console.error( 'function tagBuilder is not defined. tabBuilder is a dependency.')
+			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
 		}
 	}
 	function getVariables(){
@@ -41,5 +41,12 @@
 			'<meta name="theme-color" content="#ffffff">'
 		];
 		return variables;
+	}
+	function dependenciesAreLoaded(){
+		// check if all the required dependencies for this file are loaded
+		switch( true ){
+			case typeof window.tagBuilder === 'function': return true;
+			default: return false;
+		}
 	}
 })();
