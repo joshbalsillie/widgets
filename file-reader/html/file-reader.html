@@ -3,14 +3,28 @@
 <head>
 	<meta charset="utf-8">
 	<title>File Reader</title>
-	<script src="../js/file-reader.js">
-		fileReader( "../csv/test-for-file-reader.csv" );
-
-		var body = document.getElementsByTagName( 'body' )[ 0 ];
+	<script src="../js/file-reader.js"></script>
+	<script>
+		
 	</script>
 </head>
 <body>
-	<input type="file" id="csvFileInput" onchange="handleFiles(this.files)"
-            accept=".csv">
+	<main>
+		<article>
+			<h1>Overview</h1>
+			<h2>Requirements</h2>
+			<p>This requires a server instance to run.</p>
+			<p>To install a local server:</p>
+			<code>npm install -g http-server</code>
+			<p>change the directory to the root of your project.</p>
+			<code>cd C:\project\directory</code>
+			<p>instantiate a server with the following:</p>
+			<code>http-server -c-1</code>
+		</article>
+	</main>
 </body>
+<script>
+	fileReader.read( "../csv/file-reader_test_regular-data.csv", document.getElementsByTagName('body')[0], ['Title A', 'Title B', 'Title C', 'Title D', 'Title E']);
+	fileReader.read( "../csv/file-reader_test_html-elements.csv", document.getElementsByTagName('body')[0] );
+</script>
 </html>

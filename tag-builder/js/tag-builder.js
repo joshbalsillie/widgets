@@ -7,8 +7,8 @@
  function tagBuilder(){
 	// object that cotains functions, to more easily build HTML tags in the DOM
 	var tagBuilder = new Object();
-
 	tagBuilder.tag = null;
+	
 	tagBuilder.addChildren = function( tags ){
 		// Add one or multiple HTML tags to a html Element
 		if( tagBuilder.tag.nodeType === Node.ELEMENT_NODE ){
@@ -21,36 +21,7 @@
 			}
 		}
 		else{
-			console.error( 'tagBuilder.tag (' + tagBuilder.tag + ', ' + tagBuilder.tag.nodeType + ') is not define, or of the correct type.' );
-		}
-	}
-	tagBuilder.isValid = function( dataType ){
-		// check if the provided value is a valid data type
-		switch( dataType ){
-			// check if the provided data type is valid
-			case 'undefined': return true;
-			case 'boolean': return true;
-			case 'number': return true;
-			case 'string': return true;
-			case 'symbol': return true;
-			case 'function': return true;
-			case 'object': return true;
-			default: 
-				console.error( '"' + dataType + '" is not a valid data type' );
-				return false;
-		}
-	}
-	tagBuilder.verifyDataTypeOf = function( value, dataType ){
-		// compare the provided data type to the data type of the value
-		if( tagBuilder.isValid( dataType ) && tagBuilder.isValid( typeof value )){
-			// if data types are both valid
-			if( dataType === typeof value ){
-				// if data types are both equal
-				return true;
-			}
-			else{
-				return false;
-			}
+			console.error( 'tagBuilder.tag (' + tagBuilder.tag + ', ' + tagBuilder.tag.nodeType + ') is not defined, or of the correct type.' );
 		}
 	}
 	tagBuilder.createTags = function( stringOrStringArray ){
@@ -118,6 +89,35 @@
 			else{
 				console.error( 'could not find element created by DOMParser' );
 			}
+		}
+	}
+	tagBuilder.verifyDataTypeOf = function( value, dataType ){
+		// compare the provided data type to the data type of the value
+		if( tagBuilder.isValid( dataType ) && tagBuilder.isValid( typeof value )){
+			// if data types are both valid
+			if( dataType === typeof value ){
+				// if data types are both equal
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+	}
+	tagBuilder.isValid = function( dataType ){
+		// check if the provided value is a valid data type
+		switch( dataType ){
+			// check if the provided data type is valid
+			case 'undefined': return true;
+			case 'boolean': return true;
+			case 'number': return true;
+			case 'string': return true;
+			case 'symbol': return true;
+			case 'function': return true;
+			case 'object': return true;
+			default: 
+				console.error( '"' + dataType + '" is not a valid data type' );
+				return false;
 		}
 	}
 	return tagBuilder;

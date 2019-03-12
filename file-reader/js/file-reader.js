@@ -4,69 +4,112 @@
  * @since: 2019-01-12
 */
 
-(function(){
-	initiate();
-	/*
-	 * Section : Functions for this Javascript file
-	 */
-	function initiate(){
-		// Functions that should run as this file loads
-		//duringPageLoad(); // placeholder call, comment out if not used
-		afterPageLoad(); // placeholder call, comment out if not used
-	}
-	function duringPageLoad(){
-		// Do not wait for page to load
-	}
-	function afterPageLoad(){
-		// Wait for page to load
-		document.addEventListener('DOMContentLoaded', function( event ){
-			// Listen for event, then perform the following
-			fileReader( "../csv/test-for-file-reader.csv" );
-		});
-	}
-})();
-/*
- * Section : Global function(s)
- */
- function sanitize( string ){
+var fileReader = {
+	// global placeholder object for defining variables and methods for this file
+	supportedFileTypes: [ 'csv' ], // the file types supported by this javascript file;
+	read: function( pathname, htmlElement, headerArray ){
+		var isTheFile = {
+			supported: function( pathname, supportedFileTypesArray ){
+				// Check if the file is supported
+				var pathArray = pathname.split( "/" ); // path split into array
+				var filename = pathArray[ pathArray.length - 1 ]; // last array item, which is the filename
+				var nameAndExtension = filename.split( "." ); // array with only two values, the name of the file and the extension 
+				var theExtension = nameAndExtension[ nameAndExtension.length - 1 ].toLowerCase(); // the file extension
+				
+				supportedFileTypesArray.forEach( function( arrayValue, index, array ){
+					// convert all provided array values to lowercase
+					array[ index ] = arrayValue.toLowerCase();
+				});
+				return supportedFileTypesArray.some( function( arrayValue ){
+					// for each array value compare it to the file type
+					return theExtension === arrayValue;
+				});
+			}
+		};
+		var convert = {
+			 // placeholder object for adding data conversion methods
+			csvToArray: function( data ){
+				// convert data from a CSV file to an array
+				var dataArray = []; // placeholder for data returned by this function
+				
+				getRecordsFrom( data ).forEach( function( record ){
+					// for each data record (row)
+					var rowArray = []; // placeholder for temporary data
 
- }
-function fileReader( pathName ){
-	// Primary function that accepts a path name
-	// Example: '../../folder/folder/file.extension'
-	if( window.FileReader ){
-		// FileReader is supported
-		getTextFrom( pathName );
-	}
-	else{
-		console.error('FileReader is not supported in this browser.');
-	}
-	function retrieveFilenameFrom( pathName ){
-		// Retrieve the filename of the source value
-		var splitPath = pathName.split( "/" );
-		return splitPath[ splitPath.length - 1 ];
-	}
-	function getTextFrom( pathName ){
-		// Return the text from the file
-		var reader = new FileReader();
-		reader.addEventListener( "loadend", function(){
-		   // reader.result contains the contents of blob as a typed array
-		});
-		//var result = reader.readAsText( pathName );
-		//console.log(result);
-	}
-	var theFilename = retrieveFilenameFrom( pathName ); // Filename with extension
-	var theName = theFilename.split( "." )[ 0 ]; // Filename without extension
-	var fileExtension = theFilename.split( "." )[ 1 ].toLowerCase(); // File extension
+					if( !recordIsEmpty( record )){
+						// if the record (row) is not empty
+						getCellsFrom( record ).forEach( function( cell ){
+							// for each data cell
+							rowArray.push( cell );
+						});
+						dataArray.push( rowArray );
+					}
+				});
+				return dataArray;
+				function getRecordsFrom( data ){
+					// get the Record (row) from the provided data
+					var textualData = data.responseText; // textual data received
+					var records = textualData.split( '\n' ); // convert data into Record
+					return records;
+				}
+				function getCellsFrom( record ){
+					// get the cell values for a Record (row)
+					var cells = record.split( ',' );
+					return cells;
+				}
+				function recordIsEmpty( record ){
+					// check if the record (row) is empty
+					var isEmpty = new RegExp(/^[,\0\s]*$/).test( record ); // definition of an empty record (row) compared with the provided record data
+					return isEmpty;
+				}
+			},
+			arrayToTable: function( array, headers ){
+				// convert the provided array into a table
+				var table = document.createElement( 'table' );
+				
+				array.forEach( function( record, index ){
+					var tableRow = document.createElement( 'tr' );
 
-	if( fileExtension === 'csv' ){
-		// if the file is a .csv file
-		var csvArray = []; // placeholder
+					if( index === 0 && !valueIsBlank( headers )){
+						headers.forEach( function( header ){
+							var cellElement = document.createElement( 'th' );
+							cellElement.innerHTML = header;
+							tableRow.append( cellElement );
+						});
+					}
+					else if( index > 0 ){
+						record.forEach( function( cell ){
+							var cellElement = document.createElement( 'td' );
+							cellElement.innerHTML = cell;
+							tableRow.append( cellElement );
+						});
+					}
+					table.append( tableRow );
+				});
+				return table;
+				function valueIsBlank( value ){
+					// check if the provided value is blank
+					return ( typeof value === 'undefined' || value === null || value === '' ) ? true : false;
+				}
+			}
+		};
+		if( isTheFile.supported( pathname, fileReader.supportedFileTypes )){
+			// If the provided file is of a CSV file type
+			var theRequest = ( window.XMLHttpRequest ) ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' ); // modern browser option with legacy browser backup
+
+			theRequest.onreadystatechange = function(){
+				// handle the necessary statuses and ready states of the request
+				if( theRequest.status === 200 ){
+					// check that the request is ready
+					if( theRequest.readyState === 4 ){
+						// DONE, the opperation is complete
+						var theResult = convert.csvToArray( theRequest );
+						htmlElement.append( convert.arrayToTable( theResult, headerArray ));
+					}
+				}
+			}
+			theRequest.open( 'GET', pathname, true );
+			theRequest.send();
+		}
 	}
-	else if( fileExtension === 'json' ){
-		// if the file is a .json file
-	}
-	else{
-		console.error( theFilename + ' is not a supported file type.' );
-	}
-}
+};

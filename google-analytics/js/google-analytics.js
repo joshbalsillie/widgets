@@ -6,15 +6,15 @@
 
 (function(){
 	// Functions that should run as this file loads
-	initiate();
+	initiate( 'UA-60673215-1' );
 
-	function initiate(){
+	function initiate( googleTrackingId ){
 		// Primary function that controls this file
 		if( dependenciesAreLoaded() ){
 			// if the tagBuilder function is in global scope
 			var tagBuilder = window.tagBuilder();
 			var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
-			var childTags = tagBuilder.createTags( getVariables() );
+			var childTags = tagBuilder.createTags( getVariables( googleTrackingId ));
 			
 			tagBuilder.tag = parentTag;
 			tagBuilder.addChildren( childTags );
@@ -22,11 +22,10 @@
 		else{
 			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
 		}
-		googleSetup( 'UA-60673215-1' );
+		googleSetup( googleTrackingId );
 	}
-	function getVariables(){
+	function getVariables( googleTrackingId ){
 	 	// get the variables required for this javascript file
-	 	var googleTrackingId = 'UA-60673215-1';
 	 	var variables = [
 	 		// copy and paste html elements as they would appear in the <head> tag, example: '<tagname attribute="value">'
 	 		'<script src="https://www.googletagmanager.com/gtag/js?id=' + googleTrackingId + '" async></script>'

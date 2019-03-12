@@ -2,7 +2,7 @@
 /*
  * Author: Joshua Balsillie
  * Date Created: 2016-08-17
- * Description: Import scss styles into the website
+ * Description: Import widget styles
  * 
  * References
  * Define ID: #id {
@@ -14,13 +14,13 @@
  *
  * Important
  * Order files for inheritance
-*/
-
-/* Variables */
-
+ */
 
 /* Functions and Mixins */
 @import "_mixins.scss";
 
+/* Variables */
+
 /* Styles */
 @import "../../scrollbar/css/_scrollbar.scss";
+@import "../../columns/css/_columns.scss";
