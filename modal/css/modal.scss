@@ -1,8 +1,8 @@
 @charset "utf-8";
 /*
  * Author: Joshua Balsillie
- * Date Created: 2016-08-17
- * Description: Import widget styles
+ * Date Created: 2019-03-11
+ * Description:import modal widget styles
  * 
  * References
  * Define ID: #id {
@@ -17,11 +17,8 @@
  */
 
 /* Functions and Mixins */
-@import "_mixins.scss";
 
 /* Variables */
 
 /* Styles */
-@import "../../columns/css/_columns.scss";
-@import "../../modal/css/_modal.scss";
-@import "../../scrollbar/css/_scrollbar.scss";
+@import "_modal.scss";
