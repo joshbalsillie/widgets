@@ -6,87 +6,187 @@
  */
 
 .oneColumn, .twoColumn, .threeColumn, .fourColumn {
+	$rowPadding: 1rem !default; // variable to override
+
+	display: block;
 	padding-bottom: $rowPadding;
-	vertical-align:top;
+	vertical-align: top;
 	
-	/* Clear defaults */
-	font-size: 0;
+	// Clear defaults
+	font-size: 0; // fixes spacing issues
+
+	& > * {
+		// Individual column definition
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		
+		&.alignLeft {
+			text-align: left;
+		}
+		&.alignCenter {
+			text-align: center;
+		}
+		&.alignRight {
+			text-align: right;
+		}
+		&.oneHalf {
+			// Individual column definition for half width
+			@include responsive( width, 100% * ( 1 / 2 ), 100% * ( 1 / 2 ), 100% ); // 1/2, 1/2, 1
+		}
+		&.oneThird {
+			// Individual column definition for third width
+			@include responsive( width, 100% * ( 1 / 3 ), 100% * ( 1 / 2 ), 100% ); // 1/3, 1/2, 1
+		}
+		&.twoThirds {
+			// Individual column definition for two thirds width
+			@include responsive( width, 100% * ( 2 / 3 ), 100% * ( 1 / 2 ), 100% ); // 2/3, 1/2, 1
+		}
+		&.oneQuarter {
+			// Individual column definition for one quarter width
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+		&.threeQuarters {
+			// Individual column definition for three quarters width
+			@include responsive( width, 100% * ( 3 / 4 ), 100% * ( 1 / 2 ), 100% ); // 3/4, 1/2, 1
+		}
+	}
 }
 .oneColumn > * {
 	padding-left: 0;
 	padding-right: 0;
+	width: 100%;
 }
-.twoColumn > * {
-	&:nth-child(2n+1) {
-		@include responsive( padding-left, 0, 0, 0 );
-		@include responsive( padding-right, $columnPadding * ( 1 / 2 ), $columnPadding * ( 1 / 2 ), 0 );
-	}
-	&:nth-child(2n+2) {
-		@include responsive( padding-left, $columnPadding * ( 1 / 2 ), $columnPadding * ( 1 / 2 ), 0 );
-		@include responsive( padding-right, 0, 0, 0 );
-	}
-}
-.threeColumn > * {
-	&:nth-child(3n+1) {
-		@include responsive( padding-left, 0, 0, 0 );
-		@include responsive( padding-right, $columnPadding * ( 2 / 3 ), $columnPadding * ( 2 / 3 ), 0 );
-	}
-	&:nth-child(3n+2) {
-		@include responsive( padding-left, $columnPadding * ( 1 / 3 ), $columnPadding * ( 1 / 3 ), 0 );
-		@include responsive( padding-right, $columnPadding * ( 1 / 3 ), $columnPadding * ( 1 / 3 ), 0 );
-	}
-	&:nth-child(3n+3) {
-		@include responsive( padding-left, $columnPadding * ( 2 / 3 ), $columnPadding * ( 2 / 3 ), 0 );
-		@include responsive( padding-right, 0, 0, 0 );
-	}
-}
-.fourColumn > * {
-	&:nth-child(4n+1) {
-		@include responsive( padding-left, 0, 0, 0 );
-		@include responsive( padding-right, $columnPadding * ( 3 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
-	}
-	&:nth-child(4n+2) {
-		@include responsive( padding-left, $columnPadding * ( 1 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
-		@include responsive( padding-right, $columnPadding * ( 1 / 2 ), 0, 0 );
-	}
-	&:nth-child(4n+3) {
-		@include responsive( padding-left, $columnPadding * ( 1 / 2 ), 0, 0 );
-		@include responsive( padding-right, $columnPadding * ( 1 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
-	}
-	&:nth-child(4n+4) {
-		@include responsive( padding-left, $columnPadding * ( 3 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
-		@include responsive( padding-right, 0, 0, 0 );
-	}
-}
+.twoColumn {
+	& > * {
+		$columnPadding: 2rem !default; // variable to override
 
-/* Cell definitions */
-.oneHalf, .oneThird, .twoThirds, .oneQuarter, .threeQuarters {
-	display:inline-block;
-	vertical-align: top;
-	box-sizing:border-box;
-	
-	&.alignLeft {
-		text-align:left;
+		@include responsive( width, 100% * ( 1 / 2 ), 100% * ( 1 / 2 ), 100% ); // 1/2, 1/2, 1
+
+		&:nth-child(2n+1) {
+			@include responsive( padding-left, 0, 0, 0 );
+			@include responsive( padding-right, $columnPadding * ( 1 / 2 ), $columnPadding * ( 1 / 2 ), 0 );
+		}
+		&:nth-child(2n+2) {
+			@include responsive( padding-left, $columnPadding * ( 1 / 2 ), $columnPadding * ( 1 / 2 ), 0 );
+			@include responsive( padding-right, 0, 0, 0 );
+		}
 	}
-	&.alignCenter {
-		text-align:center;
+	&.ratio_1-2 {
+		& > *:nth-child(2n+1) {
+			@include responsive( width, 100% * ( 1 / 3 ), 100% * ( 1 / 2 ), 100% ); // 1/3, 1/2, 1
+		}
+		& > *:nth-child(2n+2) {
+			@include responsive( width, 100% * ( 2 / 3 ), 100% * ( 1 / 2 ), 100% ); // 2/3, 1/2, 1
+		}
 	}
-	&.alignRight {
-		text-align:right;
+	&.ratio_2-1 {
+		& > *:nth-child(2n+1) {
+			@include responsive( width, 100% * ( 2 / 3 ), 100% * ( 1 / 2 ), 100% ); // 2/3, 1/2, 1
+		}
+		& > *:nth-child(2n+2) {
+			@include responsive( width, 100% * ( 1 / 3 ), 100% * ( 1 / 2 ), 100% ); // 1/3, 1/2, 1
+		}
+	}
+	&.ratio_1-3 {
+		& > *:nth-child(2n+1) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+		& > *:nth-child(2n+2) {
+			@include responsive( width, 100% * ( 3 / 4 ), 100% * ( 1 / 2 ), 100% ); // 3/4, 1/2, 1
+		}
+	}
+	&.ratio_3-1 {
+		& > *:nth-child(2n+1) {
+			@include responsive( width, 100% * ( 3 / 4 ), 100% * ( 1 / 2 ), 100% ); // 3/4, 1/2, 1
+		}
+		& > *:nth-child(2n+2) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
 	}
 }
-.oneHalf {
-	@include responsive( width, 100% * ( 1 / 2 ), 100% * ( 1 / 2 ), 100% ); /* 1/2, 1/2, 1 */
+.threeColumn {
+	& > * {
+		$columnPadding: 2rem !default; // variable to override
+
+		@include responsive( width, 100% * ( 1 / 3 ), 100% * ( 1 / 2 ), 100% ); // 1/3, 1/2, 1
+
+		&:nth-child(3n+1) {
+			@include responsive( padding-left, 0, null, 0 );
+			@include responsive( padding-right, $columnPadding * ( 2 / 3 ), null, 0 );
+		}
+		&:nth-child(3n+2) {
+			@include responsive( padding-left, $columnPadding * ( 1 / 3 ), null, 0 );
+			@include responsive( padding-right, $columnPadding * ( 1 / 3 ), null, 0 );
+		}
+		&:nth-child(3n+3) {
+			@include responsive( padding-left, $columnPadding * ( 2 / 3 ), null, 0 );
+			@include responsive( padding-right, 0, null, 0 );
+		}
+		&:nth-child(2n+1) {
+			@include responsive( padding-left, null, 0, null );
+			@include responsive( padding-right, null, $columnPadding * ( 1 / 2 ), null );
+		}
+		&:nth-child(2n+2) {
+			@include responsive( padding-left, null, $columnPadding * ( 1 / 2 ), null );
+			@include responsive( padding-right, null, 0, null );
+		}
+	}
+	&.ratio_1-1-2 {
+		& > *:nth-child(3n+1) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+		& > *:nth-child(3n+2) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+		& > *:nth-child(3n+3) {
+			@include responsive( width, 100% * ( 1 / 2 ), 100% * ( 1 / 2 ), 100% ); // 1/2, 1/2, 1
+		}
+	}
+	&.ratio_1-2-1 {
+		& > *:nth-child(3n+1) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+		& > *:nth-child(3n+2) {
+			@include responsive( width, 100% * ( 1 / 2 ), 100% * ( 1 / 2 ), 100% ); // 1/2, 1/2, 1
+		}
+		& > *:nth-child(3n+3) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+	}
+	&.ratio_2-1-1 {
+		& > *:nth-child(3n+1) {
+			@include responsive( width, 100% * ( 1 / 2 ), 100% * ( 1 / 2 ), 100% ); // 1/2, 1/2, 1
+		}
+		& > *:nth-child(3n+2) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+		& > *:nth-child(3n+3) {
+			@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+		}
+	}
 }
-.oneThird {
-	@include responsive( width, 100% * ( 1 / 3 ), 100% * ( 1 / 3 ), 100% ); /* 1/3, 1/3, 1 */
-}
-.twoThirds {
-	@include responsive( width, 100% * ( 2 / 3 ), 100% * ( 2 / 3 ), 100% ); /* 2/3, 2/3, 1 */
-}
-.oneQuarter {
-	@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); /* 1/4, 1/2, 1 */
-}
-.threeQuarters {
-	@include responsive( width, 100% * ( 3 / 4 ), 100% * ( 1 / 2 ), 100% ); /* 3/4, 1/2, 1 */
+.fourColumn {
+	& > * {
+		$columnPadding: 2rem !default;
+
+		@include responsive( width, 100% * ( 1 / 4 ), 100% * ( 1 / 2 ), 100% ); // 1/4, 1/2, 1
+
+		&:nth-child(4n+1) {
+			@include responsive( padding-left, 0, 0, 0 );
+			@include responsive( padding-right, $columnPadding * ( 3 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
+		}
+		&:nth-child(4n+2) {
+			@include responsive( padding-left, $columnPadding * ( 1 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
+			@include responsive( padding-right, $columnPadding * ( 1 / 2 ), 0, 0 );
+		}
+		&:nth-child(4n+3) {
+			@include responsive( padding-left, $columnPadding * ( 1 / 2 ), 0, 0 );
+			@include responsive( padding-right, $columnPadding * ( 1 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
+		}
+		&:nth-child(4n+4) {
+			@include responsive( padding-left, $columnPadding * ( 3 / 4 ), $columnPadding * ( 1 / 2 ), 0 );
+			@include responsive( padding-right, 0, 0, 0 );
+		}
+	}
 }

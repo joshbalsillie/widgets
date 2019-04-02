@@ -2,10 +2,10 @@
 /*
  * Author: Joshua Balsillie
  * Description: define mixins for sass/scss files
-*/
+ */
 
 @mixin browserSupport( $property, $value ) {
-	/* Browser attribute support */
+	// Browser attribute support
 	#{ -webkit- + $property }: $value;
 	#{ -moz- + $property }: $value;
 	#{ -ms- + $property }: $value;
@@ -14,6 +14,7 @@
 }
 
 @mixin languageSupport( $language, $property, $valueLtr, $valueRtl ) {
+	// Defining text direction for different languages
 	@if ($language == "english") or ($language == "eng") or ($language == "en") {
 		#{ $property }: $valueLtr;
 	}
@@ -23,7 +24,7 @@
 }
 
 @mixin flip( $property, $valueLtr, $valueRtl ) {
-	/* Text direction affected property value assignment */
+	// Text direction affected property value assignment
 	@if $defaultTextDirection == "ltr" {
 		#{ $property }: $valueLtr;
 	}
@@ -32,25 +33,33 @@
 	}
 }
 
-@mixin responsive( $property, $valueDispayLarge, $valueDisplaySmall ) {
-	/* Responsive value assignment */
+@mixin responsive( $property, $valueDispayLarge: null, $valueDispayMedium: null, $valueDisplaySmall: null ) {
+	// Responsive value assignment
 	@include display-large() {
 		#{ $property }: $valueDispayLarge;
+	}
+	@include display-medium() {
+		#{ $property }: $valueDispayMedium;
 	}
 	@include display-small() {
 		#{ $property }: $valueDisplaySmall;
 	}
 }
-
 @mixin display-large() {
-	/* Large screen definition */
-	@media only screen and (min-width: 651px) {
+	// Large screen definition
+	@media only screen and ( min-width:800px ) {
+		@content;
+	}
+}
+@mixin display-medium() {
+	// Medium screen definition
+	@media only screen and ( max-width:800px ) and ( min-width: 600px ) {
 		@content;
 	}
 }
 @mixin display-small() {
-	/* Small screen definition */
-	@media only screen and (max-width: 650px) {
+	// Small screen definition
+	@media only screen and ( max-width:600px ) {
 		@content;
 	}
 }
