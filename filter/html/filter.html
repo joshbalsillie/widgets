@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Filter</title>
+	<script src="../../../widgets/filter/js/filter.js"></script>
+	<style type="text/css">
+		.filter > :first-child {
+			background-color: #FFFFFF;
+			padding: 1rem;
+		}
+		.filter > :first-child > * {
+			background-color: #CCCCCC;
+			padding: 0.5rem;
+			margin: 0.2rem;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<h2>Note</h2>
+	<p>A delimiter is required if either the button filter or the item have more than one value being compared.</p>
+	<h2>Example</h2>
+	<p>data-tags contains "5" works without a delimiter because:</p>
+	<p>filter.by.attributeValues( this, 'data-tags', '5' ) "5" is the only value being compared.</p>
+	<p>&lt;article data-tags="5"&gt; "5" is the only value being compared.</p>
+	<p>If you change either value to "5, 1" it will not work without defining the delimiter, which in this case is ", " (comma + space).</p>
+	<div class="filter">
+		<div>
+			<div onclick="filter.clear( this )">All</div>
+			<div onclick="filter.by.attributeValues( this, 'data-tags', 'one', ', ' )">data-tags contains "one"</div>
+			<div onclick="filter.by.attributeValues( this, 'data-tags', '2', ', ' )">data-tags contains "2"</div>
+			<div onclick="filter.by.attributeValues( this, 'data-tags', 'three, 3, 3.0', ', ' )">data-tags contains "three", "3", or "3.0"</div>
+			<div onclick="filter.by.attributeValues( this, 'data-tags', '5' )">data-tags contains "5"</div>
+			<div onclick="filter.by.attributes( this, 'id', ', ' )">has the "id" attribute</div>
+			<div onclick="filter.by.attributeValues( this, 'style', 'border: solid;', ', ' )">solid border</div>
+			<div onclick="filter.by.tag( this, 'article', ', ' )">&lt;article&gt;</div>
+		</div>
+		<div>
+			<div data-tags="three, one" id="item1" style="border: solid;">
+				<h2>This is the first item</h2>
+			</div>
+			<div data-tags="2">
+				<h2>This is the second item</h2>
+			</div>
+			<div data-tags="3.0" style="border: dotted;">
+				<h2>This is the third item</h2>
+			</div>
+			<article  id="item2" data-tags="one, 2, 3">
+				<h2>This is the fourth item</h2>
+			</article>
+			<article data-tags="5">
+				<h2>This is the fifth item</h2>
+			</article>
+		</div>
+	</div>
+</body>
+</html>
