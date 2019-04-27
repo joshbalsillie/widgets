@@ -1,0 +1,31 @@
+@charset "utf-8";
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:define column styles
+ */
+
+@charset "utf-8";
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:import modal widget styles
+ * 
+ * References
+ * Define ID: #id {
+ * Define class: .class {
+ * Define all: * {
+ * Define child: > {
+ * Define import css: @import "folder/_file.scss";
+ * Setup and use: http://sass-lang.com/guide
+ *
+ * Important
+ * Order files for inheritance
+ */
+
+/* Functions and Mixins */
+
+/* Variables */
+
+/* Styles */
+@import "_filter.scss";
