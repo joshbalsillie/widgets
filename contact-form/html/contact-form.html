@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Contact Form</title>
+</head>
+<body>
+	<section id="contact">
+		<h2>contact</h2>
+	    <form method="post" action="../php/contact-form.php">
+	        <fieldset>
+	            <label for="name">Name</label>
+	            <input name="name" type="text" placeholder="Your name*" tabindex="1" required>
+	            <label  for="email">Email Address</label>
+	            <input name="email" type="text" placeholder="Your email address*" tabindex="1" required>
+	            <label for="subject">Subject</label>
+	            <input name="subject" type="text" placeholder="Subject*" tabindex="1">
+	            <label for="message">Message</label>
+	            <textarea name="message" placeholder="Your message*" tabindex="1" required></textarea>
+	        </fieldset>
+	        <fieldset>
+	        	<input name="submit" type="submit" tabindex="1" value="Send">
+	        </fieldset>
+	    </form>
+	</section>
+</body>
+</html>
