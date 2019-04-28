@@ -1,0 +1,42 @@
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:define column styles
+ */
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:import modal widget styles
+ * 
+ * References
+ * Define ID: #id {
+ * Define class: .class {
+ * Define all: * {
+ * Define child: > {
+ * Define import css: @import "folder/_file.scss";
+ * Setup and use: http://sass-lang.com/guide
+ *
+ * Important
+ * Order files for inheritance
+ */
+/* Functions and Mixins */
+/* Variables */
+/* Styles */
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:define filter widget styles
+ */
+.filter > :first-child {
+  background-color: #FFFFFF;
+  padding: 1rem;
+}
+
+.filter > :first-child > * {
+  background-color: #CCCCCC;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=filter.css.map */
