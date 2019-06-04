@@ -1,0 +1,9 @@
+AuthType Basic
+AuthName "Testing"
+AuthUserFile "/home/joshubl3/.htpasswds/private_html/testing/passwd"
+require valid-user
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^testing\.joshuabalsillie\.com$ [NC]
+RewriteRule !^testing\.joshuabalsillie\.com /testing.joshuabalsillie.com%{REQUEST_URI} [L,NC]
