@@ -2,8 +2,10 @@
  * @author: Joshua Balsillie
  * @version: 1.0
  * @since: 2019-01-03
-*/
-// https://realfavicongenerator.net/ for generating favicon files
+ */
+
+'use strict';
+
 (function(){
 	// Functions that should run as this file loads
 	initiate();
@@ -27,6 +29,7 @@
 		// get the variables required for this javascript file
 		var variables = [
 			// copy and paste html elements as they would appear in the <head> tag, example: '<tagname attribute="value">'
+			// https://realfavicongenerator.net/ for generating favicon files
 			'<link rel="apple-touch-icon" sizes="180x180" href="../../../widgets/favicon/images/apple-touch-icon.png">',
 			'<link rel="icon" type="image/png" sizes="32x32" href="../../../widgets/favicon/images/favicon-32x32.png">',
 			'<link rel="icon" type="image/png" sizes="16x16" href="../../../widgets/favicon/images/favicon-16x16.png">',
