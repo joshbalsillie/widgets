@@ -2,7 +2,9 @@
  * @author: Joshua Balsillie
  * @version: 1.0
  * @since: 2019-01-12
-*/
+ */
+ 
+'use strict'; // ECMAScript version 5 strict mode
 
 var fileReader = {
 	// global placeholder object for defining variables and methods for this file

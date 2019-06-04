@@ -4,6 +4,8 @@
  * @since: 2016-09-07
  */
 
+'use strict'; // ECMAScript version 5 strict mode
+
 var modal = {
 	show: function( that ){
 		// Show the content in the modal

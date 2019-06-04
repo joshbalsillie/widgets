@@ -4,6 +4,8 @@
  * @since: 2019-01-20
  */
 
+'use strict'; // ECMAScript version 5 strict mode
+
 (function(){
 	// Functions that should run as this file loads
 	initiate();
