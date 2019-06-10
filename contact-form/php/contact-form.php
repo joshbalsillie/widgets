@@ -117,7 +117,7 @@ function makeMessage( $message, $name, $email, $fileRef ){
 	
 	return $messageDetails;
 }
-if ( $_POST[ 'submit' ] ){
+if ( $_POST ){
 	// On submit execute form action
 	$sender = new user;
 	$sender -> setName( retrieveData( 'name' ));
