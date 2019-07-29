@@ -8,13 +8,44 @@
 </head>
 <body>
 	<div class="modal">
-		<a onclick="modal.show( this )">Click here to open the modal</a>
+		<a class="show">
+			<p>Click here to open the modal</p>
+			<p>You can add almost anything inside this &lt;a&gt; tag. This is simply a clickable container.</p>
+		</a>
 		<div>
 			<div>
-				<span class="close" onclick="modal.hide( this )"></span>
+				<span class="hide"></span>
 				<h3>The Modal Title</h3>
 				<p>Anything can go here. The close button and title are optional.</p>
-				<p>If you move the close button somewhere else in the tag heirarchy, you need to modify the javascript file.</p>
+				<p>If you move the close button somewhere else in the tag heirarchy, check to make sure it still works (it might). If not you'll need to modify the Javascript file, or move it someplace else.</p>
+			</div>
+		</div>
+	</div>
+	<div class="modal">
+		<div>
+			<div>
+				<span class="hide"></span>
+				<h3>The First Modal</h3>
+				<p>This is the first modal that does display.</p>
+			</div>
+		</div>
+		<div>
+			<div>
+				<span class="hide"></span>
+				<h3>The Second Modal</h3>
+				<p>This is the second modal that does not display.</p>
+			</div>
+		</div>
+		<a class="show">
+			<p>Click here to only open the first modal (of 3)</p>
+			<p>Optionally you can 'save' modals in your HTML as the Javascript will only display the first modal. This is to prevent opening multiple modals and potentially helpful for testing. It is recommended that you remove all additional modals when publishing to a production site.</p>
+			<p>The position of the element with class "show" can be anywhere amongst the other seconds of modal content.</p>
+		</a>
+		<div>
+			<div>
+				<span class="hide"></span>
+				<h3>The Third Modal</h3>
+				<p>This is the third modal that does not display.</p>
 			</div>
 		</div>
 	</div>
