@@ -9,6 +9,47 @@
 var fileReader = {
 	// global placeholder object for defining variables and methods for this file
 	supportedFileTypes: [ 'csv' ], // the file types supported by this javascript file;
+	/*read: function( pathname, parentElement, firstLast, offset ){
+	},
+	write: function( parentElement, firstLast, offset ){
+
+	},*/
+	file: function( pathname ){
+		var pathArray = pathname.split( "/" ); // path split into array
+		var identifier = pathArray[ pathArray.length - 1 ]; // last array item, which is the filename and filename extension
+		var nameAndExtension = identifier.split( "." ); // array with only two values, the name of the file and the extension
+
+		this.directory = pathname.substring(0, pathname.lastIndexOf('/')); // the directory of the file
+		this.name = nameAndExtension[ 0 ]; // the filename
+		this.extension = nameAndExtension[ nameAndExtension.length - 1 ]; // the file extension
+		this.isSupported = function(){
+			// check if the provided file type is supported
+			 fileReader.supportedFileTypes.forEach( function( arrayValue, index, array ){
+			 	var fileType = arrayValue.toLowerCase();
+
+			 	return ( file.extension.toLowerCase() === arrayValue.toLowerCase() ) ? true : false;
+			});
+		}
+	},
+	isFileSupported: function( pathname, ){
+		// check if the provided file is supported
+		var pathArray = pathname.split( "/" ); // path split into array
+		var filename = pathArray[ pathArray.length - 1 ]; // last array item, which is the filename
+		var nameAndExtension = filename.split( "." ); // array with only two values, the name of the file and the extension 
+		var theExtension = nameAndExtension[ nameAndExtension.length - 1 ].toLowerCase(); // the file extension
+		
+		supportedFileTypesArray.forEach( function( arrayValue, index, array ){
+			// convert all provided array values to lowercase
+			array[ index ] = arrayValue.toLowerCase();
+
+			array[ index ] === 0;
+		});
+
+		return supportedFileTypesArray.some( function( arrayValue ){
+			// for each array value compare it to the file type
+			return theExtension === arrayValue;
+		});
+	},
 	read: function( pathname, htmlElement, headerArray ){
 		var isTheFile = {
 			supported: function( pathname, supportedFileTypesArray ){
@@ -29,7 +70,7 @@ var fileReader = {
 			}
 		};
 		var convert = {
-			 // placeholder object for adding data conversion methods
+			// placeholder object for adding data conversion methods
 			csvToArray: function( data ){
 				// convert data from a CSV file to an array
 				var dataArray = []; // placeholder for data returned by this function
