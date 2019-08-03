@@ -28,9 +28,7 @@
 <script>
 	fileReader.read( "../csv/file-reader_test_regular-data.csv", document.getElementsByTagName('body')[0], ['Title A', 'Title B', 'Title C', 'Title D', 'Title E']);
 	fileReader.read( "../csv/file-reader_test_html-elements.csv", document.getElementsByTagName('body')[0] );
-</script>
-<script>
-	fileReader.file( "../csv/file-reader_test_html-elements.csv");
-	console.log( fileReader.file.name );
+	fileReader.read( "../html/file-reader_test_html-file.html", document.getElementsByTagName('body')[0] );
+	
 </script>
 </html>
