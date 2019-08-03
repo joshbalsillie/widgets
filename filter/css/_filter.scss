@@ -1,0 +1,17 @@
+@charset "utf-8";
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:define filter widget styles
+ */
+
+ .filter > :first-child {
+ 	background-color: #FFFFFF;
+ 	padding: 1rem;
+ }
+ .filter > :first-child > * {
+ 	background-color: #CCCCCC;
+ 	padding: 0.5rem;
+ 	margin: 0.2rem;
+ 	display: inline-block;
+ }

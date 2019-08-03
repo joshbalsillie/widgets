@@ -20,8 +20,11 @@
 @import "_mixins.scss";
 
 /* Variables */
+@import "_variables.scss";
 
 /* Styles */
 @import "../../columns/css/_columns.scss";
+@import "../../filter/css/_filter.scss";
+@import "../../icons/css/_icons.scss";
 @import "../../modal/css/_modal.scss";
 @import "../../scrollbar/css/_scrollbar.scss";

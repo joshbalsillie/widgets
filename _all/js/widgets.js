@@ -4,6 +4,8 @@
  * @since: 2019-01-20
  */
 
+'use strict'; // ECMAScript version 5 strict mode
+
 (function(){
 	// Functions that should run as this file loads
 	initiate();
@@ -30,7 +32,8 @@
 	 		// copy and paste html elements as they would appear in the <head> tag, example: '<tagname attribute="value">'
 	 		'<script src="' + theRoot + 'widgets/google-analytics/js/google-analytics.js" async></script>',
 	 		'<script src="' + theRoot + 'widgets/favicon/js/favicon.js" async></script>',
-	 		'<script src="' + theRoot + 'tags/footer/js/footer.js" async></script>',
+	 		'<script src="' + theRoot + 'widgets/filter/js/filter.js" async></script>',
+	 		'<script src="' + theRoot + 'widgets/modal/js/modal.js" async></script>',
 	 	];
 	 	return variables;
 	}

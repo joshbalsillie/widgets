@@ -4,9 +4,6 @@
 	<meta charset="utf-8">
 	<title>File Reader</title>
 	<script src="../js/file-reader.js"></script>
-	<script>
-		
-	</script>
 </head>
 <body>
 	<main>
@@ -16,6 +13,11 @@
 			<p>This requires a server instance to run.</p>
 			<p>To install a local server:</p>
 			<code>npm install -g http-server</code>
+			<p>Ensure Environment Variable Path value contains the following (replace [username]):</p>
+			<code>C:\Users\[username]\AppData\Roaming\npm</code>
+			<code>C:\Users\[username]\AppData\Roaming\npm\node_modules\http-server</code>
+			<p>change the selected drive (if necessary)</p>
+			<code>[drive letter]:</code>
 			<p>change the directory to the root of your project.</p>
 			<code>cd C:\project\directory</code>
 			<p>instantiate a server with the following:</p>
@@ -26,5 +28,7 @@
 <script>
 	fileReader.read( "../csv/file-reader_test_regular-data.csv", document.getElementsByTagName('body')[0], ['Title A', 'Title B', 'Title C', 'Title D', 'Title E']);
 	fileReader.read( "../csv/file-reader_test_html-elements.csv", document.getElementsByTagName('body')[0] );
+	fileReader.read( "../html/file-reader_test_html-file.html", document.getElementsByTagName('body')[0] );
+	
 </script>
 </html>

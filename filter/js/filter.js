@@ -4,6 +4,8 @@
  * @since: 2019-04-12
  */
 
+'use strict'; // ECMAScript version 5 strict mode
+
 var filter = {
 	// global placeholder object for defining variables and methods for this file
 	by: {

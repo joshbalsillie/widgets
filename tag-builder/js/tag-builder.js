@@ -4,6 +4,8 @@
  * @since: 2019-01-22
  */
 
+'use strict'; // ECMAScript version 5 strict mode
+
  function tagBuilder(){
 	// object that cotains functions, to more easily build HTML tags in the DOM
 	var tagBuilder = new Object();

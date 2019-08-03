@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Contact Form</title>
+	<script src="../../../widgets/contact-form/js/contact-form.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../widgets/filter/css/filter.css">
+</head>
+<body>
+	<h2>contact</h2>
+	<form id="contact">
+		<label for="name">Name</label>
+		<input name="name" type="text" placeholder="Your name" tabindex="1" required>
+		<label  for="emailAddress">Email Address</label>
+		<input name="emailAddress" type="text" placeholder="Your email address" tabindex="1" required>
+		<label for="subject">Subject</label>
+		<input name="subject" type="text" placeholder="Subject" tabindex="1" required>
+		<label for="message">Message</label>
+		<textarea name="message" placeholder="Your message" tabindex="1" required></textarea>
+		<fieldset>
+			<label for="country">Country</label>
+			<select name="country">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</select>
+			<input name="country" type="tel" placeholder="Your phone number" tabindex="1">
+		</fieldset>
+		<label for="phoneNumber">Phone Number</label>
+		<input name="phoneNumber" type="tel" placeholder="Your phone number" tabindex="1">
+		<input name="submit" type="submit" tabindex="1" value="Send" onclick="contactForm.request( '../php/contact-form.php' )">
+	</form>
+</body>
+</html>

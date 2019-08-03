@@ -5,26 +5,26 @@ Description:define media attributes
 */
 
 .icons {
-	display:inline-block;
+	display: inline-block;
 	
 	& > a {
-		display:inline-block;
+		display: inline-block;
 		
 		& > img {
-			border-radius:50%;
-			max-width:$iconSize;
+			border-radius: 50%;
+			max-width: 1rem;
 			
-			border-width:0;
-			border-style:none;
+			border-width: 0;
+			border-style: none;
 		}
 	}
 	&.left > * {
-		margin-left:0;
+		margin-left: 0;
 	}
 	&.center > * {
 		
 	}
 	&.right > * {
-		margin-right:0;
+		margin-right: 0;
 	}
 }

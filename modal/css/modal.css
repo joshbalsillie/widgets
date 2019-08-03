@@ -27,7 +27,10 @@
   display: block;
   max-width: inherit;
 }
-.modal * .close:after {
+.modal .show {
+  cursor: pointer;
+}
+.modal * .hide:after {
   content: "×";
   color: #003e47;
   float: right;
@@ -37,7 +40,7 @@
   border-radius: 1rem;
   padding: 0.2rem;
 }
-.modal * .close:hover:after, .modal * .close :focus:after, .modal * .close :active:after {
+.modal * .hide:hover:after, .modal * .hide :focus:after, .modal * .hide :active:after {
   color: #00dcff;
   background-color: #003e47;
   text-decoration: none;
