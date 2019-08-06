@@ -84,20 +84,20 @@ var fileReader = {
 
 				record.forEach( function( cell, cellIndex ){
 					// for each record cell (row cell)
-					if( valueIsBlank( options )){
+					if( recordIndex !== 0 ){
 						createAndAddToParent( cell, 'td', tableRow );
 					}
 					else{
-						var headerValue = valueIsBlank( options.headerRow );
-						if( recordIndex !== 0 ){
+						if( valueIsBlank( options ) || valueIsBlank( options.headerRow )){
 							createAndAddToParent( cell, 'td', tableRow );
 						}
-						else if( recordIndex === 0 && headerValue ){
+						else if( !options.headerRow ){
 							createAndAddToParent( cell, 'td', tableRow );
 						}
-						else if( recordIndex === 0 && !headerValue ){
+						else if( options.headerRow ){
 							createAndAddToParent( cell, 'th', tableRow );
 						}
+
 					}
 				});
 				table.append( tableRow );
@@ -135,10 +135,12 @@ var fileReader = {
 					// check that the request is ready
 					if( theRequest.readyState === 4 ){
 						// DONE, the opperation is complete
-						if( fileReader.file( pathname ).extension === 'csv' ){
+						var fileExtension = fileReader.file( pathname ).extension.toLowerCase();
+						
+						if( fileExtension === 'csv' ){
 							fileReader.write.csvToDom( theRequest, htmlElement, headerArray );
 						}
-						else if( fileReader.file( pathname ).extension === 'html' ){
+						else if( fileExtension === 'html' ){
 							fileReader.write.htmlToDom( theRequest, htmlElement );
 						}
 					}
@@ -157,9 +159,12 @@ var fileReader = {
 		},
 		htmlToDom: function( theRequest, htmlElement ){
 			var htmlCollection = fileReader.convert.htmlToElements( theRequest );
-			for( var index = 0; index < htmlCollection.length; index++ ){
-				htmlElement.append( htmlCollection.item( index ));
+			while( htmlCollection.length !== 0 ){
+				htmlElement.append( htmlCollection.item( 0 ));
 			}
+			/*for( var index = 0; index <= htmlCollection.length; index++ ){
+				htmlElement.append( htmlCollection.item( 0 ));
+			}*/
 		}
 	}
 };
