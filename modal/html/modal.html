@@ -16,7 +16,8 @@
 			<div>
 				<span class="hide"></span>
 				<h3>The Modal Title</h3>
-				<p>Anything can go here. The close button and title are optional.</p>
+				<p>Anything can go here.</p>
+				<p>The close button &lt;span class="hide"&gt;&lt;/span&gt; and title are optional.</p>
 				<p>If you move the close button somewhere else in the tag heirarchy, check to make sure it still works (it might). If not you'll need to modify the Javascript file, or move it someplace else.</p>
 			</div>
 		</div>
@@ -24,14 +25,13 @@
 	<div class="modal">
 		<div>
 			<div>
-				<span class="hide"></span>
 				<h3>The First Modal</h3>
 				<p>This is the first modal that does display.</p>
+				<p>The close button &lt;span class="hide"&gt;&lt;/span&gt; is omitted.</p>
 			</div>
 		</div>
 		<div>
 			<div>
-				<span class="hide"></span>
 				<h3>The Second Modal</h3>
 				<p>This is the second modal that does not display.</p>
 			</div>
@@ -43,11 +43,13 @@
 		</a>
 		<div>
 			<div>
-				<span class="hide"></span>
 				<h3>The Third Modal</h3>
 				<p>This is the third modal that does not display.</p>
 			</div>
 		</div>
 	</div>
 </body>
+<script>
+	modal.cssClass.configure( 'modal', 'show', 'hide' );
+</script>
 </html>
