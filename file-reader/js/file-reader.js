@@ -74,30 +74,40 @@ var fileReader = {
 				return isEmpty;
 			}
 		},
-		arrayToTable: function( array, headers ){
+		arrayToTable: function( array, options ){
 			// convert the provided array into a table
 			var table = document.createElement( 'table' );
 			
-			array.forEach( function( record, index ){
+			array.forEach( function( record, recordIndex ){
+				// for each record (table row)
 				var tableRow = document.createElement( 'tr' );
 
-				if( index === 0 && !valueIsBlank( headers )){
-					headers.forEach( function( header ){
-						var cellElement = document.createElement( 'th' );
-						cellElement.innerHTML = header;
-						tableRow.append( cellElement );
-					});
-				}
-				else if( index > 0 ){
-					record.forEach( function( cell ){
-						var cellElement = document.createElement( 'td' );
-						cellElement.innerHTML = cell;
-						tableRow.append( cellElement );
-					});
-				}
+				record.forEach( function( cell, cellIndex ){
+					// for each record cell (row cell)
+					if( valueIsBlank( options )){
+						createAndAddToParent( cell, 'td', tableRow );
+					}
+					else{
+						var headerValue = valueIsBlank( options.headerRow );
+						if( recordIndex !== 0 ){
+							createAndAddToParent( cell, 'td', tableRow );
+						}
+						else if( recordIndex === 0 && headerValue ){
+							createAndAddToParent( cell, 'td', tableRow );
+						}
+						else if( recordIndex === 0 && !headerValue ){
+							createAndAddToParent( cell, 'th', tableRow );
+						}
+					}
+				});
 				table.append( tableRow );
 			});
 			return table;
+			function createAndAddToParent( node, tagname, parentElement ){
+				var element = document.createElement( tagname );
+				element.innerHTML = node;
+				parentElement.append( element );
+			}
 			function valueIsBlank( value ){
 				// check if the provided value is blank
 				return ( typeof value === 'undefined' || value === null || value === '' ) ? true : false;
@@ -140,11 +150,10 @@ var fileReader = {
 	},
 	write: {
 		// object that takes XML HTTP requests and writes them to the DOM
-		csvToDom: function( theRequest, htmlElement, headerArray ){
-			// 
+		csvToDom: function( theRequest, htmlElement, options ){
 			var theArray = fileReader.convert.csvToArray( theRequest );
-			var theResult = fileReader.convert.arrayToTable( theArray, headerArray );
-			htmlElement.append( theResult );
+			var htmlTable = fileReader.convert.arrayToTable( theArray, options );
+			htmlElement.append( htmlTable );
 		},
 		htmlToDom: function( theRequest, htmlElement ){
 			var htmlCollection = fileReader.convert.htmlToElements( theRequest );
