@@ -25,7 +25,16 @@
 		</article>
 		<article>
 			<h2>Rules</h2>
-			<p>The &lt;script&gt; tag that calls fileReader.read( filePath, destinationElement ), must always appear after the "destinationElement" in your HTML.</p>
+			<p>The &lt;script&gt; tag that calls fileReader.read( filePath, destinationElement, options ), must always appear after the "destinationElement" in your HTML.</p>
+			<h3>fileReader (OBJECT)</h3>
+			<h3>fileReader.read( filePath, destinationElement, options )</h3>
+			<p>filePath // a valid path to the file, including the file name (STRING)</p>
+			<p>destinationElement // the element where you want the contents of the file to display (ELEMENT OBJECT)</p>
+			<p>options // optional settings for the element (OBJECT)</p>
+			<ul>
+				<li>{ headerRow: true } // first record or row of tabular data written in &lt;th&gt; tags</li>
+				<li>{ headerRow: false } or omit object // first record or row of tabular data written in &lt;td&gt; tags</li>
+			</ul>
 		</article>
 		<article>
 			<h2>Ordered Elements (Example 1)</h2>
