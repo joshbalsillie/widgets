@@ -7,6 +7,16 @@
 'use strict'; // ECMAScript version 5 strict mode
 
 var modal = {
+	cssClass: {
+		configure: function( widgetClass, showClass, hideClass ){
+			modal.cssClass.widget = widgetClass;
+			modal.cssClass.show = showClass;
+			modal.cssClass.hide = hideClass;
+
+			var widgets = document.getElementsByClassName( modal.cssClass.widget );
+			modal.modifyAll( widgets );
+		}
+	},
 	hide: function( element ){
 		// close the provided element
 		element.style.display = 'none';
@@ -18,14 +28,14 @@ var modal = {
 	hideContent: function( element ){
 		// Hide the content in the modal
 		if( element.parentElement.classList ){
-			while( !element.parentElement.classList.contains( 'modal' )){
+			while( !element.parentElement.classList.contains( modal.cssClass.widget )){
 				element = element.parentElement;
 			}
 			modal.hide( element );
 		}
-		else if( element.classList.contains( 'modal' )){
+		else if( element.classList.contains( modal.cssClass.widget )){
 			for( var index = 0; index < element.children.length; ++index ){
-				if( !element.children[ index ].classList.contains( 'show' )){
+				if( !element.children[ index ].classList.contains( modal.cssClass.show )){
 					// show only first modal
 					modal.hide( element.children[ index ] );
 					index = element.children.length; // End the 'for' statement
@@ -35,12 +45,12 @@ var modal = {
 	},
 	showContent: function( element ){
 		// Show the content in the modal
-		while( !element.classList.contains( 'modal' )){
+		while( !element.classList.contains( modal.cssClass.widget )){
 			// 
 			element = element.parentElement;
 		}
 		for( var index = 0; index < element.children.length; ++index ){
-			if( !element.children[ index ].classList.contains( 'show' )){
+			if( !element.children[ index ].classList.contains( modal.cssClass.show )){
 				// show only first modal
 				modal.show( element.children[ index ] );
 				index = element.children.length; // End the 'for' statement
@@ -78,7 +88,7 @@ var modal = {
 			var widgetChildren = widgets[ countWidgets ].children;
 
 			for( var countChildren = 0; countChildren < widgetChildren.length; ++countChildren ){
-				if( !widgetChildren[ countChildren ].classList.contains( 'show' )){
+				if( !widgetChildren[ countChildren ].classList.contains( modal.cssClass.show )){
 					containers.push( widgetChildren[ countChildren ] );
 				}
 			}
@@ -89,19 +99,20 @@ var modal = {
 		// Modify all the widget elements
 		Object.keys( widgets ).forEach( function( index ){
 			// An array of 'elements' passing array indexes in sequence
-			var hideElements = widgets[ index ].getElementsByClassName('hide');
+			var hideElements = widgets[ index ].getElementsByClassName( modal.cssClass.hide );
 			modal.affix.hideContent( hideElements );
 
 			var containers = modal.getContainersFrom( widgets );
 			modal.affix.hideContent( containers );
 
-			var showElements = document.getElementsByClassName('show');
+			var showElements = document.getElementsByClassName( modal.cssClass.show );
 			modal.affix.showContent( showElements );
 		});
 	},
-	domLoaded: document.addEventListener('DOMContentLoaded', function( event ){
+	/*domLoaded: document.addEventListener('DOMContentLoaded', function( event ){
 		// Wait for page to load
-		var widgets = document.getElementsByClassName('modal');
+		modal.cssClass.configure( 'modal', 'show', 'hide' );
+		var widgets = document.getElementsByClassName( modal.cssClass.widget );
 		modal.modifyAll( widgets );
-	})
+	})*/
 };

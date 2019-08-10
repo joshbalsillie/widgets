@@ -25,10 +25,19 @@
 		</article>
 		<article>
 			<h2>Rules</h2>
-			<p>The &lt;script&gt; tag that calls fileReader.read( filePath, destinationElement ), must always appear after the "destinationElement" in your HTML.</p>
+			<p>The &lt;script&gt; tag that calls fileReader.read( filePath, destinationElement, options ), must always appear after the "destinationElement" in your HTML.</p>
+			<h3>fileReader (OBJECT)</h3>
+			<h3>fileReader.read( filePath, destinationElement, options )</h3>
+			<p>filePath // a valid path to the file, including the file name (STRING)</p>
+			<p>destinationElement // the element where you want the contents of the file to display (ELEMENT OBJECT)</p>
+			<p>options // optional settings for the element (OBJECT)</p>
+			<ul>
+				<li>{ headerRow: true } // first record or row of tabular data written in &lt;th&gt; tags</li>
+				<li>{ headerRow: false } or omit object // first record or row of tabular data written in &lt;td&gt; tags</li>
+			</ul>
 		</article>
 		<article>
-			<h2>Ordered Elements (Example)</h2>
+			<h2>Ordered Elements (Example 1)</h2>
 			<p>If you want your elements to display in a certain order, make sure to pass them unique tags.</p>
 			<p>Following this &lt;p&gt; tag are some empty &lt;div&gt; tags. One of the easier and more accurate methods is to use IDs which is the example used here.</p>
 			<div id="figure-1">
@@ -38,25 +47,26 @@
 			<div id="figure-2">
 				<h3>file-reader_test_html-elements.csv</h3>
 			</div>
-			<div id="figure-3">
-				<h3>file-reader_test_html-file.html</h3>
-			</div>
+			<div id="figure-3"></div>
+			<div id="figure-4"></div>
 		</article>
 		<article>
-			<h2>Unordered Elements (Example)</h2>
+			<h2>Unordered Elements (Example 2)</h2>
 			<p>If you don't care what order your elements display in and you just want the fastest things to display first, you can load them into a single element. They may load in the order defined in your &lt;script&gt; tag, but this is not guaranteed.</p>
-			<div id="figure-4"></div>
+			<div id="figure-5"></div>
 		</article>
 	</main>
 </body>
-<script type="text/javascript">
+<script>
 	fileReader.read( "../csv/file-reader_test_regular-data.csv", document.getElementById( 'figure-1' ), { headerRow: true });
 	fileReader.read( "../csv/file-reader_test_html-elements.csv", document.getElementById( 'figure-2' ));
-	fileReader.read( "../html/file-reader_test_html-file.html", document.getElementById( 'figure-3' ));
-</script>
-<script type="text/javascript">
-	fileReader.read( "../csv/file-reader_test_regular-data.csv", document.getElementById( 'figure-4' ), { headerRow:true });
+	fileReader.read( "../html/file-reader_test_html-file-1.html",document.getElementById( 'figure-3' ));
 	fileReader.read( "../csv/file-reader_test_html-elements.csv", document.getElementById( 'figure-4' ));
-	fileReader.read( "../html/file-reader_test_html-file.html", document.getElementById( 'figure-4' ));
+</script>
+<script>
+	fileReader.read( "../csv/file-reader_test_regular-data.csv", document.getElementById( 'figure-5' ), { headerRow:false });
+	fileReader.read( "../csv/file-reader_test_html-elements.csv", document.getElementById( 'figure-5' ) );
+	fileReader.read( "../html/file-reader_test_html-file-1.html", document.getElementById( 'figure-5' ) );
+	fileReader.read( "../html/file-reader_test_html-file-2.html", document.getElementById( 'figure-5' ) );
 </script>
 </html>

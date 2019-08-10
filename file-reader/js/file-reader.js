@@ -84,20 +84,20 @@ var fileReader = {
 
 				record.forEach( function( cell, cellIndex ){
 					// for each record cell (row cell)
-					if( valueIsBlank( options )){
+					if( recordIndex !== 0 ){
 						createAndAddToParent( cell, 'td', tableRow );
 					}
 					else{
-						var headerValue = valueIsBlank( options.headerRow );
-						if( recordIndex !== 0 ){
+						if( valueIsBlank( options ) || valueIsBlank( options.headerRow )){
 							createAndAddToParent( cell, 'td', tableRow );
 						}
-						else if( recordIndex === 0 && headerValue ){
+						else if( !options.headerRow ){
 							createAndAddToParent( cell, 'td', tableRow );
 						}
-						else if( recordIndex === 0 && !headerValue ){
+						else if( options.headerRow ){
 							createAndAddToParent( cell, 'th', tableRow );
 						}
+
 					}
 				});
 				table.append( tableRow );
@@ -121,10 +121,10 @@ var fileReader = {
 			return htmlElements;
 		}
 	},
-	read: function( pathname, htmlElement, headerArray ){
+	read: function( pathname, htmlElement, optionalSettings ){
 		// pathname = the pathname of the target file
 		// htmlElement = the element to append the file data to
-		// headerArray = optional array for rewriting headers from tabular data
+		// optionalSettings = optional object for settings used by this document
 		if( fileReader.file( pathname ).isSupported ){
 			// If the provided file is of a supported file type
 			var theRequest = ( window.XMLHttpRequest ) ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' ); // modern browser option with legacy browser backup
@@ -135,10 +135,12 @@ var fileReader = {
 					// check that the request is ready
 					if( theRequest.readyState === 4 ){
 						// DONE, the opperation is complete
-						if( fileReader.file( pathname ).extension === 'csv' ){
-							fileReader.write.csvToDom( theRequest, htmlElement, headerArray );
+						var fileExtension = fileReader.file( pathname ).extension.toLowerCase();
+						
+						if( fileExtension === 'csv' ){
+							fileReader.write.csvToDom( theRequest, htmlElement, optionalSettings );
 						}
-						else if( fileReader.file( pathname ).extension === 'html' ){
+						else if( fileExtension === 'html' ){
 							fileReader.write.htmlToDom( theRequest, htmlElement );
 						}
 					}
@@ -157,8 +159,8 @@ var fileReader = {
 		},
 		htmlToDom: function( theRequest, htmlElement ){
 			var htmlCollection = fileReader.convert.htmlToElements( theRequest );
-			for( var index = 0; index < htmlCollection.length; index++ ){
-				htmlElement.append( htmlCollection.item( index ));
+			while( htmlCollection.length !== 0 ){
+				htmlElement.append( htmlCollection.item( 0 ));
 			}
 		}
 	}
