@@ -121,10 +121,10 @@ var fileReader = {
 			return htmlElements;
 		}
 	},
-	read: function( pathname, htmlElement, headerArray ){
+	read: function( pathname, htmlElement, optionalSettings ){
 		// pathname = the pathname of the target file
 		// htmlElement = the element to append the file data to
-		// headerArray = optional array for rewriting headers from tabular data
+		// optionalSettings = optional object for settings used by this document
 		if( fileReader.file( pathname ).isSupported ){
 			// If the provided file is of a supported file type
 			var theRequest = ( window.XMLHttpRequest ) ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' ); // modern browser option with legacy browser backup
@@ -138,7 +138,7 @@ var fileReader = {
 						var fileExtension = fileReader.file( pathname ).extension.toLowerCase();
 						
 						if( fileExtension === 'csv' ){
-							fileReader.write.csvToDom( theRequest, htmlElement, headerArray );
+							fileReader.write.csvToDom( theRequest, htmlElement, optionalSettings );
 						}
 						else if( fileExtension === 'html' ){
 							fileReader.write.htmlToDom( theRequest, htmlElement );
@@ -162,9 +162,6 @@ var fileReader = {
 			while( htmlCollection.length !== 0 ){
 				htmlElement.append( htmlCollection.item( 0 ));
 			}
-			/*for( var index = 0; index <= htmlCollection.length; index++ ){
-				htmlElement.append( htmlCollection.item( 0 ));
-			}*/
 		}
 	}
 };
