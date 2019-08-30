@@ -6,12 +6,8 @@
 
 'use strict'; // ECMAScript version 5 strict mode
 
- function tagBuilder(){
-	// object that cotains functions, to more easily build HTML tags in the DOM
-	var tagBuilder = new Object();
-	tagBuilder.tag = null;
-	
-	tagBuilder.addChildren = function( tags ){
+var tagBuilder = {
+	addChildren: function( tags ){
 		// Add one or multiple HTML tags to a html Element
 		if( tagBuilder.tag.nodeType === Node.ELEMENT_NODE ){
 			// if tag is currently set as a element node
@@ -25,8 +21,8 @@
 		else{
 			console.error( 'tagBuilder.tag (' + tagBuilder.tag + ', ' + tagBuilder.tag.nodeType + ') is not defined, or of the correct type.' );
 		}
-	}
-	tagBuilder.createTags = function( stringOrStringArray ){
+	},
+	createTags: function( stringOrStringArray ){
 		// convert strings into executable HTML elements after being placed in the DOM
 		if( tagBuilder.verifyDataTypeOf( stringOrStringArray, 'string' )){
 			// if the provided variable is a string
@@ -48,8 +44,8 @@
 				return htmlElements;
 			}
 		}
-	}
-	tagBuilder.convertToExecutable = function( tagElement ){
+	},
+	convertToExecutable: function( tagElement ){
 		// Duplicate the provided tag as a new element in order for all tags to run the 'src' attribute after adding it to the DOM
 		// Required to run: <script src=""></script>
 		var newTag = document.createElement( tagElement.tagName );
@@ -67,8 +63,8 @@
 			newTag.textContent = tagElement.textContent;
 		}
 		return newTag;
-	}
-	tagBuilder.convertToHtmlElement = function( string ){
+	},
+	convertToHtmlElement: function( string ){
 		// remove the dom and return the html element
 		// this function should not be used for <!doctype>, <html>, <head>, <body> due to use of "DOMParser()"
 		var domParser = new DOMParser();
@@ -92,8 +88,8 @@
 				console.error( 'could not find element created by DOMParser' );
 			}
 		}
-	}
-	tagBuilder.verifyDataTypeOf = function( value, dataType ){
+	},
+	verifyDataTypeOf: function( value, dataType ){
 		// compare the provided data type to the data type of the value
 		if( tagBuilder.isValid( dataType ) && tagBuilder.isValid( typeof value )){
 			// if data types are both valid
@@ -105,8 +101,8 @@
 				return false;
 			}
 		}
-	}
-	tagBuilder.isValid = function( dataType ){
+	},
+	isValid:  function( dataType ){
 		// check if the provided value is a valid data type
 		switch( dataType ){
 			// check if the provided data type is valid
@@ -122,5 +118,4 @@
 				return false;
 		}
 	}
-	return tagBuilder;
 }
