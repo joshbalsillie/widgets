@@ -13,8 +13,7 @@
 	function initiate(){
 		// Primary function that controls this file
 		if( dependenciesAreLoaded() ){
-			// if the tagBuilder function is in global scope
-			var tagBuilder = window.tagBuilder();
+			// if the tagBuilder object is in global scope
 			var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
 			var childTags = tagBuilder.createTags( getVariables() );
 			
@@ -45,7 +44,7 @@
 	function dependenciesAreLoaded(){
 		// check if all the required dependencies for this file are loaded
 		switch( true ){
-			case typeof window.tagBuilder === 'function': return true;
+			case typeof window.tagBuilder === 'object': return true;
 			default: return false;
 		}
 	}
