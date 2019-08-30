@@ -138,10 +138,10 @@ var fileReader = {
 						var fileExtension = fileReader.file( pathname ).extension.toLowerCase();
 						
 						if( fileExtension === 'csv' ){
-							fileReader.write.csvToDom( theRequest, htmlElement, optionalSettings );
+							fileReader.copy.csvToDom( theRequest, htmlElement, optionalSettings );
 						}
 						else if( fileExtension === 'html' ){
-							fileReader.write.htmlToDom( theRequest, htmlElement );
+							fileReader.copy.htmlToDom( theRequest, htmlElement );
 						}
 					}
 				}
@@ -150,17 +150,17 @@ var fileReader = {
 			theRequest.send();
 		}
 	},
-	write: {
-		// object that takes XML HTTP requests and writes them to the DOM
-		csvToDom: function( theRequest, htmlElement, options ){
+	copy: {
+		// object that takes XML HTTP requests and copies them to the DOM
+		csvToDom: function( theRequest, domHtmlElement, options ){
 			var theArray = fileReader.convert.csvToArray( theRequest );
 			var htmlTable = fileReader.convert.arrayToTable( theArray, options );
-			htmlElement.append( htmlTable );
+			domHtmlElement.append( htmlTable );
 		},
-		htmlToDom: function( theRequest, htmlElement ){
+		htmlToDom: function( theRequest, domHtmlElement ){
 			var htmlCollection = fileReader.convert.htmlToElements( theRequest );
 			while( htmlCollection.length !== 0 ){
-				htmlElement.append( htmlCollection.item( 0 ));
+				domHtmlElement.append( htmlCollection.item( 0 ));
 			}
 		}
 	}
