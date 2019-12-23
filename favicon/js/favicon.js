@@ -6,7 +6,33 @@
 
 'use strict';
 
-(function(){
+var favicon = {
+	file: function( pathname, domHtmlElement ){
+		// read a file that contains the favicon html elements
+		// pathname = the pathname of the target file
+		// domHtmlElement = the element to append the file data to
+		if( favicon.dependenciesAreLoaded() ){
+			// if the tagBuilder object is in global scope
+			//var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
+			var fileElements = fileReader.read
+			var childTags = tagBuilder.createTags( getVariables() );
+			
+			tagBuilder.addChildren( childTags, parentTag );
+		}
+		else{
+			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
+		}
+	},
+	dependenciesAreLoaded: function(){
+		// check if all the required dependencies for this file are loaded
+		switch( true ){
+			case typeof window.tagBuilder === 'object': return true;
+			case typeof window.fileReader === 'object': return true;
+			default: return false;
+		}
+	}
+}
+/*(function(){
 	// Functions that should run as this file loads
 	initiate();
 
@@ -17,8 +43,7 @@
 			var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
 			var childTags = tagBuilder.createTags( getVariables() );
 			
-			tagBuilder.tag = parentTag;
-			tagBuilder.addChildren( childTags );
+			tagBuilder.addChildren( childTags, parentTag );
 		}
 		else{
 			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
@@ -45,7 +70,8 @@
 		// check if all the required dependencies for this file are loaded
 		switch( true ){
 			case typeof window.tagBuilder === 'object': return true;
+			case typeof window.fileReader === 'object': return true;
 			default: return false;
 		}
 	}
-})();
+})();*/

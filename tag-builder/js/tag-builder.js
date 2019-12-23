@@ -7,19 +7,22 @@
 'use strict'; // ECMAScript version 5 strict mode
 
 var tagBuilder = {
-	addChildren: function( tags ){
+	addChildren: function( tags, parentTag ){
 		// Add one or multiple HTML tags to a html Element
-		if( tagBuilder.tag.nodeType === Node.ELEMENT_NODE ){
+		if( parentTag.nodeType === Node.ELEMENT_NODE ){
 			// if tag is currently set as a element node
 			for( var countTags = 0; countTags < tags.length; ++countTags ){
 				if( tagBuilder.verifyDataTypeOf( tags[ countTags ], 'object' )){
 					// check if array value is an object
-					tagBuilder.tag.appendChild( tags[ countTags ] );
+					parentTag.appendChild( tags[ countTags ] );
+				}
+				else{
+					console.error( tags[ countTags ] + ' is not of type: object.' );
 				}
 			}
 		}
 		else{
-			console.error( 'tagBuilder.tag (' + tagBuilder.tag + ', ' + tagBuilder.tag.nodeType + ') is not defined, or of the correct type.' );
+			console.error( 'parentTag (' + parentTag + ', ' + parentTag.nodeType + ') is not defined, or of the correct type.' );
 		}
 	},
 	createTags: function( stringOrStringArray ){
