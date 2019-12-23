@@ -9,19 +9,14 @@
 var googleAnalytics = {
 	configure: function( source ){
 		// Primary function that controls this file
-		if( googleAnalytics.dependenciesAreLoaded() ){
-			// if any other file or function dependencies are required
-			var domHead = document.head || document.getElementsByTagName( 'head' )[ 0 ] || document.childNodes[ 0 ].childNodes[ 0 ];
-			var googleTag = googleAnalytics.getGoogleTag( source );
-			domHead.append( googleTag );
+		// source = Google Tag Manager URL with the ID variable
+		var domHead = document.head || document.getElementsByTagName( 'head' )[ 0 ] || document.childNodes[ 0 ].childNodes[ 0 ];
+		var googleTag = googleAnalytics.getGoogleTag( source );
+		domHead.append( googleTag );
 
-			var theVariables = googleAnalytics.getURLVariables( source );
-			var theId = googleAnalytics.getId( theVariables );
-			googleAnalytics.googleSetup( theId );
-		}
-		else{
-			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
-		}
+		var theVariables = googleAnalytics.getURLVariables( source );
+		var theId = googleAnalytics.getId( theVariables );
+		googleAnalytics.googleSetup( theId );
 	},
 	getGoogleTag( source ){
 		var theTag = document.createElement( 'script' );
@@ -70,11 +65,5 @@ var googleAnalytics = {
 		}
 		gtag('js', new Date() );
 		gtag('config', googleTrackingId );
-	},
-	dependenciesAreLoaded: function(){
-		// check if all the required dependencies for this file are loaded
-		switch( true ){
-			default: return true;
-		}
 	}
 }
