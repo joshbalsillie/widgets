@@ -108,11 +108,5 @@ var modal = {
 			var showElements = document.getElementsByClassName( modal.cssClass.show );
 			modal.affix.showContent( showElements );
 		});
-	},
-	/*domLoaded: document.addEventListener('DOMContentLoaded', function( event ){
-		// Wait for page to load
-		modal.cssClass.configure( 'modal', 'show', 'hide' );
-		var widgets = document.getElementsByClassName( modal.cssClass.widget );
-		modal.modifyAll( widgets );
-	})*/
+	}
 };

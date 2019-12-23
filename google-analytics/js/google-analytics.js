@@ -7,27 +7,55 @@
 'use strict'; // ECMAScript version 5 strict mode
 
 var googleAnalytics = {
-	configure: function( googleTrackingId ){
+	configure: function( source ){
 		// Primary function that controls this file
-		if( googleAnalytics.dependenciesAreLoaded() ){
-			// if the tagBuilder object is in global scope
-			var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
-			var childTags = tagBuilder.createTags( googleAnalytics.getVariables( googleTrackingId ));
-			
-			tagBuilder.tag = parentTag;
-			tagBuilder.addChildren( childTags );
-		}
-		else{
-			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
-		}
-		googleAnalytics.googleSetup( googleTrackingId );
+		// source = Google Tag Manager URL with the ID variable
+		var domHead = document.head || document.getElementsByTagName( 'head' )[ 0 ] || document.childNodes[ 0 ].childNodes[ 0 ];
+		var googleTag = googleAnalytics.getGoogleTag( source );
+		domHead.append( googleTag );
+
+		var theVariables = googleAnalytics.getURLVariables( source );
+		var theId = googleAnalytics.getId( theVariables );
+		googleAnalytics.googleSetup( theId );
 	},
-	getVariables: function( googleTrackingId ){
-	 	// get the variables required for this javascript file
-	 	var variables = [
-	 		// copy and paste html elements as they would appear in the <head> tag, example: '<tagname attribute="value">'
-	 		'<script src="https://www.googletagmanager.com/gtag/js?id=' + googleTrackingId + '" async></script>'
-	 	];
+	getGoogleTag( source ){
+		var theTag = document.createElement( 'script' );
+		theTag.setAttribute( 'src', source );
+		theTag.setAttribute( 'async', '' );
+		theTag.setAttribute( 'type', 'text/javascript' );
+		return theTag;
+	},
+	getId: function( variables ){
+		if( variables.id || variables.ID || variables.Id || variables.iD ){
+			// If the provided variable is included in the source
+			return variables.id || variables.ID || variables.Id || variables.iD;
+		}
+	},
+	getURLVariables: function( source ){
+	 	// get the analytics site ID
+		var variables = {};
+		var newTag = document.createElement( 'script' );
+		newTag.setAttribute( 'src', source );
+		newTag.setAttribute( 'async', '' );
+
+		if( source.includes( '?' ) ){
+			// If the source includes variable / value pairs
+			var data = source.split( '?' );
+
+			if( data.includes( '&' ) ){
+				// If the source includes multiple variable / value pairs
+				var variablesAndValues = data.split( '&' );
+
+				variablesAndValues.forEach( function( variableAndValue ){
+					var pair = variableAndValue.split( '=' );
+					variables[ pair[ 0 ] ] = pair[ 1 ];
+				});
+			}
+			else{
+				var pair = data[ 1 ].split( '=' );
+				variables[ pair[ 0 ] ] = pair[ 1 ];
+			}
+		}
 	 	return variables;
 	},
 	googleSetup: function( googleTrackingId ){
@@ -37,12 +65,5 @@ var googleAnalytics = {
 		}
 		gtag('js', new Date() );
 		gtag('config', googleTrackingId );
-	},
-	dependenciesAreLoaded: function(){
-		// check if all the required dependencies for this file are loaded
-		switch( true ){
-			case typeof window.tagBuilder === 'object': return true;
-			default: return false;
-		}
 	}
 }

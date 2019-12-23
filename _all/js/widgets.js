@@ -17,11 +17,10 @@
 			var parentTag = document.head || document.getElementsByTagName( "head" )[ 0 ];
 			var childTags = tagBuilder.createTags( getVariables() );
 			
-			tagBuilder.tag = parentTag;
-			tagBuilder.addChildren( childTags );
+			tagBuilder.addChildren( childTags, parentTag );
 		}
 		else{
-			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
+			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.' );
 		}
 	}
 	function getVariables(){

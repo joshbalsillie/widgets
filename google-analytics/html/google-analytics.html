@@ -3,12 +3,29 @@
 <head>
 	<meta charset="utf-8">
 	<title>Google Analytics</title>
-	<script src="../../tag-builder/js/tag-builder.js"></script>
 	<script src="../../google-analytics/js/google-analytics.js"></script>
 	<script>
-		googleAnalytics.configure( 'UA-60673215-1' );
+		googleAnalytics.configure( "https://www.googletagmanager.com/gtag/js?id=UA-60673215-1" );
 	</script>
 </head>
 <body>
+	<main>
+		<h1>File Reader</h1>
+		<article>
+			<h2>Requirements</h2>
+			<p>This requires a server instance to run.</p>
+			<p>To install a local server:</p>
+			<code>npm install -g http-server</code>
+			<p>Ensure Environment Variable Path value contains the following (replace [username]):</p>
+			<code>C:\Users\[username]\AppData\Roaming\npm</code>
+			<code>C:\Users\[username]\AppData\Roaming\npm\node_modules\http-server</code>
+			<p>change the selected drive (if necessary)</p>
+			<code>[drive letter]:</code>
+			<p>change the directory to the root of your project.</p>
+			<code>cd C:\project\directory</code>
+			<p>instantiate a server with the following:</p>
+			<code>http-server -c-1</code>
+		</article>
+	</main>
 </body>
 </html>
