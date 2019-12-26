@@ -8,7 +8,7 @@
 
 var favicon = {
 	file: function( pathname, domHtmlElement ){
-		// read a file that contains the favicon html elements
+		// read a file that contains the html elements
 		// pathname = the pathname of the target file
 		// domHtmlElement = the element to append the file data to
 		if( favicon.dependenciesAreLoaded() ){

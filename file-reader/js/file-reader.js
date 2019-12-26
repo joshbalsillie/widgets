@@ -214,8 +214,8 @@ var fileReader = {
 		},
 	},
 	read: function( pathname, destinationElement, options ){
-		// pathname = the pathname of the target file
-		// destinationElement = optional element to append the file data to
+		// pathname = required pathname of the target file
+		// destinationElement = required element to append the file data to
 		// options = optional object for settings used by this document
 
 		if( fileReader.file( pathname ).isSupported ){
@@ -232,17 +232,21 @@ var fileReader = {
 					// check that the request is ready
 					if( theRequest.readyState === 4 ){
 						// DONE, the opperation is complete
-						if( fileReader.valueIsBlank( destinationElement ) ){
-							var t1 = fileReader.convert.html.toElements( pathname, options );
-							var t2 = t1;
+						try{
+							if( fileReader.valueIsBlank( destinationElement ) ){
+								throw "Required variable 'destinationElement' value is blank.";
+							}
+							else if( !fileReader.valueIsBlank( destinationElement ) ){
+								if( theExtension === 'csv' ){
+									fileReader.copy.csvToDom( theRequest, destinationElement, options );
+								}
+								else if( theExtension === 'html' ){
+									fileReader.copy.htmlToDom( theRequest, destinationElement, options );
+								}
+							}
 						}
-						else if( !fileReader.valueIsBlank( destinationElement ) ){
-							if( theExtension === 'csv' ){
-								fileReader.copy.csvToDom( theRequest, destinationElement, options );
-							}
-							else if( theExtension === 'html' ){
-								fileReader.copy.htmlToDom( theRequest, destinationElement, options );
-							}
+						catch( error ){
+							console.error( error );
 						}
 					}
 				}
@@ -288,12 +292,17 @@ var fileReader = {
 				var htmlCollection = fileReader.convert.html.toElements( theRequest, options );
 				var domHead = document.head || document.getElementsByTagName( 'head' )[ 0 ] || document.childNodes[ 0 ].childNodes[ 0 ];
 				var domBody = document.body || document.getElementsByTagName( 'body' )[ 0 ] || document.childNodes[ 0 ].childNodes[ 1 ];
+				var tag = null; // placeholder for converting tag to executable
 
 				if( htmlCollection.length === undefined && htmlCollection.children.length !== 0 ){
 					// if 1 htmlCollection
-					while( htmlCollection.children.length !== 0 ){
-						destinationElement.append( htmlCollection.children[ 0 ]);
+					for( var countElements = 0; countElements < htmlCollection.children.length; countElements++ ){
+						tag = fileReader.convert.tagToExecutable( htmlCollection.children[ countElements ] );
+						destinationElement.append( tag );
 					}
+					/*while( htmlCollection.children.length !== 0 ){
+						destinationElement.append( htmlCollection.children[ 0 ] );
+					}*/
 				}
 				else if( htmlCollection.length !== undefined ){
 					// if more than 2 htmlCollections
