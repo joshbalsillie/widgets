@@ -3,10 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>Widgets</title>
-	<script src="../../../widgets/tag-builder/js/tag-builder.js"></script>
-	<script src="../../../widgets/_all/js/widgets.js"></script>
-	<link rel="stylesheet" href="../css/widgets.css">
+	<script src="../../file-reader/js/file-reader.js"></script>
+	<script src="../../_all/js/widgets.js"></script>
 </head>
 <body>
+	<script>
+		widgets.onload = widgets.file( "../html/widgets_testing-01.html", document.head, {head:true, body:false} );
+		//widgets.file( "../html/widgets_testing-01.html", document.body, {head:false, body:true} );>
+	</script>
 </body>
 </html>
