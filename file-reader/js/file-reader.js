@@ -52,32 +52,48 @@ var fileReader = {
 			console.error( 'parentTag (' + parentTag + ', ' + parentTag.nodeType + ') is not defined, or of the correct type.' );
 		}
 	},
-	createTags: function( stringOrArray ){
-		// convert strings into executable HTML elements after being placed in the DOM
-		// stringOrArray = string or array of strings
-		if( fileReader.verifyDataTypeOf( stringOrArray, 'string' )){
-			// if the provided variable is a string
-			var htmlElement = fileReader.convertToHtmlElement( stringOrArray );
-			return fileReader.convert.tagToExecutable( htmlElement );
-		}
-		else if( fileReader.verifyDataTypeOf( stringOrArray, 'object' )){
-			// if the provided variable is an object
-			if( Array.isArray( stringOrArray )){
-				// if the provided variable is an array
-				var htmlElements = []; // Placeholder
-
-				for( var countStrings = 0; countStrings < stringOrArray.length; ++countStrings ){
-					// for each defined html element
-					var htmlElement = fileReader.convertToHtmlElement( stringOrArray[ countStrings ]);
-
-					htmlElements.push( fileReader.convert.tagToExecutable( htmlElement ));
-				}
-				return htmlElements;
-			}
-		}
-	},
 	convert: {
-		// placeholder object for adding data conversion methods
+		// object for storing data conversion methods
+		array: {
+			toTable: function( array, options ){
+				// convert the provided array into a table
+				try{
+					if( Array.isArray( stringOrArray )){
+						// if the provided variable is an array
+						var table = document.createElement( 'table' );
+						
+						array.forEach( function( record, recordIndex ){
+							// for each record (table row)
+							var tableRow = document.createElement( 'tr' );
+
+							record.forEach( function( cell, cellIndex ){
+								// for each record cell (row cell)
+								if( recordIndex !== 0 ){
+									fileReader.createAndAddToParent( cell, 'td', tableRow );
+								}
+								else{
+									if( fileReader.valueIsBlank( options ) || fileReader.valueIsBlank( options.headerRow )){
+										fileReader.createAndAddToParent( cell, 'td', tableRow );
+									}
+									else if( !options.headerRow ){
+										fileReader.createAndAddToParent( cell, 'td', tableRow );
+									}
+									else if( options.headerRow ){
+										fileReader.createAndAddToParent( cell, 'th', tableRow );
+									}
+
+								}
+							});
+							table.append( tableRow );
+						});
+						return table;
+					}
+				}
+				catch( error ){
+					console.error( error );
+				}
+			}
+		},
 		csv: {
 			toArray: function( theRequest ){
 				// convert data from a CSV file to an array
@@ -115,38 +131,6 @@ var fileReader = {
 				}
 			}
 		},
-		array: {
-			toTable: function( array, options ){
-				// convert the provided array into a table
-				var table = document.createElement( 'table' );
-				
-				array.forEach( function( record, recordIndex ){
-					// for each record (table row)
-					var tableRow = document.createElement( 'tr' );
-
-					record.forEach( function( cell, cellIndex ){
-						// for each record cell (row cell)
-						if( recordIndex !== 0 ){
-							fileReader.createAndAddToParent( cell, 'td', tableRow );
-						}
-						else{
-							if( fileReader.valueIsBlank( options ) || fileReader.valueIsBlank( options.headerRow )){
-								fileReader.createAndAddToParent( cell, 'td', tableRow );
-							}
-							else if( !options.headerRow ){
-								fileReader.createAndAddToParent( cell, 'td', tableRow );
-							}
-							else if( options.headerRow ){
-								fileReader.createAndAddToParent( cell, 'th', tableRow );
-							}
-
-						}
-					});
-					table.append( tableRow );
-				});
-				return table;
-			}
-		},
 		html: {
 			toElements: function( theRequest, options ){
 				// extract the provided file body contents
@@ -160,7 +144,16 @@ var fileReader = {
 					var head = dom.head || dom.getElementsByTagName( 'head' )[ 0 ] || dom.childNodes[ 0 ].childNodes[ 0 ];
 					var body = dom.body || dom.getElementsByTagName( 'body' )[ 0 ] || dom.childNodes[ 0 ].childNodes[ 1 ];			
 
-					if( fileReader.valueIsBlank( options ) ){
+					if( options.head && options.body ){
+						return [ head, body ];
+					}
+					else if( options.head ){
+						return head;
+					}
+					else if( options.body ){
+						return body;
+					}
+					else if( fileReader.valueIsBlank( options ) ){
 						// if not options are passed
 						if( body.firstChild ){
 							// look for elements in the DOMParser <body> tag
@@ -171,92 +164,50 @@ var fileReader = {
 							return head;
 						}
 					}
-					else if( options.head && options.body ){
-						return [ head, body ];
-					}
-					else if( options.head ){
-						return head;
-					}
-					else if( options.body ){
-						return body;
-					}
 					else{
 						console.error( 'could not find element(s) created by DOMParser' );
 					}
 				}
-			},
-			elementsToArray: function( htmlCollection ){
-				var htmlArray = [];
-				for( var countElements = 0; countElements < htmlCollection.length; countElements++ ){
-					htmlArray.push( htmlCollection.item( countElements ) );
-				}
-				return htmlArray;
 			}
 		},
-		tagToExecutable: function( tagElement ){
-			// Duplicate the provided tag as a new element in order for all tags to run the 'src' attribute after adding it to the DOM
-			// Required to run: <script src=""></script>
-			var newTag = document.createElement( tagElement.tagName );
+		tag: {
+			toExecutable: function( tagElement ){
+				// Duplicate the provided tag as a new element in order for all tags to run the 'src' attribute after adding it to the DOM
+				// Required to run: <script src=""></script>
+				var newTag = document.createElement( tagElement.tagName );
 
-			if( tagElement.hasAttributes() ){
-				// Check if the tag has attributes
-				for( var countAttributes = 0; countAttributes < tagElement.attributes.length; ++countAttributes ){
-					var name = tagElement.attributes[ countAttributes ].name;
-					var value = tagElement.attributes[ countAttributes ].value;
-					newTag.setAttribute( name, value );
+				if( tagElement.hasAttributes() ){
+					// Check if the tag has attributes
+					for( var countAttributes = 0; countAttributes < tagElement.attributes.length; ++countAttributes ){
+						var name = tagElement.attributes[ countAttributes ].name;
+						var value = tagElement.attributes[ countAttributes ].value;
+						newTag.setAttribute( name, value );
+					}
 				}
+				if( tagElement.textContent ){
+					// Check if the tag has content within it
+					newTag.textContent = tagElement.textContent;
+				}
+				return newTag;
 			}
-			if( tagElement.textContent ){
-				// Check if the tag has content within it
-				newTag.textContent = tagElement.textContent;
-			}
-			return newTag;
-		},
+		}
 	},
 	read: function( pathname, destinationElement, options ){
+		// read the conents of the file defined in the pathname
 		// pathname = required pathname of the target file
 		// destinationElement = required element to append the file data to
 		// options = optional object for settings used by this document
 
 		if( fileReader.file( pathname ).isSupported ){
 			// If the provided file is of a supported file type
-			// creates an XML Http request to handle the provided file
-			var theRequest = ( window.XMLHttpRequest ) ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' ); // modern browser option with legacy browser backup
-
-			theRequest.onreadystatechange = function(){
-				// handle the necessary statuses and ready states of the request
-				var theFile = fileReader.file( pathname );
-				var theExtension = theFile.extension.toLowerCase();
-
-				if( theRequest.status === 200 ){
-					// check that the request is ready
-					if( theRequest.readyState === 4 ){
-						// DONE, the opperation is complete
-						try{
-							if( fileReader.valueIsBlank( destinationElement ) ){
-								throw "Required variable 'destinationElement' value is blank.";
-							}
-							else if( !fileReader.valueIsBlank( destinationElement ) ){
-								if( theExtension === 'csv' ){
-									fileReader.copy.csvToDom( theRequest, destinationElement, options );
-								}
-								else if( theExtension === 'html' ){
-									fileReader.copy.htmlToDom( theRequest, destinationElement, options );
-								}
-							}
-						}
-						catch( error ){
-							console.error( error );
-						}
-					}
-				}
-			}
-			theRequest.open( 'GET', pathname, true );
-			theRequest.send();
+			fileReader.makeRequest( pathname, destinationElement, options );
 		}
 	},
 	makeRequest: function( pathname, destinationElement, options ){
 		// creates an XML Http request to handle the provided file
+		// pathname = required pathname of the target file
+		// destinationElement = required element to append the file data to
+		// options = optional object for settings used by this document
 		var theRequest = ( window.XMLHttpRequest ) ? new XMLHttpRequest() : new ActiveXObject( 'Microsoft.XMLHTTP' ); // modern browser option with legacy browser backup
 
 		theRequest.onreadystatechange = function(){
@@ -268,11 +219,21 @@ var fileReader = {
 				// check that the request is ready
 				if( theRequest.readyState === 4 ){
 					// DONE, the opperation is complete
-					if( theExtension === 'csv' ){
-						fileReader.copy.csvToDom( theRequest, destinationElement, options );
+					try{
+						if( !fileReader.valueIsBlank( destinationElement ) ){
+							if( theExtension === 'csv' ){
+								fileReader.copy.csvToDom( theRequest, destinationElement, options );
+							}
+							else if( theExtension === 'html' ){
+								fileReader.copy.htmlToDom( theRequest, destinationElement, options );
+							}
+						}
+						else if( fileReader.valueIsBlank( destinationElement ) ){
+							throw "Required variable 'destinationElement' value is blank.";
+						}
 					}
-					else if( theExtension === 'html' ){
-						fileReader.copy.htmlToDom( theRequest, destinationElement, options );
+					catch( error ){
+						console.error( error );
 					}
 				}
 			}
@@ -297,19 +258,17 @@ var fileReader = {
 				if( htmlCollection.length === undefined && htmlCollection.children.length !== 0 ){
 					// if 1 htmlCollection
 					for( var countElements = 0; countElements < htmlCollection.children.length; countElements++ ){
-						tag = fileReader.convert.tagToExecutable( htmlCollection.children[ countElements ] );
+						tag = fileReader.convert.tag.toExecutable( htmlCollection.children[ countElements ] );
 						destinationElement.append( tag );
 					}
-					/*while( htmlCollection.children.length !== 0 ){
-						destinationElement.append( htmlCollection.children[ 0 ] );
-					}*/
 				}
 				else if( htmlCollection.length !== undefined ){
 					// if more than 2 htmlCollections
 					for( var countCollections = 0; countCollections < htmlCollection.length; countCollections++ ){
 						while( htmlCollection[ countCollections ].children.length !== 0 ){
 							for( var countElements = 0; countElements < htmlCollection[ countCollections ].children.length; countElements++ ){
-								destinationElement.append( htmlCollection[ countCollections ].children[ countElements ] );
+								var tag = htmlCollection[ countCollections ].children[ countElements ];
+								destinationElement.append( tag );
 							}
 						}
 					}

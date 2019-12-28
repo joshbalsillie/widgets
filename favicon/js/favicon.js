@@ -7,16 +7,18 @@
 'use strict';
 
 var favicon = {
-	file: function( pathname, domHtmlElement ){
+	file: function( pathname, domHtmlElement, options ){
 		// read a file that contains the html elements
 		// pathname = the pathname of the target file
 		// domHtmlElement = the element to append the file data to
-		if( favicon.dependenciesAreLoaded() ){
-			// if the tagBuilder object is in global scope
-			fileReader.read( pathname, domHtmlElement, {head:true, body:false} );
-		}
-		else{
-			console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
+		window.onload = function(){
+			if( widgets.dependenciesAreLoaded() ){
+				// if the tagBuilder object is in global scope
+				fileReader.read( pathname, domHtmlElement, options );
+			}
+			else{
+				console.error( 'One of this files dependencies could not be loaded, preventing this file from running.');
+			}
 		}
 	},
 	dependenciesAreLoaded: function(){
