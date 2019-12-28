@@ -13,11 +13,11 @@ var fileReader = {
 		var identifier = pathArray[ pathArray.length - 1 ]; // last array item, which is the filename and filename extension
 		var nameAndExtension = identifier.split( "." ); // array with only two values, the name of the file and the extension
 
-		this.directory = pathname.substring(0, pathname.lastIndexOf('/')); // the directory of the file
-		this.name = nameAndExtension[ 0 ]; // the filename
-		this.extension = nameAndExtension[ nameAndExtension.length - 1 ]; // the file extension
-		this.isSupported = checkSupportFor( this );
-		return this;
+		fileReader.directory = pathname.substring(0, pathname.lastIndexOf('/')); // the directory of the file
+		fileReader.name = nameAndExtension[ 0 ]; // the filename
+		fileReader.extension = nameAndExtension[ nameAndExtension.length - 1 ]; // the file extension
+		fileReader.isSupported = checkSupportFor( fileReader );
+		return fileReader;
 
 		function checkSupportFor( file ){
 			// check if the provided file is supported
@@ -267,12 +267,12 @@ var fileReader = {
 					for( var countCollections = 0; countCollections < htmlCollection.length; countCollections++ ){
 						while( htmlCollection[ countCollections ].children.length !== 0 ){
 							for( var countElements = 0; countElements < htmlCollection[ countCollections ].children.length; countElements++ ){
-								var tag = htmlCollection[ countCollections ].children[ countElements ];
+								tag = fileReader.convert.tag.toExecutable( htmlCollection.children[ countElements ] );
 								destinationElement.append( tag );
 							}
 						}
 					}
-				}	
+				}
 			}
 			catch( error ){
 				console.error( error );
