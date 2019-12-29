@@ -6,12 +6,14 @@
 	<script src="../../filter/js/filter.js"></script>
 	<script src="../../modal/js/modal.js"></script>
 	<link rel="stylesheet" href="../css/widgets.css">
+	<script>
+		window.onload = function(){
+			googleAnalytics.configure( "https://www.googletagmanager.com/gtag/js?id=UA-60673215-1" );
+			favicon.file( "../../favicon/html/favicon-test-01.html", document.head, {head:true, body:false} );
+			modal.cssClass.configure( 'modal', 'show', 'hide' );
+		}
+	</script>
 </head>
 <body>
-	<script>
-		favicon.file( "../../favicon/html/favicon-test-01.html", document.head );
-		googleAnalytics.configure( "https://www.googletagmanager.com/gtag/js?id=UA-60673215-1" );
-		modal.cssClass.configure( 'modal', 'show', 'hide' );
-	</script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="example.js"></script><!-- working -->
+    <script src="add-example-dynamically.js"></script><!-- not working -->
+</head>
+<body>
+    <script>
+    	var theScript = document.createElement( 'script' );
+    	theScript.src = 'example.js';
+    	execute( theScript ); // not working
+    </script>
+</body>
+</html>
+</body>
+</html>
