@@ -2,14 +2,13 @@
 <html>
 <head>
 	<script src="../../google-analytics/js/google-analytics.js"></script>
-	<script src="../../favicon/js/favicon.js"></script>
 	<script src="../../filter/js/filter.js"></script>
 	<script src="../../modal/js/modal.js"></script>
 	<link rel="stylesheet" href="../css/widgets.css">
 	<script>
 		window.onload = function(){
 			googleAnalytics.configure( "https://www.googletagmanager.com/gtag/js?id=UA-60673215-1" );
-			favicon.file( "../../favicon/html/favicon-test-01.html", document.head, {head:true, body:false} );
+			fileReader.read( "../../favicon/html/favicon-test-01.html", document.head, {head:true, body:false} );
 			modal.cssClass.configure( 'modal', 'show', 'hide' );
 		}
 	</script>

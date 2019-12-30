@@ -58,7 +58,7 @@ var fileReader = {
 			toTable: function( array, options ){
 				// convert the provided array into a table
 				try{
-					if( Array.isArray( stringOrArray )){
+					if( Array.isArray( array )){
 						// if the provided variable is an array
 						var table = document.createElement( 'table' );
 						
@@ -144,16 +144,7 @@ var fileReader = {
 					var head = dom.head || dom.getElementsByTagName( 'head' )[ 0 ] || dom.childNodes[ 0 ].childNodes[ 0 ];
 					var body = dom.body || dom.getElementsByTagName( 'body' )[ 0 ] || dom.childNodes[ 0 ].childNodes[ 1 ];			
 
-					if( options.head && options.body ){
-						return [ head, body ];
-					}
-					else if( options.head ){
-						return head;
-					}
-					else if( options.body ){
-						return body;
-					}
-					else if( fileReader.valueIsBlank( options ) ){
+					if( fileReader.valueIsBlank( options ) ){
 						// if not options are passed
 						if( body.firstChild ){
 							// look for elements in the DOMParser <body> tag
@@ -163,6 +154,15 @@ var fileReader = {
 							// look for elements in the DOMParser <head> tag
 							return head;
 						}
+					}
+					else if( options.head && options.body ){
+						return [ head, body ];
+					}
+					else if( options.head ){
+						return head;
+					}
+					else if( options.body ){
+						return body;
 					}
 					else{
 						console.error( 'could not find element(s) created by DOMParser' );
