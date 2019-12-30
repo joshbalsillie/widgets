@@ -184,9 +184,9 @@ var fileReader = {
 						newTag.setAttribute( name, value );
 					}
 				}
-				if( tagElement.textContent ){
+				if( tagElement.innerHTML ){
 					// Check if the tag has content within it
-					newTag.textContent = tagElement.textContent;
+					newTag.innerHTML = tagElement.innerHTML;
 				}
 				return newTag;
 			}
