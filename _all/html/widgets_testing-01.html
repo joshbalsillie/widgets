@@ -6,7 +6,7 @@
 	<script src="../../modal/js/modal.js"></script>
 	<link rel="stylesheet" href="../css/widgets.css">
 	<script>
-		window.onload = function(){
+		window.addEventListener( "load", function( event ){
 			googleAnalytics.configure( "https://www.googletagmanager.com/gtag/js?id=UA-60673215-1" );
 			fileReader.read( "../../favicon/html/favicon-test-01.html", document.head, {head:true, body:false} );
 			modal.cssClass.configure( 'modal', 'show', 'hide' );
