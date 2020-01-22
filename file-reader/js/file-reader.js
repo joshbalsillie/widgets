@@ -16,23 +16,22 @@ var fileReader = {
 		fileReader.directory = pathname.substring(0, pathname.lastIndexOf('/')); // the directory of the file
 		fileReader.name = nameAndExtension[ 0 ]; // the filename
 		fileReader.extension = nameAndExtension[ nameAndExtension.length - 1 ]; // the file extension
-		fileReader.isSupported = checkSupportFor( fileReader );
+		fileReader.isSupported = fileReader.checkSupportFor( fileReader.extension );
 		return fileReader;
+	},
+	checkSupportFor: function( fileExtension ){
+		// check if the provided file is supported
+		var supportedFileTypes = [ 'csv', 'html' ]; // the file types supported by this javascript file;
+		var theExtension = fileExtension.toLowerCase(); // the file extension
 
-		function checkSupportFor( file ){
-			// check if the provided file is supported
-			var supportedFileTypes = [ 'csv', 'html' ]; // the file types supported by this javascript file;
-			var theExtension = file.extension.toLowerCase(); // the file extension
-
-			for( var index = 0; index < supportedFileTypes.length; index++ ){
-				// for each supported file type
-				if( supportedFileTypes[ index ].toLowerCase() === theExtension ){
-					// check if it matches the extension
-					return true;
-				}
+		for( var index = 0; index < supportedFileTypes.length; index++ ){
+			// for each supported file type
+			if( supportedFileTypes[ index ].toLowerCase() === theExtension ){
+				// check if it matches the extension
+				return true;
 			}
-			return false;
 		}
+		return false;
 	},
 	addChildren: function( tags, parentTag ){
 		// Add one or multiple HTML tags to a html Element
@@ -81,7 +80,6 @@ var fileReader = {
 									else if( options.headerRow ){
 										fileReader.createAndAddToParent( cell, 'th', tableRow );
 									}
-
 								}
 							});
 							table.append( tableRow );
@@ -284,7 +282,7 @@ var fileReader = {
 		element.innerHTML = node;
 		parentElement.append( element );
 	},
-	valueIsBlank( value ){
+	valueIsBlank: function( value ){
 		// check if the provided value is blank
 		return ( typeof value === 'undefined' || value === null || value === '' ) ? true : false;
 	},

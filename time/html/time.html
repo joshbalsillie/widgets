@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Time</title>
+	<script src="../js/time.js"></script>
+</head>
+<body>
+	<div>no input into &lt;span&gt; <span></span></div>
+	<div>input value into &lt;span&gt; with query <span disabled></span></div>
+	<div>input value into &lt;span&gt; with id <span id="spanId"></span></div>
+	<div>input value into &lt;span&gt; with class <span class="spanClass"></span></div>
+	<div>input value into &lt;span&gt; with attribute <span name></span></div>
+	<div>input value into &lt;span&gt; with attribute <span name="spanName"></span></div>
+	<div>input value into &lt;span&gt; with attribute and value pair <span alt="spanValue"></span></div>
+	<script type="text/javascript">
+		time.insert.currentYear.toQuery( "span[disabled]" );
+		time.insert.currentYear.toId( "spanId" );
+		time.insert.currentYear.toClass( "spanClass" );
+		time.insert.currentYear.toAttribute( "name" );
+		time.insert.currentYear.toAttribute( "alt", "spanValue" );
+	</script>
+</body>
+</html>
