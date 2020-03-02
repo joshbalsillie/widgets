@@ -73,4 +73,55 @@
   transform: translate(-50%, -50%);
 }
 
+.modal2 {
+  display: block;
+  max-width: inherit;
+}
+.modal2 .show {
+  cursor: pointer;
+}
+.modal2 * .hide:after {
+  content: "×";
+  color: #003e47;
+  float: right;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.2rem;
+  border-radius: 1rem;
+  padding: 0.2rem;
+}
+.modal2 * .hide:hover:after, .modal2 * .hide :focus:after, .modal2 * .hide :active:after {
+  color: #00dcff;
+  background-color: #003e47;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal2:nth-child(2) {
+  display: block;
+  color: #323e42;
+  background-color: white;
+  border-color: #323e42;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-style: solid;
+  border-width: 0.15rem;
+  max-width: 80%;
+  max-height: 80%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal2:nth-child(2):after {
+  content: "";
+  display: none;
+  position: fixed;
+  z-index: 998;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 /*# sourceMappingURL=modal.css.map */

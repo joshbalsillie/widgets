@@ -3,11 +3,29 @@
 <head>
 	<meta charset="utf-8">
 	<title>Widgets</title>
-	<script src="../../file-reader/js/file-reader.js"></script>
-	<script>
-		fileReader.read( "../html/widgets_testing-01.html", document.head, {head:true, body:false} );
-	</script>
+	<script src="../../modal/js/modal.js"></script>
+	<link rel="stylesheet" href="../../modal/css/modal.css">
 </head>
 <body>
+	<div class="modal">
+		<a class="show">
+			<p>Click here to open the modal</p>
+			<p>You can add almost anything inside this &lt;a&gt; tag. This is simply a clickable container.</p>
+		</a>
+		<div>
+			<div>
+				<span class="hide"></span>
+				<h3>The Modal Title</h3>
+				<p>Anything can go here.</p>
+				<p>The close button &lt;span class="hide"&gt;&lt;/span&gt; and title are optional.</p>
+				<p>If you move the close button somewhere else in the tag heirarchy, check to make sure it still works (it might). If not you'll need to modify the Javascript file, or move it someplace else.</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		window.addEventListener( "load", function( event ){
+		    modal.cssClass.configure( 'modal', 'show', 'hide' );
+		}, false );
+	</script>
 </body>
 </html>

@@ -6,8 +6,13 @@
 
 'use strict'; // ECMAScript version 5 strict mode
 
-var time = {
+var select = {
 	// global placeholder object for defining variables and methods for this file
+	query: function( selectors ){
+		document.querySelectorAll( selectors ).forEach( function( element ){
+			element.innerHTML = new Date().getFullYear();
+		});
+	},
 	insert: {
 		currentYear: {
 			// insert the current year to any element using the available functions
