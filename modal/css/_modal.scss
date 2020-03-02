@@ -76,3 +76,74 @@
 		transform: translate(-50%, -50%);
 	}
 }
+.modal2 {
+	// _modal.scss
+	$modal_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
+	$modal_colourForeground: rgba(50,62,66,1) !default; // 323E42
+	$modal_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
+	$modal_colourActionDark: rgba(0,62,71,1) !default; // 003E47
+	$modal_colourActionLight: rgba(0,220,255,1) !default; // 00DDFF
+	$modal_paddingAroundItems: 1rem !default;
+	$modal_border-style: solid !default;
+	$modal_border-width: 0.15rem !default;
+	$modal_hideIconSize: 2rem !default;
+
+	display: block;
+	max-width: inherit;
+	
+	& .show{
+		cursor: pointer;
+	}
+	& * .hide {
+		&:after{
+			// The close button
+			content: "\00D7"; // cancellation x unicode character
+			
+		    color: $modal_colourActionDark;
+		    float: right;
+		    font-size: $modal_hideIconSize;
+		    font-weight: normal;
+		    line-height: 1.2rem;
+		    border-radius: 1rem;
+		    padding: 0.2rem;
+		}
+		&:hover:after, :focus:after, :active:after {
+			color: $modal_colourActionLight;
+			background-color: $modal_colourActionDark;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+	&:nth-child(2) {
+		// Content
+		display: block;
+		color: $modal_colourForeground;
+		background-color: $modal_colourBackground;
+		border-color: $modal_colourForeground;
+		box-shadow:  0 0 $modal_paddingAroundItems $modal_colourDisabled;
+		
+		padding: $modal_paddingAroundItems;
+		border-style: $modal_border-style;
+		border-width: $modal_border-width;
+		max-width: 80%;
+		max-height: 80%;
+
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+
+		&:after {
+			// Background overlay mask
+			content: '';
+			display: none;
+			position: fixed;
+			z-index: 998;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: $modal_colourDisabled;
+		}
+	}
+}
