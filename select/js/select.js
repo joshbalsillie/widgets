@@ -45,7 +45,7 @@ var select = {
 				}
 			},
 			toAttribute: function( name, value ){
-				if( !time.valueIsBlank( name ) && !time.valueIsBlank( value ) ){
+				if( !name && !value ){
 					try{
 						document.querySelectorAll( '[' + name + '=' + value + ']' ).forEach( function( element ){
 							element.innerHTML = new Date().getFullYear();
@@ -55,7 +55,7 @@ var select = {
 						console.error( error );
 					}
 				}
-				else if( !time.valueIsBlank( name ) && time.valueIsBlank( value ) ){
+				else if( !name && value ){
 					try{
 						document.querySelectorAll( '[' + name + ']' ).forEach( function( element ){
 							element.innerHTML = new Date().getFullYear();
