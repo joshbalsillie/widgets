@@ -1,17 +1,151 @@
-/* Error: Can't find stylesheet to import.
- *    ,
- * 23 | @import "_variables.scss";
- *    |         ^^^^^^^^^^^^^^^^^
- *    '
- *   widgets\_all\css\widgets.scss 23:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a    \2577 \a 23 \2502  @import \"_variables.scss\";\d\a    \2502          ^^^^^^^^^^^^^^^^^\a    \2575 \a   widgets\\_all\\css\\widgets.scss 23:9  root stylesheet";
+@charset "UTF-8";
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2016-08-17
+ * Description: Import widget styles
+ * 
+ * References
+ * Define ID: #id {
+ * Define class: .class {
+ * Define all: * {
+ * Define child: > {
+ * Define import css: @import "folder/_file.scss";
+ * Setup and use: http://sass-lang.com/guide
+ *
+ * Important
+ * Order files for inheritance
+ */
+/* Functions and Mixins */
+/*
+ * Author: Joshua Balsillie
+ * Description: define mixins for sass/scss files
+ */
+/* Variables */
+/* Styles */
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2019-04-16
+ * Description:define filter widget styles
+ */
+.filter > :first-child {
+  background-color: transparent;
+  padding-top: 0.5rem;
+  padding-right: 0;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
 }
+
+.filter > :first-child > * {
+  background-color: transparent;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  display: inline-block;
+}
+
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2016-09-07
+ * Description:modal popup
+ */
+.modal {
+  display: block;
+  max-width: inherit;
+}
+.modal .show {
+  cursor: pointer;
+}
+.modal * .hide:after {
+  content: "×";
+  color: #003e47;
+  float: right;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.2rem;
+  border-radius: 1rem;
+  padding: 0.2rem;
+}
+.modal * .hide:hover:after, .modal * .hide :focus:after, .modal * .hide :active:after {
+  color: #00dcff;
+  background-color: #003e47;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal > div {
+  display: none;
+  position: fixed;
+  z-index: 998;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal > div > div {
+  display: block;
+  color: #323e42;
+  background-color: white;
+  border-color: #323e42;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-style: solid;
+  border-width: 0.15rem;
+  max-width: 80%;
+  max-height: 80%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal2 {
+  display: block;
+  max-width: inherit;
+}
+.modal2 .show {
+  cursor: pointer;
+}
+.modal2 * .hide:after {
+  content: "×";
+  color: #003e47;
+  float: right;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.2rem;
+  border-radius: 1rem;
+  padding: 0.2rem;
+}
+.modal2 * .hide:hover:after, .modal2 * .hide :focus:after, .modal2 * .hide :active:after {
+  color: #00dcff;
+  background-color: #003e47;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal2:nth-child(2) {
+  display: block;
+  color: #323e42;
+  background-color: white;
+  border-color: #323e42;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-style: solid;
+  border-width: 0.15rem;
+  max-width: 80%;
+  max-height: 80%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal2:nth-child(2):after {
+  content: "";
+  display: none;
+  position: fixed;
+  z-index: 998;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=widgets.css.map */
