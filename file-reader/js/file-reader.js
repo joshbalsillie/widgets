@@ -182,10 +182,14 @@ var fileReader = {
 						newTag.setAttribute( name, value );
 					}
 				}
-				if( tagElement.innerHTML ){
+				if( !fileReader.valueIsBlank( tagElement.textContent )){
+					// If the tag has text within it, including other tags or executable characters
+					newTag.textContent = tagElement.textContent;
+				}
+				/*if( tagElement.innerHTML ){
 					// Check if the tag has content within it
 					newTag.innerHTML = tagElement.innerHTML;
-				}
+				}*/
 				return newTag;
 			}
 		}
