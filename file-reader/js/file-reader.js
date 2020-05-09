@@ -182,9 +182,13 @@ var fileReader = {
 						newTag.setAttribute( name, value );
 					}
 				}
-				if( tagElement.innerHTML ){
+				/*if( tagElement.innerHTML ){
 					// Check if the tag has content within it
 					newTag.innerHTML = tagElement.innerHTML;
+				}*/
+				if( tagElement.textConent ){
+					// Check if the tag has content within it
+					newTag.textConent = tagElement.textConent;
 				}
 				return newTag;
 			}
