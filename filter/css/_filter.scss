@@ -18,3 +18,10 @@
 	margin: 0.2rem;
 	display: inline-block;
 }
+.filter > :first-child > div > img {
+	/* Optional image styles */
+	border-style: none;
+	position: relative;
+	top: 0;
+	left: 0;
+}
