@@ -33,7 +33,8 @@
   padding-right: 0;
   padding-bottom: 0.5rem;
   padding-left: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
 .filter > :first-child > * {
@@ -46,7 +47,7 @@
 .filter > :first-child > div > img {
   /* Optional image styles */
   border-style: none;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
 }
