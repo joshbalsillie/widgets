@@ -16,11 +16,11 @@
 	<p>If you change either value to "5, 1" it will not work without defining the delimiter, which in this case is ", " (comma + space).</p>
 	<div class="filter">
 		<div>
-			<div onclick="filter.clear( this )">All</div>
+			<div onclick="filter.clearFilters( this )">All</div>
 			<div onclick="filter.by.attributeValues( this, 'data-tags', 'one', ', ' )">data-tags contains "one"</div>
 			<div onclick="filter.by.attributeValues( this, 'data-tags', '2', ', ' )">data-tags contains "2"</div>
 			<div onclick="filter.by.attributeValues( this, 'data-tags', 'three, 3, 3.0', ', ' )">data-tags contains "three", "3", or "3.0"</div>
-			<div onclick="filter.by.attributeValues( this, 'data-tags', '5' )">data-tags contains "5"</div>
+			<div onclick="filter.by.attributeValues( this, 'data-tags', '5', '', true )">data-tags contains "5" / remove other filters</div>
 			<div onclick="filter.by.attributes( this, 'id', ', ' )">has the "id" attribute</div>
 			<div onclick="filter.by.attributeValues( this, 'style', 'border: solid;', ', ' )">solid border</div>
 			<div onclick="filter.by.tag( this, 'article', ', ' )">&lt;article&gt;</div>

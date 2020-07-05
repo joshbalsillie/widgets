@@ -9,12 +9,18 @@
 var filter = {
 	// global placeholder object for defining variables and methods for this file
 	by: {
-		tag: function( element, tags, delimiter ){
-			// required = element, tag(s)
-			// optional = delimiter
+		tag: function( element, tags, delimiter, clearFilters ){
+			// element (required) = the HTML element calling this function
+			// tag(s) (required) = the HTML tag(s) to apply the filter to
+			// delimiter (optional) = the delimiter used if more than one tag is provided
+			// clearFilters (optional) = boolean for invoking the clearFilters() method
+
 			var items = filter.getSiblingOf( element.parentElement ).children;
 			var tags = filter.stringToArray( tags, delimiter );
 
+			if( clearFilters ){
+				filter.clearFilters( element );
+			}
 			for( var item of items ){
 				var itemTagName = item.tagName.toLowerCase();
 				var valueFound = tags.some( tag => itemTagName === tag.toLowerCase());
@@ -24,12 +30,18 @@ var filter = {
 				}
 			}
 		},
-		attributes: function( element, attributes, delimiter ){
-			// required = element, attribute(s)
-			// optional = delimiter
+		attributes: function( element, attributes, delimiter, clearFilters ){
+			// element (required) = the HTML element calling this function
+			// attribute(s) (required) = the HTML attribute(s) to apply the filter to
+			// delimiter (optional) = the delimiter used if more than one attribute is provided
+			// clearFilters (optional) = boolean for invoking the clearFilters() method
+
 			var items = filter.getSiblingOf( element.parentElement ).children;
 			var attributes = filter.stringToArray( attributes, delimiter );
 			
+			if( clearFilters ){
+				filter.clearFilters( element );
+			}
 			for( var item of items ){
 				var itemAttributes = Array.from( item.attributes, itemAttribute => itemAttribute.nodeName );
 				var valueFound = itemAttributes.some( itemAttribute => attributes.some( attribute => itemAttribute === attribute ));
@@ -39,12 +51,19 @@ var filter = {
 				}
 			}
 		},
-		attributeValues: function( element, attribute, values, delimiter ){
-			// required = element, attribute, value(s)
-			// optional = delimiter
+		attributeValues: function( element, attribute, values, delimiter, clearFilters ){
+			// element (required) = the HTML element calling this function
+			// attribute (required) = the HTML attribute to apply the filter to
+			// value(s) (required)  = the HTML attribute value(s) to apply the filter to
+			// delimiter (optional) = the delimiter used if more than one value is provided
+			// clearFilters (optional) = boolean for invoking the clearFilters() method
+
 			var items = filter.getSiblingOf( element.parentElement ).children;
 			var values = filter.stringToArray( values, delimiter );
 
+			if( clearFilters ){
+				filter.clearFilters( element );
+			}
 			for( var item of items ){
 				if( !item.hasAttribute( attribute )){
 					filter.hide( item );
@@ -60,7 +79,7 @@ var filter = {
 			}
 		}
 	},
-	clear: function( element ){
+	clearFilters: function( element ){
 		// Clear all the filters to show all items
 		var items = filter.getSiblingOf( element.parentElement ).children;
 		
@@ -78,8 +97,8 @@ var filter = {
 	},
 	stringToArray: function( string, delimiter ){
 		// Convert a string to an array with one or more array items
-		// required = string
-		// optional = delimiter
+		// string (required) = string with one or more values
+		// delimiter (optional) = the delimiter used if more than one value is provided
 		if( delimiter ){
 			string = string.split( delimiter );
 		}

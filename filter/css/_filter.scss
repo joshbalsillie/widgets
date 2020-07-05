@@ -11,6 +11,8 @@
 	padding-right: 0;
 	padding-bottom: 0.5rem;
 	padding-left: 0;
+	margin-bottom: 1rem;
+	position: relative; // required if using position: absolute on filter buttons in first-child
 }
 .filter > :first-child > * {
 	background-color: transparent;
