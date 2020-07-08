@@ -27,6 +27,7 @@ var filter = {
 
 				if( !valueFound ){
 					filter.hide( item );
+					filter.moveToLast( item );
 				}
 			}
 		},
@@ -48,6 +49,7 @@ var filter = {
 
 				if( !valueFound ){
 					filter.hide( item );
+					filter.moveToLast( item );
 				}
 			}
 		},
@@ -60,6 +62,7 @@ var filter = {
 
 			var items = filter.getSiblingOf( element.parentElement ).children;
 			var values = filter.stringToArray( values, delimiter );
+			var hiddenItems = [];
 
 			if( clearFilters ){
 				filter.clearFilters( element );
@@ -74,9 +77,11 @@ var filter = {
 					
 					if( !valueFound ){
 						filter.hide( item );
+						hiddenItems.push( item );
 					}
 				}
 			}
+			filter.moveToLast( hiddenItems );
 		}
 	},
 	clearFilters: function( element ){
@@ -85,6 +90,12 @@ var filter = {
 		
 		for( var item of items ){
 			filter.show( item );
+		}
+	},
+	moveToLast: function( elements ){
+		// Move the provided elements to the end of it's siblings in the DOM
+		for( var element of elements ){
+			element.parentElement.insertBefore( element, null );
 		}
 	},
 	show: function( element ){
