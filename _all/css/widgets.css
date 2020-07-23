@@ -65,8 +65,15 @@
   cursor: pointer;
   width: 3rem;
   height: 3rem;
-  mask: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) no-repeat center/contain;
   background-color: red;
+  mask-image: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 @media only screen and (min-width: 800px) {
   .menu > .showOrHide {
@@ -163,13 +170,33 @@
     height: 100%;
   }
 }
+@media only screen and (min-width: 800px) {
+  .menu > div {
+    background-color: transparent;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
 .menu > div > div {
   z-index: calc( $menu_backgroundIndex + 1 );
   color: #323e42;
   background-color: white;
-  padding: 1rem;
   border-style: solid;
   border-width: 0;
+  transition-timing-function: ease;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div {
@@ -261,13 +288,44 @@
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
 }
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    padding: 1rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    padding: 1rem;
+  }
+}
+.menu > div > div > * {
+  padding: 10px;
+  margin: 2px;
+  text-transform: uppercase;
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div > * {
+    display: none;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div > * {
+    display: block;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div > * {
+    display: block;
+  }
+}
 .menu > div > div > a {
   background-color: transparent;
   color: #11435c;
-  padding: 10px;
-  padding-bottom: 5px;
-  margin: 2px;
-  text-transform: uppercase;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
