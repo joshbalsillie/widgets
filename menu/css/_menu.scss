@@ -4,9 +4,79 @@
  * Date Created:2020-07-08
  * Description:define menu widget styles
  */
+.menu {
+	$menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
+	$menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
+	$menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
+	$menu_colourActionDark: rgba(0,62,71,1) !default; // 003E47
+	$menu_colourActionLight: rgba(0,220,255,1) !default; // 00DDFF
+	$menu_paddingAroundItems: 1rem !default;
+	$menu_border-style: solid !default;
+	$menu_border-width: 0.15rem !default;
+	$menu_iconSize: 3rem !default;
+	$menu_height: 100% !default;
+	$menu_backgroundIndex: 997 !default;
+	$menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 
-.site {
-	& > div div {
-		
+	display: inline-block;
+	float: right;
+	right: 0;
+
+	& > .showOrHide {
+		cursor: pointer;
+		@include responsive( display, none, inline-block, inline-block );
+
+		& > img {
+			// Collapsed nav icon
+			width: $menu_iconSize;
+			height: auto;
+		}
+	}
+	& > div {
+		// Background overlay mask
+		@include responsive( display, block, none, none );
+		@include responsive( position, static, fixed, fixed );
+		@include responsive( z-index, auto, $menu_backgroundIndex, $menu_backgroundIndex );
+		left: 0;
+		top: 0;
+		@include responsive( width, auto, 100%, 100% );
+		@include responsive( height, auto, 100%, 100% );
+		background-color: $menu_colourDisabled;
+
+		& > div {
+			// navigation container
+			@include responsive( display, inline-block, inline-block, inline-block );
+			@include responsive( height, auto, $menu_height, $menu_height );
+			@include responsive( right, 10, 0, 0 );
+			@include responsive( position, static, absolute, absolute );
+			z-index: $menu_foregroundIndex;
+
+			color: $menu_colourForeground;
+			background-color: $menu_colourBackground;
+			@include responsive( border-color, transparent, $menu_colourForeground, $menu_colourForeground );
+			@include responsive( box-shadow, 0, 0 0 $menu_paddingAroundItems $menu_colourDisabled, 0 0 $menu_paddingAroundItems $menu_colourDisabled );
+			
+			padding: $menu_paddingAroundItems;
+			border-style: $menu_border-style;
+			border-left-width: $menu_border-width;
+
+			& > a {
+				// navigation item
+				background-color:transparent;
+				color:rgba(17,67,92,1);
+				padding:10px;
+				padding-bottom:5px;
+				margin:2px;
+				text-transform:uppercase;
+				@include responsive( display, inline-block, block, block );
+				@include browserSupport( transition-duration, 0.3s );
+				
+				&:hover, :focus, :active {
+					background-color:rgba(17,67,92,1);
+					color:rgba(255,255,255,1);
+					@include browserSupport( transition-duration, 0.3s );
+				}
+			}
+		}
 	}
 }

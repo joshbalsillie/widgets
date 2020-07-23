@@ -36,20 +36,267 @@
   margin-bottom: 1rem;
   position: relative;
 }
-
 .filter > :first-child > * {
   background-color: transparent;
   padding: 0.5rem;
   margin: 0.2rem;
   display: inline-block;
 }
-
 .filter > :first-child > div > img {
   /* Optional image styles */
   border-style: none;
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
+}
+
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2020-07-08
+ * Description:define menu widget styles
+ */
+.menu {
+  display: inline-block;
+  float: right;
+  right: 0;
+}
+.menu > .showOrHide {
+  cursor: pointer;
+}
+@media only screen and (min-width: 800px) {
+  .menu > .showOrHide {
+    display: none;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > .showOrHide {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > .showOrHide {
+    display: inline-block;
+  }
+}
+.menu > .showOrHide > img {
+  width: 3rem;
+  height: auto;
+}
+.menu > div {
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@media only screen and (min-width: 800px) {
+  .menu > div {
+    display: block;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div {
+    display: none;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div {
+    position: static;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div {
+    position: fixed;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div {
+    position: fixed;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div {
+    z-index: auto;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div {
+    z-index: 997;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div {
+    z-index: 997;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div {
+    height: auto;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div {
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div {
+    height: 100%;
+  }
+}
+.menu > div > div {
+  z-index: calc( $menu_backgroundIndex + 1 );
+  color: #323e42;
+  background-color: white;
+  padding: 1rem;
+  border-style: solid;
+  border-left-width: 0.15rem;
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    display: inline-block;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    height: auto;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    right: 10;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    right: 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    right: 0;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    position: static;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    position: absolute;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    position: absolute;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    border-color: transparent;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    border-color: #323e42;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    border-color: #323e42;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    box-shadow: 0;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  }
+}
+.menu > div > div > a {
+  background-color: transparent;
+  color: #11435c;
+  padding: 10px;
+  padding-bottom: 5px;
+  margin: 2px;
+  text-transform: uppercase;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div > a {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+  .menu > div > div > a {
+    display: block;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .menu > div > div > a {
+    display: block;
+  }
+}
+.menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+  background-color: #11435c;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
 /*

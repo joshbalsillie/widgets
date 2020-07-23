@@ -3,20 +3,41 @@
 <head>
 	<meta charset="utf-8">
 	<title>Menu</title>
+	<script src="../js/menu.js"></script>
 	<link rel="stylesheet" href="../../_all/css/widgets.css">
 </head>
 <body>
-	<nav class="site">
-		<img src="../svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg">
-		<div class="horizontal">
-			<a href="#"></a>
-		</div>
-		<div class="vertical">
-			<a href=""></a>
+	<nav class="menu">
+		<a class="showOrHide">
+			<img src="../svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg">
+		</a>
+		<div>
 			<div>
-				<a href="#"></a>
+				<a href="https://www.google.com/">Google</a>
+				<a href="#">item 2</a>
+				<a href="#">item 3</a>
+				<a href="#">item 4</a>
+				<a href="#">item 5</a>
 			</div>
 		</div>
 	</nav>
+	<div>
+		<a href="#">page link 1</a>
+	</div>
+	<div>
+		<a href="#">page link 2</a>
+	</div>
+	<div>
+		<a href="#">page link 3</a>
+	</div>
+	<div>
+		<a href="#">page link 4</a>
+	</div>
+	<div>
+		<a href="#">page link 5</a>
+	</div>
+	<script>
+		menu.cssClass.configure( 'menu', 'showOrHide' );
+	</script>
 </body>
 </html>
