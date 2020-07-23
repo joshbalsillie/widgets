@@ -63,6 +63,10 @@
 }
 .menu > .showOrHide {
   cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  mask: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) no-repeat center/contain;
+  background-color: red;
 }
 @media only screen and (min-width: 800px) {
   .menu > .showOrHide {
@@ -78,10 +82,6 @@
   .menu > .showOrHide {
     display: inline-block;
   }
-}
-.menu > .showOrHide > img {
-  width: 3rem;
-  height: auto;
 }
 .menu > div {
   left: 0;
@@ -169,7 +169,7 @@
   background-color: white;
   padding: 1rem;
   border-style: solid;
-  border-left-width: 0.15rem;
+  border-width: 0;
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div {

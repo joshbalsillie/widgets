@@ -12,8 +12,9 @@
 	$menu_colourActionLight: rgba(0,220,255,1) !default; // 00DDFF
 	$menu_paddingAroundItems: 1rem !default;
 	$menu_border-style: solid !default;
-	$menu_border-width: 0.15rem !default;
+	$menu_border-width: 0 !default;
 	$menu_iconSize: 3rem !default;
+	$menu_iconColour: rgba(255,0,0,1) !default; // FF0000
 	$menu_height: 100% !default;
 	$menu_backgroundIndex: 997 !default;
 	$menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
@@ -25,12 +26,10 @@
 	& > .showOrHide {
 		cursor: pointer;
 		@include responsive( display, none, inline-block, inline-block );
-
-		& > img {
-			// Collapsed nav icon
-			width: $menu_iconSize;
-			height: auto;
-		}
+		width: $menu_iconSize;
+		height: $menu_iconSize;
+		mask: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) no-repeat center / contain;
+		background-color: $menu_iconColour;
 	}
 	& > div {
 		// Background overlay mask
@@ -58,7 +57,7 @@
 			
 			padding: $menu_paddingAroundItems;
 			border-style: $menu_border-style;
-			border-left-width: $menu_border-width;
+			border-width: $menu_border-width;
 
 			& > a {
 				// navigation item
