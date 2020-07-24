@@ -18,6 +18,7 @@
 /* Functions and Mixins */
 /*
  * Author: Joshua Balsillie
+ * Date Created: 2016-08-18
  * Description: define mixins for sass/scss files
  */
 /* Variables */
@@ -80,12 +81,12 @@
     display: none;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > .showOrHide {
     display: inline-block;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > .showOrHide {
     display: inline-block;
   }
@@ -100,12 +101,12 @@
     display: block;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div {
     display: none;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div {
     display: none;
   }
@@ -115,12 +116,12 @@
     position: static;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div {
     position: fixed;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div {
     position: fixed;
   }
@@ -130,12 +131,12 @@
     z-index: auto;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div {
     z-index: 997;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div {
     z-index: 997;
   }
@@ -145,12 +146,12 @@
     width: auto;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div {
     width: 100%;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div {
     width: 100%;
   }
@@ -160,12 +161,12 @@
     height: auto;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div {
     height: 100%;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div {
     height: 100%;
   }
@@ -175,12 +176,12 @@
     background-color: transparent;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div {
     background-color: rgba(0, 0, 0, 0.5);
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div {
     background-color: rgba(0, 0, 0, 0.5);
   }
@@ -197,12 +198,12 @@
     overflow-y: hidden;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     overflow-y: scroll;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     overflow-y: scroll;
   }
@@ -212,12 +213,12 @@
     display: inline-block;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     display: inline-block;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     display: inline-block;
   }
@@ -227,12 +228,12 @@
     height: auto;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     height: calc( 100% - 2rem );
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     height: calc( 100% - 2rem );
   }
@@ -242,12 +243,12 @@
     right: 10;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     right: 0;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     right: 0;
   }
@@ -257,12 +258,12 @@
     position: static;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     position: absolute;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     position: absolute;
   }
@@ -272,12 +273,12 @@
     border-color: transparent;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     border-color: #323e42;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     border-color: #323e42;
   }
@@ -287,12 +288,12 @@
     box-shadow: 0;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
@@ -302,18 +303,18 @@
     padding: 0;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div {
     padding: 1rem;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div {
     padding: 1rem;
   }
 }
 .menu > div > div > * {
-  padding: 10px;
+  padding: 0.2rem;
   margin: 2px;
   text-transform: uppercase;
 }
@@ -322,12 +323,12 @@
     display: none;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div > * {
     display: block;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div > * {
     display: block;
   }
@@ -346,12 +347,12 @@
     display: inline-block;
   }
 }
-@media only screen and (max-width: 800px) and (min-width: 600px) {
+@media only screen and (max-width: 800px) and (min-width: 480px) {
   .menu > div > div > a {
     display: block;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
   .menu > div > div > a {
     display: block;
   }
