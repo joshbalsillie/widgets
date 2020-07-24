@@ -20,10 +20,12 @@ var menu = {
 		// close the provided element
 		//element.style.display = 'none';
 		element.removeAttribute( 'style' );
+		document.body.removeAttribute( 'style' );
 	},
 	show: function( element ){
 		// show the provided element
 		element.style.display = 'inline-block';
+		document.body.style.overflowY = 'hidden';
 	},
 	showOrHide: function( element ){
 		// show or hide

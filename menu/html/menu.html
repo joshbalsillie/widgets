@@ -5,6 +5,7 @@
 	<title>Menu</title>
 	<script src="../js/menu.js"></script>
 	<link rel="stylesheet" href="../../_all/css/widgets.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<nav class="menu">
@@ -17,6 +18,29 @@
 				<a href="#">item 3</a>
 				<a href="#">item 4</a>
 				<a href="#">item 5</a>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<a href="#">item 6</a>
 			</div>
 		</div>
 	</nav>
@@ -35,8 +59,39 @@
 	<div>
 		<a href="#">page link 5</a>
 	</div>
+	<p id="test2">.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<p>.</p>
+	<div>
+		<a href="#">page link 6</a>
+	</div>
 	<script>
 		menu.cssClass.configure( 'menu', 'showOrHide' );
+	</script>
+	<div style="height: 1in; width: 1in; top: -100%; left: -100%; position: absolute;" id="test"></div>
+	<script type="text/javascript">
+		var x = document.getElementById( 'test' ).offsetHeight;
+		var element = document.getElementById( 'test2' );
+		element.innerHTML = 'screen width: ' + screen.width + '<br>' + 'screen height: ' + screen.height + '<br>' + 'device pixel ratio: ' + devicePixelRatio + '<br>' + 'offset height: ' + x;
 	</script>
 </body>
 </html>
