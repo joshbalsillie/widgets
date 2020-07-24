@@ -8,15 +8,15 @@
 	$menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
 	$menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
 	$menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
-	$menu_colourActionDark: rgba(0,62,71,1) !default; // 003E47
-	$menu_colourActionLight: rgba(0,220,255,1) !default; // 00DDFF
+	$menu_colourActionForeground: rgba(255,255,255,1) !default; // FFFFFF
+	$menu_colourActionBackground: rgba(50,62,66,1) !default; // 323E42
 	$menu_menuPadding: 1rem !default;
 	$menu_border-style: solid !default;
 	$menu_border-width: 0 !default;
 	$menu_iconSize: 3rem !default;
 	$menu_iconColour: rgba(255,0,0,1) !default; // FF0000
 	$menu_iconImage: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) !default;
-	$menu_height: 100% !default;
+	$menu_height: calc( 100% - 2rem ) !default;
 	$menu_backgroundIndex: 997 !default;
 	$menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 
@@ -60,9 +60,9 @@
 			background-color: $menu_colourBackground;
 			border-style: $menu_border-style;
 			border-width: $menu_border-width;
+			//overflow-y: scroll;
 
-			transition-timing-function: ease;
-			@include browserSupport( transition-duration, 0.3s );
+			@include responsive( overflow-y, hidden, scroll, scroll );
 			@include responsive( display, inline-block, inline-block, inline-block );
 			@include responsive( height, auto, $menu_height, $menu_height );
 			@include responsive( right, 10, 0, 0 );
@@ -80,14 +80,14 @@
 			}
 			& > a {
 				// navigation item
-				background-color: transparent;
-				color: rgba(17,67,92,1);
+				background-color: $menu_colourBackground;
+				color: $menu_colourForeground;
 				@include responsive( display, inline-block, block, block );
 				@include browserSupport( transition-duration, 0.3s );
 				
 				&:hover, :focus, :active {
-					background-color: rgba(17,67,92,1);
-					color: rgba(255,255,255,1);
+					background-color: $menu_colourActionBackground;
+					color: $menu_colourActionForeground;
 					@include browserSupport( transition-duration, 0.3s );
 				}
 			}
