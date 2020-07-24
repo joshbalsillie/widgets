@@ -54,13 +54,13 @@
 }
 @mixin display-medium() {
 	// Medium screen definition
-	@media only screen and ( max-width:800px ) and ( min-width: 600px ) {
+	@media only screen and ( max-width:800px ) and ( min-width: 480px ) {
 		@content;
 	}
 }
 @mixin display-small() {
 	// Small screen definition
-	@media only screen and ( max-width:600px ) {
+	@media only screen and ( max-width:480px ) {
 		@content;
 	}
 }
