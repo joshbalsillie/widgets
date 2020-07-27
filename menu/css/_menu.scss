@@ -4,29 +4,31 @@
  * Date Created:2020-07-08
  * Description:define menu widget styles
  */
-.menu {
-	$menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
-	$menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
-	$menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
-	$menu_colourActionForeground: rgba(255,255,255,1) !default; // FFFFFF
-	$menu_colourActionBackground: rgba(50,62,66,1) !default; // 323E42
-	$menu_menuPadding: 1rem !default;
-	$menu_border-style: solid !default;
-	$menu_border-width: 0 !default;
-	$menu_iconSize: 3rem !default;
-	$menu_iconColour: rgba(255,0,0,1) !default; // FF0000
-	$menu_iconImage: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) !default;
-	$menu_height: calc( 100% - 2rem ) !default;
-	$menu_backgroundIndex: 997 !default;
-	$menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
+ @use '../../_all/css/mixins';
 
+ $menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
+ $menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
+ $menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
+ $menu_colourActionForeground: rgba(255,255,255,1) !default; // FFFFFF
+ $menu_colourActionBackground: rgba(50,62,66,1) !default; // 323E42
+ $menu_menuPadding: 1rem !default;
+ $menu_border-style: solid !default;
+ $menu_border-width: 0 !default;
+ $menu_iconSize: 3rem !default;
+ $menu_iconColour: rgba(255,0,0,1) !default; // FF0000
+ $menu_iconImage: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) !default;
+ $menu_height: calc( 100% - 2rem ) !default;
+ $menu_backgroundIndex: 997 !default;
+ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
+
+.menu {
 	display: inline-block;
 	float: right;
 	right: 0;
 
 	& > .showOrHide {
 		cursor: pointer;
-		@include responsive( display, none, inline-block, inline-block );
+		@include mixins.responsive( display, none, inline-block, inline-block );
 		width: $menu_iconSize;
 		height: $menu_iconSize;
 		background-color: $menu_iconColour;
@@ -43,14 +45,14 @@
 	}
 	& > div {
 		// Background overlay mask
-		@include responsive( display, block, none, none );
-		@include responsive( position, static, fixed, fixed );
-		@include responsive( z-index, auto, $menu_backgroundIndex, $menu_backgroundIndex );
+		@include mixins.responsive( display, block, none, none );
+		@include mixins.responsive( position, static, fixed, fixed );
+		@include mixins.responsive( z-index, auto, $menu_backgroundIndex, $menu_backgroundIndex );
 		left: 0;
 		top: 0;
-		@include responsive( width, auto, 100%, 100% );
-		@include responsive( height, auto, 100%, 100% );
-		@include responsive( background-color, transparent, $menu_colourDisabled, $menu_colourDisabled );
+		@include mixins.responsive( width, auto, 100%, 100% );
+		@include mixins.responsive( height, auto, 100%, 100% );
+		@include mixins.responsive( background-color, transparent, $menu_colourDisabled, $menu_colourDisabled );
 		background-color: $menu_colourDisabled;
 
 		& > div {
@@ -62,33 +64,33 @@
 			border-width: $menu_border-width;
 			//overflow-y: scroll;
 
-			@include responsive( overflow-y, hidden, scroll, scroll );
-			@include responsive( display, inline-block, inline-block, inline-block );
-			@include responsive( height, auto, $menu_height, $menu_height );
-			@include responsive( right, 10, 0, 0 );
-			@include responsive( position, static, absolute, absolute );
-			@include responsive( border-color, transparent, $menu_colourForeground, $menu_colourForeground );
-			@include responsive( box-shadow, 0, 0 0 1rem $menu_colourDisabled, 0 0 1rem $menu_colourDisabled );
-			@include responsive( padding, 0, $menu_menuPadding, $menu_menuPadding );
+			@include mixins.responsive( overflow-y, hidden, scroll, scroll );
+			@include mixins.responsive( display, inline-block, inline-block, inline-block );
+			@include mixins.responsive( height, auto, $menu_height, $menu_height );
+			@include mixins.responsive( right, 10, 0, 0 );
+			@include mixins.responsive( position, static, absolute, absolute );
+			@include mixins.responsive( border-color, transparent, $menu_colourForeground, $menu_colourForeground );
+			@include mixins.responsive( box-shadow, 0, 0 0 1rem $menu_colourDisabled, 0 0 1rem $menu_colourDisabled );
+			@include mixins.responsive( padding, 0, $menu_menuPadding, $menu_menuPadding );
 
 			& > * {
 				// menu elements
 				padding: 0.2rem;
 				margin: 2px;
 				text-transform: uppercase;
-				@include responsive( display, none, block, block );
+				@include mixins.responsive( display, none, block, block );
 			}
 			& > a {
 				// navigation item
 				background-color: $menu_colourBackground;
 				color: $menu_colourForeground;
-				@include responsive( display, inline-block, block, block );
-				@include browserSupport( transition-duration, 0.3s );
+				@include mixins.responsive( display, inline-block, block, block );
+				@include mixins.browserSupport( transition-duration, 0.3s );
 				
 				&:hover, :focus, :active {
 					background-color: $menu_colourActionBackground;
 					color: $menu_colourActionForeground;
-					@include browserSupport( transition-duration, 0.3s );
+					@include mixins.browserSupport( transition-duration, 0.3s );
 				}
 			}
 		}
