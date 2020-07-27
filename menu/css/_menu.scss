@@ -62,7 +62,9 @@
 			background-color: $menu_colourBackground;
 			border-style: $menu_border-style;
 			border-width: $menu_border-width;
-			//overflow-y: scroll;
+			min-width: 25%;
+			max-width: 50%;
+			overflow-x: hidden;
 
 			@include mixins.responsive( overflow-y, hidden, scroll, scroll );
 			@include mixins.responsive( display, inline-block, inline-block, inline-block );
