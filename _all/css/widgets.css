@@ -53,6 +53,11 @@
 }
 
 /*
+ * Author: Joshua Balsillie
+ * Date Created: 2016-08-18
+ * Description: define mixins for sass/scss files
+ */
+/*
  * Author:Joshua Balsillie
  * Date Created:2020-07-08
  * Description:define menu widget styles
@@ -192,6 +197,9 @@
   background-color: white;
   border-style: solid;
   border-width: 0;
+  min-width: 25%;
+  max-width: 50%;
+  overflow-x: hidden;
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div {
