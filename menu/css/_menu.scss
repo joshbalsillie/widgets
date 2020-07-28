@@ -59,7 +59,6 @@
 			// navigation container
 			z-index: $menu_foregroundIndex;
 			color: $menu_colourForeground;
-			background-color: transparent;
 			border-style: $menu_border-style;
 			border-width: $menu_border-width;
 			min-width: 25%;
@@ -71,6 +70,7 @@
 			@include mixins.responsive( height, auto, $menu_height, $menu_height );
 			@include mixins.responsive( right, 10, 0, 0 );
 			@include mixins.responsive( position, static, absolute, absolute );
+			@include mixins.responsive( background-color, transparent, $menu_colourBackground, $menu_colourBackground );
 			@include mixins.responsive( border-color, transparent, $menu_colourForeground, $menu_colourForeground );
 			@include mixins.responsive( box-shadow, 0, 0 0 1rem $menu_colourDisabled, 0 0 1rem $menu_colourDisabled );
 			@include mixins.responsive( padding, 0, $menu_menuPadding, $menu_menuPadding );
@@ -84,7 +84,7 @@
 			}
 			& > a {
 				// navigation item
-				background-color: $menu_colourBackground;
+				background-color: transparent;
 				color: $menu_colourForeground;
 				@include mixins.responsive( display, inline-block, block, block );
 				@include mixins.browserSupport( transition-duration, 0.3s );
