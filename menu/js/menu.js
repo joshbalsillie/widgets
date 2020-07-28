@@ -24,8 +24,6 @@ var menu = {
 	},
 	show: function( element ){
 		// show the provided element
-		var scrollbarWidth = document.body.offsetWidth - document.body.clientWidth;
-		element.style.right = scrollbarWidth;
 		element.style.display = 'inline-block';
 		document.body.style.overflowY = 'hidden';
 	},
