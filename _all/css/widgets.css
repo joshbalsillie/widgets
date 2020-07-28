@@ -194,7 +194,6 @@
 .menu > div > div {
   z-index: calc( $menu_backgroundIndex + 1 );
   color: #323e42;
-  background-color: transparent;
   border-style: solid;
   border-width: 0;
   min-width: 25%;
@@ -278,6 +277,21 @@
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div {
+    background-color: transparent;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu > div > div {
+    background-color: white;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu > div > div {
+    background-color: white;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
     border-color: transparent;
   }
 }
@@ -342,7 +356,7 @@
   }
 }
 .menu > div > div > a {
-  background-color: white;
+  background-color: transparent;
   color: #323e42;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
