@@ -194,7 +194,7 @@
 .menu > div > div {
   z-index: calc( $menu_backgroundIndex + 1 );
   color: #323e42;
-  background-color: white;
+  background-color: transparent;
   border-style: solid;
   border-width: 0;
   min-width: 25%;
