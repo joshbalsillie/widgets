@@ -18,7 +18,6 @@ var menu = {
 	},
 	hide: function( element ){
 		// close the provided element
-		//element.style.display = 'none';
 		element.removeAttribute( 'style' );
 		document.body.removeAttribute( 'style' );
 	},
