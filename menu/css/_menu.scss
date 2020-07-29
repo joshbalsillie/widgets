@@ -25,9 +25,9 @@
 .menu {
 	display: inline-block;
 	float: right;
-	right: 0;
 
 	& > .showOrHide {
+		float: right;
 		cursor: pointer;
 		@include mixins.responsive( display, none, inline-block, inline-block );
 		width: $menu_iconSize;

@@ -65,9 +65,9 @@
 .menu {
   display: inline-block;
   float: right;
-  right: 0;
 }
 .menu > .showOrHide {
+  float: right;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
