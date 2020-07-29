@@ -18,6 +18,7 @@
  $menu_iconColour: rgba(255,0,0,1) !default; // FF0000
  $menu_iconImage: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) !default;
  $menu_height: calc( 100% - 2rem ) !default;
+ $menu_width: 100% !default;
  $menu_backgroundIndex: 997 !default;
  $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 
@@ -62,9 +63,9 @@
 			border-style: $menu_border-style;
 			border-width: $menu_border-width;
 			min-width: 25%;
-			max-width: 50%;
 			overflow-x: hidden;
 
+			@include mixins.responsive( max-width, auto, $menu_width, $menu_width );
 			@include mixins.responsive( overflow-y, hidden, scroll, scroll );
 			@include mixins.responsive( display, inline-block, inline-block, inline-block );
 			@include mixins.responsive( height, auto, $menu_height, $menu_height );
@@ -77,15 +78,17 @@
 
 			& > * {
 				// menu elements
-				padding: 0.2rem;
+				padding: 0.5rem;
 				margin: 2px;
-				text-transform: uppercase;
+				text-transform: none;
 				@include mixins.responsive( display, none, block, block );
 			}
 			& > a {
 				// navigation item
+				text-decoration: none;
+				text-transform: capitalize;
 				background-color: transparent;
-				color: $menu_colourForeground;
+				@include mixins.responsive( color, $menu_colourForeground, $menu_colourActionBackground, $menu_colourActionBackground );
 				@include mixins.responsive( display, inline-block, block, block );
 				@include mixins.browserSupport( transition-duration, 0.3s );
 				

@@ -197,8 +197,22 @@
   border-style: solid;
   border-width: 0;
   min-width: 25%;
-  max-width: 50%;
   overflow-x: hidden;
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div {
+    max-width: auto;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu > div > div {
+    max-width: 100%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu > div > div {
+    max-width: 100%;
+  }
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div {
@@ -336,9 +350,9 @@
   }
 }
 .menu > div > div > * {
-  padding: 0.2rem;
+  padding: 0.5rem;
   margin: 2px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div > * {
@@ -356,13 +370,29 @@
   }
 }
 .menu > div > div > a {
+  text-decoration: none;
+  text-transform: capitalize;
   background-color: transparent;
-  color: #323e42;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div > a {
+    color: #323e42;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu > div > div > a {
+    color: #323e42;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu > div > div > a {
+    color: #323e42;
+  }
 }
 @media only screen and (min-width: 800px) {
   .menu > div > div > a {
