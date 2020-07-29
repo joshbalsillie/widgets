@@ -35,17 +35,10 @@ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 		background-color: $menu_iconColour;
 
 		// mask is required for colour manipulation
-		-webkit-mask-image: $menu_iconImage;
-		mask-image: $menu_iconImage;
-
-		-webkit-mask-repeat: no-repeat;
-		mask-repeat: no-repeat;
-
-		-webkit-mask-position: center;
-		mask-position: center;
-
-		-webkit-mask-size: contain;
-		mask-size: contain;
+		@include mixins.browserSupport( mask-image, $menu_iconImage );
+		@include mixins.browserSupport( mask-repeat, no-repeat );
+		@include mixins.browserSupport( mask-position, center );
+		@include mixins.browserSupport( mask-size, contain );
 	}
 	& > div {
 		// Background overlay mask
