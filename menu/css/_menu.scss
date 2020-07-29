@@ -11,13 +11,13 @@ $menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
 
 $menu_horizontalColourForeground: rgba(50,62,66,1) !default; // 323E42
 $menu_horizontalColourBackground: rgba(255,255,255,1) !default; // FFFFFF
-$menu_horizontalColourForegroundAction: rgba(50,62,66,1) !default; // 323E42
-$menu_horizontalColourBackgroundAction: rgba(255,255,255,1) !default; // FFFFFF
+$menu_horizontalColourForegroundAction: rgba(255,255,255,1) !default; // FFFFFF
+$menu_horizontalColourBackgroundAction: rgba(50,62,66,1) !default; // 323E42
 
 $menu_verticalColourForeground: rgba(50,62,66,1) !default; // 323E42
 $menu_verticalColourBackground: rgba(255,255,255,1) !default; // FFFFFF
-$menu_verticalColourForegroundAction: rgba(50,62,66,1) !default; // 323E42
-$menu_verticalColourBackgroundAction: rgba(255,255,255,1) !default; // FFFFFF
+$menu_verticalColourForegroundAction: rgba(255,255,255,1) !default; // FFFFFF
+$menu_verticalColourBackgroundAction: rgba(50,62,66,1) !default; // 323E42
 
 $menu_menuPadding: 1rem !default;
 $menu_border-style: solid !default;
@@ -97,8 +97,8 @@ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 				@include mixins.browserSupport( transition-duration, 0.3s );
 				
 				&:hover, :focus, :active {
-					@include mixins.responsive( color, $menu_horizontalColourBackgroundAction, $menu_verticalColourBackgroundAction, $menu_verticalColourBackgroundAction );
-					@include mixins.responsive( background-color, $menu_horizontalColourForegroundAction, $menu_verticalColourForegroundAction, $menu_verticalColourForegroundAction );
+					@include mixins.responsive( color, $menu_horizontalColourForegroundAction, $menu_verticalColourForegroundAction, $menu_verticalColourForegroundAction );
+					@include mixins.responsive( background-color, $menu_horizontalColourBackgroundAction, $menu_verticalColourBackgroundAction, $menu_verticalColourBackgroundAction );
 					@include mixins.browserSupport( transition-duration, 0.3s );
 				}
 			}
