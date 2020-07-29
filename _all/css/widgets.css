@@ -72,14 +72,14 @@
   width: 3rem;
   height: 3rem;
   background-color: red;
-  mask-image: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg);
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
   -webkit-mask-image: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg);
+  mask-image: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg);
   -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   -webkit-mask-position: center;
+  mask-position: center;
   -webkit-mask-size: contain;
+  mask-size: contain;
 }
 @media only screen and (min-width: 800px) {
   .menu > .showOrHide {

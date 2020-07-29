@@ -4,23 +4,23 @@
  * Date Created:2020-07-08
  * Description:define menu widget styles
  */
- @use '../../_all/css/mixins';
+@use '../../_all/css/mixins';
 
- $menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
- $menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
- $menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
- $menu_colourActionForeground: rgba(255,255,255,1) !default; // FFFFFF
- $menu_colourActionBackground: rgba(50,62,66,1) !default; // 323E42
- $menu_menuPadding: 1rem !default;
- $menu_border-style: solid !default;
- $menu_border-width: 0 !default;
- $menu_iconSize: 3rem !default;
- $menu_iconColour: rgba(255,0,0,1) !default; // FF0000
- $menu_iconImage: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) !default;
- $menu_height: calc( 100% - 2rem ) !default;
- $menu_width: 100% !default;
- $menu_backgroundIndex: 997 !default;
- $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
+$menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
+$menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
+$menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
+$menu_colourActionForeground: rgba(255,255,255,1) !default; // FFFFFF
+$menu_colourActionBackground: rgba(50,62,66,1) !default; // 323E42
+$menu_menuPadding: 1rem !default;
+$menu_border-style: solid !default;
+$menu_border-width: 0 !default;
+$menu_iconSize: 3rem !default;
+$menu_iconColour: rgba(255,0,0,1) !default; // FF0000
+$menu_iconImage: url(../../menu/svg/icon_rgb_menu-hamburger_bg-max_fg-opaque.svg) !default;
+$menu_height: calc( 100% - 2rem ) !default;
+$menu_width: 100% !default;
+$menu_backgroundIndex: 997 !default;
+$menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 
 .menu {
 	display: inline-block;
@@ -35,14 +35,17 @@
 		background-color: $menu_iconColour;
 
 		// mask is required for colour manipulation
-		mask-image: $menu_iconImage;
-		mask-repeat: no-repeat;
-		mask-position: center;
-		mask-size: contain;
 		-webkit-mask-image: $menu_iconImage;
+		mask-image: $menu_iconImage;
+
 		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+
 		-webkit-mask-position: center;
+		mask-position: center;
+
 		-webkit-mask-size: contain;
+		mask-size: contain;
 	}
 	& > div {
 		// Background overlay mask
