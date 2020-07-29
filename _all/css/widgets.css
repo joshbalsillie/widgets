@@ -422,13 +422,41 @@
   }
 }
 .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
-  background-color: #323e42;
-  color: white;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+    color: white;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+    color: white;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+    color: white;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+    background-color: #323e42;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+    background-color: #323e42;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
+    background-color: #323e42;
+  }
 }
 
 /*
