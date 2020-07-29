@@ -108,6 +108,55 @@
     display: inline-block;
   }
 }
+.menu a {
+  text-decoration: none;
+  text-transform: capitalize;
+  background-color: transparent;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+@media only screen and (min-width: 800px) {
+  .menu a {
+    color: #323e42;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu a {
+    color: #323e42;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu a {
+    color: #323e42;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .menu a {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 480px) {
+  .menu a {
+    display: block;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .menu a {
+    display: block;
+  }
+}
+.menu a:hover, .menu a :focus, .menu a :active {
+  background-color: #323e42;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
 .menu > div {
   left: 0;
   top: 0;
@@ -380,55 +429,6 @@
   .menu > div > div > * {
     display: block;
   }
-}
-.menu > div > div > a {
-  text-decoration: none;
-  text-transform: capitalize;
-  background-color: transparent;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -ms-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-}
-@media only screen and (min-width: 800px) {
-  .menu > div > div > a {
-    color: #323e42;
-  }
-}
-@media only screen and (max-width: 800px) and (min-width: 480px) {
-  .menu > div > div > a {
-    color: #323e42;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .menu > div > div > a {
-    color: #323e42;
-  }
-}
-@media only screen and (min-width: 800px) {
-  .menu > div > div > a {
-    display: inline-block;
-  }
-}
-@media only screen and (max-width: 800px) and (min-width: 480px) {
-  .menu > div > div > a {
-    display: block;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .menu > div > div > a {
-    display: block;
-  }
-}
-.menu > div > div > a:hover, .menu > div > div > a :focus, .menu > div > div > a :active {
-  background-color: #323e42;
-  color: white;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -ms-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
 }
 
 /*
