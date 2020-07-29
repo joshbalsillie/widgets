@@ -89,8 +89,8 @@ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 				@include mixins.browserSupport( transition-duration, 0.3s );
 				
 				&:hover, :focus, :active {
-					background-color: $menu_colourActionBackground;
-					color: $menu_colourActionForeground;
+					background-color: $menu_colourActionForeground;
+					color: $menu_colourActionBackground;
 					@include mixins.browserSupport( transition-duration, 0.3s );
 				}
 			}
