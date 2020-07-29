@@ -7,10 +7,18 @@
 @use '../../_all/css/mixins';
 
 $menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
-$menu_colourForeground: rgba(50,62,66,1) !default; // 323E42
-$menu_colourBackground: rgba(255,255,255,1) !default; // FFFFFF
-$menu_colourActionForeground: rgba(255,255,255,1) !default; // FFFFFF
-$menu_colourActionBackground: rgba(50,62,66,1) !default; // 323E42
+
+
+$menu_horizontalColourForeground: rgba(50,62,66,1) !default; // 323E42
+$menu_horizontalColourBackground: rgba(255,255,255,1) !default; // FFFFFF
+$menu_horizontalColourForegroundAction: rgba(50,62,66,1) !default; // 323E42
+$menu_horizontalColourBackgroundAction: rgba(255,255,255,1) !default; // FFFFFF
+
+$menu_verticalColourForeground: rgba(50,62,66,1) !default; // 323E42
+$menu_verticalColourBackground: rgba(255,255,255,1) !default; // FFFFFF
+$menu_verticalColourForegroundAction: rgba(50,62,66,1) !default; // 323E42
+$menu_verticalColourBackgroundAction: rgba(255,255,255,1) !default; // FFFFFF
+
 $menu_menuPadding: 1rem !default;
 $menu_border-style: solid !default;
 $menu_border-width: 0 !default;
@@ -55,7 +63,7 @@ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 		& > div {
 			// navigation container
 			z-index: $menu_foregroundIndex;
-			color: $menu_colourForeground;
+			color: $menu_horizontalColourForeground;
 			border-style: $menu_border-style;
 			border-width: $menu_border-width;
 			min-width: 25%;
@@ -67,8 +75,8 @@ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 			@include mixins.responsive( height, auto, $menu_height, $menu_height );
 			@include mixins.responsive( right, 10, 0, 0 );
 			@include mixins.responsive( position, static, absolute, absolute );
-			@include mixins.responsive( background-color, transparent, $menu_colourBackground, $menu_colourBackground );
-			@include mixins.responsive( border-color, transparent, $menu_colourForeground, $menu_colourForeground );
+			@include mixins.responsive( background-color, transparent, $menu_verticalColourBackground, $menu_verticalColourBackground );
+			@include mixins.responsive( border-color, transparent, $menu_verticalColourForeground, $menu_verticalColourForeground );
 			@include mixins.responsive( box-shadow, 0, 0 0 1rem $menu_colourDisabled, 0 0 1rem $menu_colourDisabled );
 			@include mixins.responsive( padding, 0, $menu_menuPadding, $menu_menuPadding );
 
@@ -84,13 +92,13 @@ $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 				text-decoration: none;
 				text-transform: capitalize;
 				background-color: transparent;
-				@include mixins.responsive( color, $menu_colourForeground, $menu_colourActionBackground, $menu_colourActionBackground );
+				@include mixins.responsive( color, $menu_horizontalColourForeground, $menu_verticalColourForeground, $menu_verticalColourForeground );
 				@include mixins.responsive( display, inline-block, block, block );
 				@include mixins.browserSupport( transition-duration, 0.3s );
 				
 				&:hover, :focus, :active {
-					@include mixins.responsive( color, $menu_colourBackground, $menu_colourActionForeground, $menu_colourActionForeground );
-					@include mixins.responsive( background-color, $menu_colourForeground, $menu_colourActionBackground, $menu_colourActionBackground );
+					@include mixins.responsive( color, $menu_horizontalColourBackgroundAction, $menu_verticalColourBackgroundAction, $menu_verticalColourBackgroundAction );
+					@include mixins.responsive( background-color, $menu_horizontalColourForegroundAction, $menu_verticalColourForegroundAction, $menu_verticalColourForegroundAction );
 					@include mixins.browserSupport( transition-duration, 0.3s );
 				}
 			}
