@@ -6,6 +6,27 @@
  */
 @use '../../_all/css/mixins';
 
+$menu_horizontal: (
+	'foregroundColour': rgba(50,62,66,1),
+	'backgroundColour': rgba(255,255,255,1),
+	'foregroundActionColour': rgba(255,255,255,1),
+	'backgroundActionColour': rgba(50,62,66,1),
+);
+
+$menu_vertical: (
+	'foregroundColour': rgba(50,62,66,1),
+	'backgroundColour': rgba(255,255,255,1),
+	'foregroundActionColour': rgba(255,255,255,1),
+	'backgroundActionColour': rgba(50,62,66,1),
+);
+
+$menu: (
+	'disabledColour': rgba(0,0,0,0.5),
+	'padding': 1rem,
+	'border-style': solid,
+	'border-width': 0,
+
+);
 $menu_colourDisabled: rgba(0,0,0,0.5) !default; // 000000
 
 
@@ -31,11 +52,10 @@ $menu_backgroundIndex: 997 !default;
 $menu_foregroundIndex: calc( $menu_backgroundIndex + 1 ) !default;
 
 .menu {
-	display: inline-block;
-	float: right;
+	display: flex;
+	align-items: center;
 
 	& > .showOrHide {
-		float: right;
 		cursor: pointer;
 		@include mixins.responsive( display, none, inline-block, inline-block );
 		width: $menu_iconSize;

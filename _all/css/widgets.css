@@ -63,11 +63,10 @@
  * Description:define menu widget styles
  */
 .menu {
-  display: inline-block;
-  float: right;
+  display: flex;
+  align-items: center;
 }
 .menu > .showOrHide {
-  float: right;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
