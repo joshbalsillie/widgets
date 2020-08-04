@@ -257,8 +257,7 @@ var fileReader = {
 					// if 1 htmlCollection
 					for( var countElements = 0; countElements < htmlCollection.children.length; countElements++ ){
 						tag = fileReader.convert.tag.toExecutable( htmlCollection.children[ countElements ] );
-						//destinationElement.append( tag );
-						destinationElement.insertBefore(tag,domHead.firstElementChild);
+						destinationElement.append( tag );
 					}
 				}
 				else if( htmlCollection.length !== undefined ){
@@ -267,8 +266,7 @@ var fileReader = {
 						while( htmlCollection[ countCollections ].children.length !== 0 ){
 							for( var countElements = 0; countElements < htmlCollection[ countCollections ].children.length; countElements++ ){
 								tag = fileReader.convert.tag.toExecutable( htmlCollection.children[ countElements ] );
-								//destinationElement.append( tag );
-								destinationElement.insertBefore(tag,domHead.firstElementChild);
+								destinationElement.append( tag );
 							}
 						}
 					}
