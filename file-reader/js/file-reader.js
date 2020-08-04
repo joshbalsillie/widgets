@@ -258,7 +258,7 @@ var fileReader = {
 					for( var countElements = 0; countElements < htmlCollection.children.length; countElements++ ){
 						tag = fileReader.convert.tag.toExecutable( htmlCollection.children[ countElements ] );
 						//destinationElement.append( tag );
-						destinationElement.insertBefore(tag,domHead);
+						destinationElement.insertBefore(tag,domHead.firstElementChild);
 					}
 				}
 				else if( htmlCollection.length !== undefined ){
@@ -268,7 +268,7 @@ var fileReader = {
 							for( var countElements = 0; countElements < htmlCollection[ countCollections ].children.length; countElements++ ){
 								tag = fileReader.convert.tag.toExecutable( htmlCollection.children[ countElements ] );
 								//destinationElement.append( tag );
-								destinationElement.insertBefore(tag,domHead);
+								destinationElement.insertBefore(tag,domHead.firstElementChild);
 							}
 						}
 					}
