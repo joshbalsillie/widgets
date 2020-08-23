@@ -24,10 +24,10 @@
 		/* Optional image styles */
 		border-style: none;
 		position: absolute;
-		top: auto !default; // default position from top
-		left: auto !default; // default position from left
-		right: auto !default; // default position from right
-		bottom: auto !default; // default position from bottom
+		top: auto; // default position from top
+		left: auto; // default position from left
+		right: auto; // default position from right
+		bottom: auto; // default position from bottom
 		cursor: pointer;
 	}
 }
