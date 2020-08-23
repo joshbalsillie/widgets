@@ -28,22 +28,19 @@
  * Date Created:2019-04-16
  * Description:define filter widget styles
  */
-.filter > :first-child {
+.filter > .images {
   background-color: transparent;
-  padding-top: 0;
-  padding-right: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
   position: relative;
 }
-.filter > :first-child > * {
+.filter > .images > * {
   background-color: transparent;
-  padding: 0.5rem;
-  margin: 0.2rem;
+  padding: 0;
+  margin: 0;
   display: inline-block;
 }
-.filter > :first-child > div > img {
+.filter > .images > div > img {
   /* Optional image styles */
   border-style: none;
   position: absolute;
@@ -53,7 +50,6 @@
   bottom: auto;
   cursor: pointer;
 }
-
 /*
  * Author: Joshua Balsillie
  * Date Created: 2016-08-18
