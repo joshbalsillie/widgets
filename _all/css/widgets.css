@@ -50,11 +50,17 @@
   bottom: auto;
   cursor: pointer;
 }
-.filter > .items > * > div {
-  background-color: #FFFFFF;
+.filter > .items > * > a {
+  color: #293136;
+  background-color: white;
   border-radius: 1rem;
+  display: block;
 }
-.filter > .items > * > div > img:first-child {
+.filter > .items > * > a:hover, .filter > .items > * > a :focus, .filter > .items > * > a :active, .filter > .items > * > a .selected {
+  color: white;
+  background-color: #293136;
+}
+.filter > .items > * > a > img:first-child {
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
 }
