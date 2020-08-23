@@ -118,6 +118,13 @@ var filter = {
 		}
 		return string;
 	},
+	getItems: function( element ){
+		var containers = filter.getSiblingOf( element.parentElement ).children;
+
+		for (var containerCount = containers.length; containerCount > 0; containerCount-- ){
+			
+		}
+	}
 	getSiblingOf: function( element ){
 		// Return the sibling of an element with only one sibling
 		try{
