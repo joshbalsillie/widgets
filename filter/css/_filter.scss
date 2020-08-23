@@ -5,26 +5,31 @@
  * Description:define filter widget styles
  */
 
-.filter > :first-child {
-	background-color: transparent;
-	padding: 0;
-	margin: 0;
-	position: relative; // required if using position: absolute on filter buttons in first-child
-
-	& > * {
+.filter {
+	& > .images {
 		background-color: transparent;
-		padding: 0.5rem;
-		margin: 0.2rem;
-		display: inline-block;
+		padding: 0;
+		margin: 0;
+		position: relative; // required if using position: absolute on filter buttons in first-child
+
+		& > * {
+			background-color: transparent;
+			padding: 0;
+			margin: 0;
+			display: inline-block;
+		}
+		& > div > img {
+			/* Optional image styles */
+			border-style: none;
+			position: absolute;
+			top: auto; // default position from top
+			left: auto; // default position from left
+			right: auto; // default position from right
+			bottom: auto; // default position from bottom
+			cursor: pointer;
+		}
 	}
-	& > div > img {
-		/* Optional image styles */
-		border-style: none;
-		position: absolute;
-		top: auto; // default position from top
-		left: auto; // default position from left
-		right: auto; // default position from right
-		bottom: auto; // default position from bottom
-		cursor: pointer;
+	& > .items {
+		
 	}
 }
