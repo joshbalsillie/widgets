@@ -38,6 +38,7 @@
 			border-radius: 1rem;
 			display: block;
 			padding-bottom: 1rem;
+			font-size: inherit;
 
 			&:hover, :focus, :active, .selected {
 				color: rgba(255,255,255,1);
