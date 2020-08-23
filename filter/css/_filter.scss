@@ -4,7 +4,6 @@
  * Date Created:2019-04-16
  * Description:define filter widget styles
  */
-
 .filter {
 	& > .images {
 		// the images container
@@ -32,10 +31,17 @@
 	}
 	& > .items {
 		// the items container
-		& > * > div {
+		& > * > a {
 			// an item
-			background-color: #FFFFFF;
+			color: rgba(41,49,54,1);
+			background-color: rgba(255,255,255,1);
 			border-radius: 1rem;
+			display: block;
+
+			&:hover, :focus, :active, .selected {
+				color: rgba(255,255,255,1);
+				background-color: rgba(41,49,54,1);
+			}
 			& > img:first-child {
 				// the main image
 				border-top-right-radius: 1rem;
