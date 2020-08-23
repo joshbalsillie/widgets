@@ -7,11 +7,8 @@
 
 .filter > :first-child {
 	background-color: transparent;
-	padding-top: 0.5rem;
-	padding-right: 0;
-	padding-bottom: 0.5rem;
-	padding-left: 0;
-	margin-bottom: 1rem;
+	padding: 0;
+	margin: 0;
 	position: relative; // required if using position: absolute on filter buttons in first-child
 
 	& > * {
