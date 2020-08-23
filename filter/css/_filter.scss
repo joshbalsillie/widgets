@@ -24,8 +24,10 @@
 		/* Optional image styles */
 		border-style: none;
 		position: absolute;
-		top: 0; // default vertical position
-		left: 0; // default horizontal position
+		top: auto !default; // default position from top
+		left: auto !default; // default position from left
+		right: auto !default; // default position from right
+		bottom: auto !default; // default position from bottom
 		cursor: pointer;
 	}
 }
