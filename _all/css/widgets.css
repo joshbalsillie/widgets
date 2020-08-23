@@ -50,6 +50,15 @@
   bottom: auto;
   cursor: pointer;
 }
+.filter > .items > * > div {
+  background-color: #000000;
+  border-radius: 1rem;
+}
+.filter > .items > * > div > img:first-child {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
 /*
  * Author: Joshua Balsillie
  * Date Created: 2016-08-18
