@@ -55,6 +55,7 @@
   background-color: white;
   border-radius: 1rem;
   display: block;
+  padding-bottom: 1rem;
 }
 .filter > .items > * > a:hover, .filter > .items > * > a :focus, .filter > .items > * > a :active, .filter > .items > * > a .selected {
   color: white;
