@@ -124,7 +124,7 @@ var filter = {
 		for (var containerCount = containers.length; containerCount > 0; containerCount-- ){
 			
 		}
-	}
+	},
 	getSiblingOf: function( element ){
 		// Return the sibling of an element with only one sibling
 		try{
