@@ -1,28 +1,16 @@
 @charset "UTF-8";
 /*
  * Author: Joshua Balsillie
- * Date Created: 2016-08-17
- * Description: Import widget styles
- * 
- * References
- * Define ID: #id {
- * Define class: .class {
- * Define all: * {
- * Define child: > {
- * Define import css: @import "folder/_file.scss";
- * Setup and use: http://sass-lang.com/guide
- *
- * Important
- * Order files for inheritance
- */
-/* Functions and Mixins */
-/*
- * Author: Joshua Balsillie
  * Date Created: 2016-08-18
  * Description: define mixins for sass/scss files
  */
-/* Variables */
-/* Styles */
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2020-07-26
+ * Description: forward all files found in variable directory
+ * Instructions: add @use '../variable/css/variable' before CSS styles;
+ */
+/* Collection of variable files to be used in other files */
 /*
  * Author:Joshua Balsillie
  * Date Created:2019-04-16
@@ -57,6 +45,27 @@
   display: block;
   padding-bottom: 1rem;
   font-size: inherit;
+  /* Remove defaults or overrides */
+  -webkit-margin-start: 0;
+  -moz-margin-start: 0;
+  -ms-margin-start: 0;
+  -o-margin-start: 0;
+  margin-start: 0;
+  -webkit-margin-end: 0;
+  -moz-margin-end: 0;
+  -ms-margin-end: 0;
+  -o-margin-end: 0;
+  margin-end: 0;
+  -webkit-margin-before: 0;
+  -moz-margin-before: 0;
+  -ms-margin-before: 0;
+  -o-margin-before: 0;
+  margin-before: 0;
+  -webkit-margin-after: 0;
+  -moz-margin-after: 0;
+  -ms-margin-after: 0;
+  -o-margin-after: 0;
+  margin-after: 0;
 }
 .filter > .items > * > a:hover, .filter > .items > * > a :focus, .filter > .items > * > a :active, .filter > .items > * > a .selected {
   color: white;
@@ -67,11 +76,6 @@
   border-top-left-radius: 1rem;
 }
 
-/*
- * Author: Joshua Balsillie
- * Date Created: 2016-08-18
- * Description: define mixins for sass/scss files
- */
 /*
  * Author:Joshua Balsillie
  * Date Created:2020-07-08
@@ -577,5 +581,17 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2020-09-02
+ * Description: Import HTML widget styles
+ */
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2016-08-17
+ * Description: Import widget styles
+ */
+/* Widget Styles */
 
 /*# sourceMappingURL=widgets.css.map */

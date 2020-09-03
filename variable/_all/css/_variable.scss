@@ -1,0 +1,10 @@
+@charset "utf-8";
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2020-07-26
+ * Description: forward all files found in variable directory
+ * Instructions: add @use '../variable/css/variable' before CSS styles;
+ */
+
+/* Collection of variable files to be used in other files */
+@forward '../../mixins/css/mixins';
