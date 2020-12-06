@@ -4,6 +4,8 @@
  * Date Created:2019-04-16
  * Description:define filter widget styles
  */
+@use '../../../variable/_all/css/variable';
+
 .filter {
 	& > .images {
 		// the images container
@@ -31,22 +33,31 @@
 	}
 	& > .items {
 		// the items container
-		& > * > a {
+		& > * > * {
 			// an item
 			color: rgba(41,49,54,1);
 			background-color: rgba(255,255,255,1);
 			border-radius: 1rem;
 			display: block;
 			padding-bottom: 1rem;
+			font-size: inherit;
 
-			&:hover, :focus, :active, .selected {
-				color: rgba(255,255,255,1);
-				background-color: rgba(41,49,54,1);
-			}
 			& > img:first-child {
 				// the main image
 				border-top-right-radius: 1rem;
 				border-top-left-radius: 1rem;
+			}
+		}
+		& > * > a {
+			/* Remove defaults or overrides */
+			@include variable.browserSupport( margin-start, 0 );
+			@include variable.browserSupport( margin-end, 0 );
+			@include variable.browserSupport( margin-before, 0 );
+			@include variable.browserSupport( margin-after, 0 );
+
+			&:hover, :focus, :active, .selected {
+				color: rgba(255,255,255,1);
+				background-color: rgba(41,49,54,1);
 			}
 		}
 	}

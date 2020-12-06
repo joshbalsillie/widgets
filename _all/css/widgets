@@ -38,36 +38,19 @@
   bottom: auto;
   cursor: pointer;
 }
-.filter > .items > div > a {
-  /* Remove defaults or overrides */
-  -webkit-margin-start: 0;
-  -moz-margin-start: 0;
-  -ms-margin-start: 0;
-  -o-margin-start: 0;
-  margin-start: 0;
-  -webkit-margin-end: 0;
-  -moz-margin-end: 0;
-  -ms-margin-end: 0;
-  -o-margin-end: 0;
-  margin-end: 0;
-  -webkit-margin-before: 0;
-  -moz-margin-before: 0;
-  -ms-margin-before: 0;
-  -o-margin-before: 0;
-  margin-before: 0;
-  -webkit-margin-after: 0;
-  -moz-margin-after: 0;
-  -ms-margin-after: 0;
-  -o-margin-after: 0;
-  margin-after: 0;
-}
-.filter > .items > * > a {
+.filter > .items > * > * {
   color: #293136;
   background-color: white;
   border-radius: 1rem;
   display: block;
   padding-bottom: 1rem;
   font-size: inherit;
+}
+.filter > .items > * > * > img:first-child {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+.filter > .items > * > a {
   /* Remove defaults or overrides */
   -webkit-margin-start: 0;
   -moz-margin-start: 0;
@@ -93,10 +76,6 @@
 .filter > .items > * > a:hover, .filter > .items > * > a :focus, .filter > .items > * > a :active, .filter > .items > * > a .selected {
   color: white;
   background-color: #293136;
-}
-.filter > .items > * > a > img:first-child {
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
 }
 
 /*
@@ -617,4 +596,4 @@
  */
 /* Widget Styles */
 
-/*# sourceMappingURL=widgets.css.map */
+/*# sourceMappingURL=widgets.map */

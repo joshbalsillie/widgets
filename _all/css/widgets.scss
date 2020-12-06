@@ -3,25 +3,7 @@
  * Author: Joshua Balsillie
  * Date Created: 2016-08-17
  * Description: Import widget styles
- * 
- * References
- * Define ID: #id {
- * Define class: .class {
- * Define all: * {
- * Define child: > {
- * Define import css: @import "folder/_file.scss";
- * Setup and use: http://sass-lang.com/guide
- *
- * Important
- * Order files for inheritance
  */
 
-/* Functions and Mixins */
-@import "_mixins.scss";
-
-/* Variables */
-
-/* Styles */
-@import "../../filter/css/_filter.scss";
-@import "../../menu/css/_menu.scss";
-@import "../../modal/css/_modal.scss";
+/* Widget Styles */
+@forward '../../widget/_all/css/widget';
