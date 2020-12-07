@@ -525,7 +525,7 @@
   padding: 1rem;
   border-style: solid;
   border-width: 0.15rem;
-  max-width: 80%;
+  width: 75%;
   max-height: 80%;
   position: absolute;
   left: 50%;
