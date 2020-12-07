@@ -66,9 +66,8 @@
 		padding: $modal_paddingAroundItems;
 		border-style: $modal_border-style;
 		border-width: $modal_border-width;
-		max-width: 80%;
+		width: 60%; // require static size to avoid positioning issues
 		max-height: 80%;
-		min-width: 60%;
 
 		position: absolute;
 		left: 50%;
