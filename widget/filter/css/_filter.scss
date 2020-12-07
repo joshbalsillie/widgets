@@ -33,7 +33,7 @@
 	}
 	& > .items {
 		// the items container
-		& > * > * {
+		& > * > a {
 			// an item
 			color: rgba(41,49,54,1);
 			background-color: rgba(255,255,255,1);
@@ -47,8 +47,7 @@
 				border-top-right-radius: 1rem;
 				border-top-left-radius: 1rem;
 			}
-		}
-		& > * > a {
+
 			/* Remove defaults or overrides */
 			@include variable.browserSupport( margin-start, 0 );
 			@include variable.browserSupport( margin-end, 0 );
