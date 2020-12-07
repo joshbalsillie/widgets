@@ -38,19 +38,13 @@
   bottom: auto;
   cursor: pointer;
 }
-.filter > .items > * > * {
+.filter > .items > * > a {
   color: #293136;
   background-color: white;
   border-radius: 1rem;
   display: block;
   padding-bottom: 1rem;
   font-size: inherit;
-}
-.filter > .items > * > * > img:first-child {
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
-}
-.filter > .items > * > a {
   /* Remove defaults or overrides */
   -webkit-margin-start: 0;
   -moz-margin-start: 0;
@@ -72,6 +66,10 @@
   -ms-margin-after: 0;
   -o-margin-after: 0;
   margin-after: 0;
+}
+.filter > .items > * > a > img:first-child {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
 }
 .filter > .items > * > a:hover, .filter > .items > * > a :focus, .filter > .items > * > a :active, .filter > .items > * > a .selected {
   color: white;
