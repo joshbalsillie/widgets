@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Colour Library Analyser</title>
+	<script src="../js/colour-library-analyser.js"></script>
+	<style type="text/css">
+		#colourLibrary > div{
+			padding: 0.4rem;
+		}
+		#colourLibrary > div > input[type="color"]{
+			padding: 0.2rem;
+			border-color: transparent;
+			background-color: #FFFFFF;
+			border-radius: 0.4rem;
+			height: 3rem;
+			width: 3rem;
+			margin: 0.4rem;
+		}
+		#colourLibrary > div > input[type="text"]{
+			padding: 0.4rem;
+			border-color: transparent;
+			background-color: #FFFFFF;
+			border-radius: 0.4rem;
+			width: 6rem;
+		}
+		#colourLibrary > div > output{
+			text-transform: uppercase;
+			padding: 0.4rem;
+			background-color: #FFFFFF;
+			border-radius: 0.4rem;
+		}
+	</style>
+</head>
+<body>
+	<form id="colourLibrary">
+		<div>
+			<input type="button" value="Add Colour" onclick="colourLibraryAnalyser.add.colours(1)">
+			<input type="button" value="+5" onclick="colourLibraryAnalyser.add.colours(5)">
+			<input type="button" value="-1" onclick="colourLibraryAnalyser.add.colours(-1)">
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+	colourLibraryAnalyser.add.colours(5);
+</script>
+</html>
