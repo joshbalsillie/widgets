@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Colour Library Analyser</title>
+	<script src="../js/colour-library-analyser.js"></script>
+	<style type="text/css">
+		body{
+			display: block;
+			margin: 0;
+			font-family: Arial, sans-serif;
+		}
+		body > * {
+			margin: 1rem;
+		}
+		#colourLibrary > .header {
+			padding: 0.4rem;
+			margin-bottom: 0.8rem;
+			border-radius: 0.8rem;
+			display: block;
+			border-style: none;
+		}
+		#colourLibrary > .header > div {
+			display: flex;
+		}
+		#colourLibrary > .header > div > * {
+			align-self: center;
+			display: inline-block;
+			margin: 1rem;
+		}
+		#colourLibrary > .header > div > h1 {
+			margin: 0;
+		}
+		#colourLibrary > .body > div {
+			padding: 0.4rem;
+			margin-bottom: 0.8rem;
+			border-radius: 0.8rem;
+			display: block;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #EFEFEF;
+		}
+		#colourLibrary > .body > div > div {
+			padding: 0.4rem;
+			display: flex;
+			height: 100%;
+		}
+		#colourLibrary > .body > div > div:first-child {
+			padding: 0.4rem;
+			display: flex;
+			align-items: center;
+			height: 100%;
+			border-color: transparent;
+			background-color: #FFFFFF;
+			border-radius: 0.4rem;
+		}
+		#colourLibrary > .body > div > div > div {
+			width: 33.33%;
+		}
+		#colourLibrary > .body > div > div > input[type="color"] {
+			padding: 0.2rem;
+			height: 3rem;
+			width: 3rem;
+			display: inline-block;
+			border-color: transparent;
+			border-radius: 0.2rem;
+		}
+		#colourLibrary > .body > div > div > input[type="text"] {
+			padding: 0.2rem;
+			min-width: 4rem;
+			max-width: 6rem;
+			border-style: none;
+			border-bottom-style: solid;
+			border-width: 1px;
+			border-top-left-radius: 0.2rem;
+			border-top-right-radius: 0.2rem;
+			background-color: #EFEFEF;
+			margin-right: 0.4rem;
+		}
+		#colourLibrary input[type="button"] {
+			border-color: transparent;
+			border-radius: 0.2rem;
+		}
+		#colourLibrary > .body > div > div > output {
+			text-transform: uppercase;
+			padding: 0.4rem;
+			display: inline-block;
+			margin-right: 0.4rem;
+		}
+		#colourLibrary > .body > div > div > div > p:first-child {
+			padding: 0.2rem;
+			border-color: transparent;
+			background-color: #FFFFFF;
+			border-radius: 0.4rem;
+			text-align: center;
+			width: 3rem;
+			color: #000000;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #EFEFEF;
+		}
+		#colourLibrary > .footer {
+			border-style: none;
+		}
+		#colourLibrary > .footer > * {
+			padding: 0.4rem;
+			border-radius: 0.4rem;
+			border-width: 1px;
+		}
+	</style>
+	<link rel="icon" type="image/x-icon" href="../ico/favicon.ico">
+</head>
+<body>
+	<div id="colourLibrary">
+		<div class="header">
+			<div>
+				<img src="../png/icon_rgb_colour_library_analyserbg-max_fg-opaque_white-circle_x128.png">
+				<h1>Colour Library Analyser</h1>
+			</div>
+			<div>
+				<label for="hslDecimals">HSL Decimal Places</label>
+				<input type="range" name="hslDecimals" min="0" max="4" step="1" value="0" oninput="colourLibraryAnalyser.update.hslDecimalPlaces(this, this.value)">
+				<output for="hslDecimals">0</output>
+				<button id='csvColours' onclick="colourLibraryAnalyser.export.coloursTo.csv()">CSV</button>
+			</div>
+		</div>
+		<div class="body"></div>
+		<div class="footer">
+			<input type="button" value="Add Colour" onclick="colourLibraryAnalyser.colours.add(1)">
+			<input type="button" value="+5" onclick="colourLibraryAnalyser.colours.add(5)">
+			<input type="button" value="-5" onclick="colourLibraryAnalyser.colours.remove(5)">
+		</div>
+	</div>
+	<div>
+		<p>
+			Refer to the following WCAG references for additional colour contrast information.
+		</p>
+		<p>
+			<a href="https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141#distinguishable" target="_blank">Guideline 1.4 – Distinguishable</a>
+		</p>
+		<p>
+			<a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">1.4.1 Use of Color (Level A)</a>
+		</p>
+		<p>
+			<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank">1.4.3 Contrast (Minimum) (Level AA)</a>
+		</p>
+		<p>
+			<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html" target="_blank">1.4.6 Contrast (Enhanced) (Level AAA)</a>
+		</p>
+	</div>
+</body>
+<script type="text/javascript">
+	colourLibraryAnalyser.colours.add(5);
+</script>
+</html>

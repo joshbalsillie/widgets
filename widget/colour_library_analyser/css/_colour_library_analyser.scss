@@ -1,0 +1,89 @@
+@charset "utf-8";
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2023-11-03
+ * Description:define colour library analyser widget styles
+ */
+@use '../../../variable/_all/css/variable';
+
+#colourLibrary {
+	& > div {
+		padding: 0.4rem;
+		margin-bottom: 0.8rem;
+		border-radius: 0.8rem;
+		display: block;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #EFEFEF;
+
+		& > div {
+			padding: 0.4rem;
+			display: flex;
+			height: 100%;
+
+			&:first-child {
+				padding: 0.4rem;
+				display: flex;
+				align-items: center;
+				height: 100%;
+				border-color: transparent;
+				background-color: #FFFFFF;
+				border-radius: 0.4rem;
+			}
+			& > div {
+				width: 33.33%;
+
+				& > p:first-child {
+					padding: 0.2rem;
+					border-color: transparent;
+					background-color: #FFFFFF;
+					border-radius: 0.4rem;
+					text-align: center;
+					width: 3rem;
+					color: #000000;
+					border-style: solid;
+					border-width: 1px;
+					border-color: #EFEFEF;
+				}
+			}
+			& > input[type="color"] {
+				padding: 0.2rem;
+				height: 3rem;
+				width: 3rem;
+				display: inline-block;
+				border-color: transparent;
+				border-radius: 0.2rem;
+			}
+			& > input[type="text"] {
+				padding: 0.2rem;
+				width: 6rem;
+				border-style: none;
+				border-bottom-style: solid;
+				border-width: 1px;
+				border-top-left-radius: 0.2rem;
+				border-top-right-radius: 0.2rem;
+				background-color: #EFEFEF;
+				margin-right: 0.4rem;
+			}
+			& > input[type="button"] {
+				border-color: transparent;
+				border-radius: 0.2rem;
+			}
+			& > output {
+				text-transform: uppercase;
+				padding: 0.4rem;
+				display: inline-block;
+				margin-right: 0.4rem;
+			}
+		}
+	}
+	& > .footer {
+	border-style: none;
+
+		& > * {
+			padding: 0.4rem;
+			border-radius: 0.4rem;
+			border-width: 1px;
+		}
+	}
+}

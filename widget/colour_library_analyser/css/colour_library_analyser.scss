@@ -1,0 +1,9 @@
+@charset "utf-8";
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2023-11-06
+ * Description: Import colour library analyser styles
+ */
+
+/* Widget Styles */
+@forward '../../widget/colour_library_analyser/css/_colour_library_analyser';
