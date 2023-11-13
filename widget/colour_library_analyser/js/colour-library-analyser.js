@@ -9,10 +9,11 @@
 var colourLibraryAnalyser = {
 	// global placeholder object for defining variables and methods for this file
 	get: {
+		// Top level object for getting things from the DOM and executing commands on that information
 		analysis: function(){
 			// Analyse the library colours against each other and modify the DOM
 			let colourElements = document.querySelectorAll( '#colourLibrary input[type="color"]' );
-			let colourContainers = document.querySelectorAll( '#colourLibrary > .body > div');
+			let colourContainers = document.querySelectorAll( '#libraryBody > div');
 			
 			colourContainers.forEach( function( element ){
 				// remove all previous elements resulting from analysis
@@ -25,7 +26,7 @@ var colourLibraryAnalyser = {
 			colourElements.forEach( function( element ){
 				// loop through each colour element
 				let currentElement = element;
-				let currentHex = element.value;/*element.nextElementSibling.innerText;*/
+				let currentHex = element.value;
 				let colourContainer = document.createElement( 'div' );
 				let containerA = document.createElement( 'div' );
 				let containerAA = document.createElement( 'div' );
@@ -76,6 +77,7 @@ var colourLibraryAnalyser = {
 					}
 					currentElement.parentElement.parentElement.appendChild( colourContainer );
 				});
+				colourLibraryAnalyser.update.downloadFiles();
 			});
 		},
 		relativeLuminance: {
@@ -120,6 +122,7 @@ var colourLibraryAnalyser = {
 			// retrieve the user entered name for the provided colour element
 			let elements = colourElement.parentElement.childNodes;
 			let value = '';
+
 			elements.forEach( function( element ){
 				if( element.name == name ){
 					value = element.value;
@@ -129,6 +132,7 @@ var colourLibraryAnalyser = {
 		}
 	},
 	convert: {
+		// top level object to convert information retrieved from the DOM into new information
 		hexTo: {
 			sRGB: function( hex ){
 				// Convert hex value to sRGB i.e. #000000 to R:0, G:0, B:0
@@ -240,7 +244,7 @@ var colourLibraryAnalyser = {
 			}
 		},
 		arrayTo: {
-			csv: function( array ){
+			csvUrl: function( array ){
 				let csvContent = '';
 
 				array.forEach( function( record ){
@@ -254,6 +258,7 @@ var colourLibraryAnalyser = {
 		}
 	},
 	update: {
+		// top level object for updating elements or access to information in the DOM
 		colour: function( element, decimalPlaces ){
 			let realDecimal = Number( decimalPlaces );
 			let hex = element.value;
@@ -309,16 +314,36 @@ var colourLibraryAnalyser = {
 				element.setAttribute( 'oninput', 'colourLibraryAnalyser.update.colour( this, ' + realDecimal + ');' );
 				colourLibraryAnalyser.update.colour( element, realDecimal );
 			});
+		},
+		downloadFiles: function(){
+			let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
+			let removeElementArray = [];
+
+			parentContainer.childNodes.forEach( function( child ){
+				// find all previously added CTAs to download
+				if( child.tagName == 'BUTTON' && child.name.includes( 'download' )){
+					removeElementArray.push( child );
+				}
+			});
+			removeElementArray.forEach( function( child ){
+				// remove all previously added CTAs to download
+				child.remove();
+			});
+
+			colourLibraryAnalyser.export.pageTo.pdf();
+			colourLibraryAnalyser.export.coloursTo.csv();
+			colourLibraryAnalyser.export.colourMatrixTo.csv();
 		}
 	},
 	colours: {
+		// top level object 
 		add: function( quantity ){
 			// add colours to the end of the libary in the DOM
 			let form = document.getElementById( 'colourLibrary' );
 
 			if( quantity > 0 ){
 				while( quantity > 0 ){
-					let body = document.querySelectorAll( '.body' )[ 0 ];
+					let body = document.querySelectorAll( '#libraryBody' )[ 0 ];
 					let grandParent = document.createElement( 'div' );
 					let parent = document.createElement( 'div' );
 					let colourInput = document.createElement( 'input' );
@@ -362,7 +387,7 @@ var colourLibraryAnalyser = {
 		},
 		remove: function( quantity ){
 			// remove colours from the end of the library in the DOM
-			let body = document.querySelectorAll( '.body' )[ 0 ];
+			let body = document.querySelectorAll( '#libraryBody' )[ 0 ];
 
 			if( quantity > 0 ){
 				while( quantity > 0 && body.childElementCount > 0 ){
@@ -376,13 +401,11 @@ var colourLibraryAnalyser = {
 		}
 	},
 	export: {
+		// top level object for saving analyser information to other mediums
 		coloursTo: {
 			csv: function(){
 				let colourElements = document.querySelectorAll( '#colourLibrary input[type="color"]' );
 				let csvArray = [[ 'name', 'hex', 'red', 'green', 'blue', 'hue', 'saturation', 'lightness' ]];
-				//let csvContent = '';
-
-				//csvArray.push([ 'name', 'hex', 'red', 'green', 'blue', 'hue', 'saturation', 'lightness' ]);
 
 				colourElements.forEach( function( colourElement ){
 					// fill array with colour library data
@@ -394,25 +417,79 @@ var colourLibraryAnalyser = {
 					csvArray.push([ name, hex, rgb.red, rgb.green, rgb.blue, hsl.hue, hsl.saturation, hsl.lightness ]);
 				});
 
-				/*csvArray.forEach( function( record ){
-					// compile data to add to CSV file
-					csvContent += record.join( ',' ) + '\n';
-				});
-				const blob = new Blob([ csvContent ], {type: 'text/csv;charset=utf-8' });*/
-				const csvUrl = colourLibraryAnalyser.convert.arrayTo.csv( csvArray ); //URL.createObjectURL( blob );
-				let parentContainer = document.querySelectorAll( '#colourLibrary > .header' )[ 0 ].children[ 1 ];
-				let link = document.createElement('a');
-
-				link.setAttribute( 'href', csvUrl );
-				link.setAttribute( 'download', 'colour_library_analyser_colours.csv');
-				link.setAttribute( 'style', 'display: inline-block;' );
-				link.textContent = 'Download Colours';
-				parentContainer.append(link);
+				const csvUrl = colourLibraryAnalyser.convert.arrayTo.csvUrl( csvArray );
+				let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
+				let cta = document.createElement( 'button' );
+				cta.setAttribute( 'onclick', 'location.href="' + csvUrl + '"' );
+				cta.setAttribute( 'download', 'colour_library_analyser_colours.csv' );
+				cta.setAttribute( 'name' , 'downloadColours' );
+				cta.textContent = 'Colours';
+				parentContainer.appendChild( cta );
 			}
 		},
 		colourMatrixTo: {
 			csv: function(){
+				let colourElements = document.querySelectorAll( '#colourLibrary input[type="color"]' );
+				const numberOfColours = colourElements[ 0 ].parentElement.parentElement.parentElement.childElementCount;
+				let csvArray = [];
+				let record = [];
+				let hex = undefined;
+				let name = undefined;
 
+				colourElements.forEach( function( colourElement, index ){
+					// get titles and write to record
+					hex = colourElement.value;
+					name = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
+
+					if( index == 0 ){
+						record.push( '', hex + '_' + name );
+					}
+					else if( index > 0 && index < numberOfColours ){
+						record.push( hex + '_' + name );
+					}
+				});
+				csvArray.push( record );
+				record = [];
+				colourElements.forEach( function( colourElement, index ){
+					// fill array with colour library data
+					hex = colourElement.value;
+					name = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
+					let rgb = colourLibraryAnalyser.convert.hexTo.sRGB( hex );
+					let recordArray = [];
+
+					record.push( hex + '_' + name );
+
+					colourElements.forEach( function( colourElement, index ){
+						let compareHex = colourElement.value;
+						let compareName = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
+						let contrastRatio = colourLibraryAnalyser.get.contrastRatio( hex, compareHex );
+
+						record.push( contrastRatio );
+					});
+					csvArray.push( record );
+					record = [];
+				});
+
+				const csvUrl = colourLibraryAnalyser.convert.arrayTo.csvUrl( csvArray );
+				let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
+				let cta = document.createElement( 'button' );
+				cta.setAttribute( 'onclick', 'location.href="' + csvUrl + '"' );
+				cta.setAttribute( 'download', 'colour_library_analyser_matrix.csv' );
+				cta.setAttribute( 'name' , 'downloadColourContrastMatrix' );
+				cta.textContent = 'Colour Contrast Matrix';
+				parentContainer.appendChild( cta );
+			}
+		},
+		pageTo: {
+			pdf: function(){
+				let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
+				let cta = document.createElement( 'button' );
+				cta.setAttribute( 'onclick', 'window.print();' );
+				cta.setAttribute( 'name' , 'downloadPDF' );
+				cta.href = '';
+				cta.download = 'colour_library_analyser.pdf';
+				cta.textContent = 'PDF';
+				parentContainer.appendChild( cta );
 			}
 		}
 	}

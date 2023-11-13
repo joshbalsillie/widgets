@@ -13,25 +13,28 @@
 		body > * {
 			margin: 1rem;
 		}
-		#colourLibrary > .header {
+		#colourLibrary > #libraryHeader {
 			padding: 0.4rem;
 			margin-bottom: 0.8rem;
 			border-radius: 0.8rem;
 			display: block;
 			border-style: none;
 		}
-		#colourLibrary > .header > div {
+		#colourLibrary > #libraryHeader > div {
 			display: flex;
 		}
-		#colourLibrary > .header > div > * {
+		#colourLibrary > #libraryHeader > div > * {
 			align-self: center;
 			display: inline-block;
 			margin: 1rem;
 		}
-		#colourLibrary > .header > div > h1 {
+		#colourLibrary > #libraryHeader > div > img {
+			height: 4rem;
+		}
+		#colourLibrary > #libraryHeader > div > h1 {
 			margin: 0;
 		}
-		#colourLibrary > .body > div {
+		#colourLibrary > #libraryBody > div {
 			padding: 0.4rem;
 			margin-bottom: 0.8rem;
 			border-radius: 0.8rem;
@@ -40,12 +43,12 @@
 			border-width: 1px;
 			border-color: #EFEFEF;
 		}
-		#colourLibrary > .body > div > div {
+		#colourLibrary > #libraryBody > div > div {
 			padding: 0.4rem;
 			display: flex;
 			height: 100%;
 		}
-		#colourLibrary > .body > div > div:first-child {
+		#colourLibrary > #libraryBody > div > div:first-child {
 			padding: 0.4rem;
 			display: flex;
 			align-items: center;
@@ -54,10 +57,10 @@
 			background-color: #FFFFFF;
 			border-radius: 0.4rem;
 		}
-		#colourLibrary > .body > div > div > div {
+		#colourLibrary > #libraryBody > div > div > div {
 			width: 33.33%;
 		}
-		#colourLibrary > .body > div > div > input[type="color"] {
+		#colourLibrary > #libraryBody > div > div > input[type="color"] {
 			padding: 0.2rem;
 			height: 3rem;
 			width: 3rem;
@@ -65,7 +68,7 @@
 			border-color: transparent;
 			border-radius: 0.2rem;
 		}
-		#colourLibrary > .body > div > div > input[type="text"] {
+		#colourLibrary > #libraryBody > div > div > input[type="text"] {
 			padding: 0.2rem;
 			min-width: 4rem;
 			max-width: 6rem;
@@ -81,13 +84,13 @@
 			border-color: transparent;
 			border-radius: 0.2rem;
 		}
-		#colourLibrary > .body > div > div > output {
+		#colourLibrary > #libraryBody > div > div > output {
 			text-transform: uppercase;
 			padding: 0.4rem;
 			display: inline-block;
 			margin-right: 0.4rem;
 		}
-		#colourLibrary > .body > div > div > div > p:first-child {
+		#colourLibrary > #libraryBody > div > div > div > p:first-child {
 			padding: 0.2rem;
 			border-color: transparent;
 			background-color: #FFFFFF;
@@ -99,11 +102,13 @@
 			border-width: 1px;
 			border-color: #EFEFEF;
 		}
-		#colourLibrary > .footer {
+		#colourLibrary > #libraryFooter {
 			border-style: none;
 		}
-		#colourLibrary > .footer > * {
-			padding: 0.4rem;
+		#colourLibrary button {
+			margin: 0.4rem;
+			margin-left: 0;
+			padding: 0.8rem;
 			border-radius: 0.4rem;
 			border-width: 1px;
 		}
@@ -112,23 +117,28 @@
 </head>
 <body>
 	<div id="colourLibrary">
-		<div class="header">
+		<div id="libraryHeader">
 			<div>
 				<img src="../png/icon_rgb_colour_library_analyserbg-max_fg-opaque_white-circle_x128.png">
 				<h1>Colour Library Analyser</h1>
 			</div>
 			<div>
-				<label for="hslDecimals">HSL Decimal Places</label>
-				<input type="range" name="hslDecimals" min="0" max="4" step="1" value="0" oninput="colourLibraryAnalyser.update.hslDecimalPlaces(this, this.value)">
-				<output for="hslDecimals">0</output>
-				<button id='csvColours' onclick="colourLibraryAnalyser.export.coloursTo.csv()">CSV</button>
+				<label for="hslDecimalRange">HSL Decimal Places</label>
+				<input type="range" name="hslDecimals" id="hslDecimalRange" min="0" max="4" step="1" value="0" oninput="colourLibraryAnalyser.update.hslDecimalPlaces(this, this.value)">
+				<output>0</output>
 			</div>
 		</div>
-		<div class="body"></div>
-		<div class="footer">
-			<input type="button" value="Add Colour" onclick="colourLibraryAnalyser.colours.add(1)">
-			<input type="button" value="+5" onclick="colourLibraryAnalyser.colours.add(5)">
-			<input type="button" value="-5" onclick="colourLibraryAnalyser.colours.remove(5)">
+		<div id="libraryBody"></div>
+		<div id="libraryFooter">
+			<button onclick="colourLibraryAnalyser.colours.add(1)">Add Colour</button>
+			<button onclick="colourLibraryAnalyser.colours.add(5)">+5</button>
+			<button onclick="colourLibraryAnalyser.colours.remove(5)">-5</button>
+			<p>Download</p>
+		</div>
+		<div>
+			<p>Hi there :D</p>
+			<p>This tool was developed to help all manner of designers save time when analysing colours. If this tool helped you, consider leaving a donation so we can continue to add new features and improve performance.</p>
+			<button onclick="location.href='https://donate.stripe.com/aEUeWD1Eb5oF30A3cd'">Donate</button>
 		</div>
 	</div>
 	<div>
