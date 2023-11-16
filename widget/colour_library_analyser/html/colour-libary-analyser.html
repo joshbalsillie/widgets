@@ -3,117 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>Colour Library Analyser</title>
+	<link rel="stylesheet" type="text/css" href="../css/colour_library_analyser.css">
 	<script src="../js/colour-library-analyser.js"></script>
-	<style type="text/css">
-		body{
-			display: block;
-			margin: 0;
-			font-family: Arial, sans-serif;
-		}
-		body > * {
-			margin: 1rem;
-		}
-		#colourLibrary > #libraryHeader {
-			padding: 0.4rem;
-			margin-bottom: 0.8rem;
-			border-radius: 0.8rem;
-			display: block;
-			border-style: none;
-		}
-		#colourLibrary > #libraryHeader > div {
-			display: flex;
-		}
-		#colourLibrary > #libraryHeader > div > * {
-			align-self: center;
-			display: inline-block;
-			margin: 1rem;
-		}
-		#colourLibrary > #libraryHeader > div > img {
-			height: 4rem;
-		}
-		#colourLibrary > #libraryHeader > div > h1 {
-			margin: 0;
-		}
-		#colourLibrary > #libraryBody > div {
-			padding: 0.4rem;
-			margin-bottom: 0.8rem;
-			border-radius: 0.8rem;
-			display: block;
-			border-style: solid;
-			border-width: 1px;
-			border-color: #EFEFEF;
-		}
-		#colourLibrary > #libraryBody > div > div {
-			padding: 0.4rem;
-			display: flex;
-			height: 100%;
-		}
-		#colourLibrary > #libraryBody > div > div:first-child {
-			padding: 0.4rem;
-			display: flex;
-			align-items: center;
-			height: 100%;
-			border-color: transparent;
-			background-color: #FFFFFF;
-			border-radius: 0.4rem;
-		}
-		#colourLibrary > #libraryBody > div > div > div {
-			width: 33.33%;
-		}
-		#colourLibrary > #libraryBody > div > div > input[type="color"] {
-			padding: 0.2rem;
-			height: 3rem;
-			width: 3rem;
-			display: inline-block;
-			border-color: transparent;
-			border-radius: 0.2rem;
-		}
-		#colourLibrary > #libraryBody > div > div > input[type="text"] {
-			padding: 0.2rem;
-			min-width: 4rem;
-			max-width: 6rem;
-			border-style: none;
-			border-bottom-style: solid;
-			border-width: 1px;
-			border-top-left-radius: 0.2rem;
-			border-top-right-radius: 0.2rem;
-			background-color: #EFEFEF;
-			margin-right: 0.4rem;
-		}
-		#colourLibrary input[type="button"] {
-			border-color: transparent;
-			border-radius: 0.2rem;
-		}
-		#colourLibrary > #libraryBody > div > div > output {
-			text-transform: uppercase;
-			padding: 0.4rem;
-			display: inline-block;
-			margin-right: 0.4rem;
-		}
-		#colourLibrary > #libraryBody > div > div > div > p:first-child {
-			padding: 0.2rem;
-			border-color: transparent;
-			background-color: #FFFFFF;
-			border-radius: 0.4rem;
-			text-align: center;
-			width: 3rem;
-			color: #000000;
-			border-style: solid;
-			border-width: 1px;
-			border-color: #EFEFEF;
-		}
-		#colourLibrary > #libraryFooter {
-			border-style: none;
-		}
-		#colourLibrary button {
-			margin: 0.4rem;
-			margin-left: 0;
-			padding: 0.8rem;
-			border-radius: 0.4rem;
-			border-width: 1px;
-		}
-	</style>
-	<link rel="icon" type="image/x-icon" href="../ico/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+	<link rel="manifest" href="../favicon/site.webmanifest">
+	<link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
 </head>
 <body>
 	<div id="colourLibrary">
@@ -133,30 +31,30 @@
 			<button onclick="colourLibraryAnalyser.colours.add(1)">Add Colour</button>
 			<button onclick="colourLibraryAnalyser.colours.add(5)">+5</button>
 			<button onclick="colourLibraryAnalyser.colours.remove(5)">-5</button>
-			<p>Download</p>
+			<h2>Download</h2>
 		</div>
 		<div>
 			<p>Hi there :D</p>
 			<p>This tool was developed to help all manner of designers save time when analysing colours. If this tool helped you, consider leaving a donation so we can continue to add new features and improve performance.</p>
 			<button onclick="location.href='https://donate.stripe.com/aEUeWD1Eb5oF30A3cd'">Donate</button>
 		</div>
-	</div>
-	<div>
-		<p>
-			Refer to the following WCAG references for additional colour contrast information.
-		</p>
-		<p>
-			<a href="https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141#distinguishable" target="_blank">Guideline 1.4 – Distinguishable</a>
-		</p>
-		<p>
-			<a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">1.4.1 Use of Color (Level A)</a>
-		</p>
-		<p>
-			<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank">1.4.3 Contrast (Minimum) (Level AA)</a>
-		</p>
-		<p>
-			<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html" target="_blank">1.4.6 Contrast (Enhanced) (Level AAA)</a>
-		</p>
+		<div>
+			<p>
+				Refer to the following WCAG references for additional colour contrast information.
+			</p>
+			<p>
+				<a href="https://www.w3.org/WAI/WCAG22/quickref/?showtechniques=141#distinguishable" target="_blank">Guideline 1.4 – Distinguishable</a>
+			</p>
+			<p>
+				<a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">1.4.1 Use of Color (Level A)</a>
+			</p>
+			<p>
+				<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank">1.4.3 Contrast (Minimum) (Level AA)</a>
+			</p>
+			<p>
+				<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html" target="_blank">1.4.6 Contrast (Enhanced) (Level AAA)</a>
+			</p>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">

@@ -321,7 +321,7 @@ var colourLibraryAnalyser = {
 
 			parentContainer.childNodes.forEach( function( child ){
 				// find all previously added CTAs to download
-				if( child.tagName == 'BUTTON' && child.name.includes( 'download' )){
+				if( child.tagName == 'A' && child.name.includes( 'download' )){
 					removeElementArray.push( child );
 				}
 			});
@@ -402,6 +402,17 @@ var colourLibraryAnalyser = {
 	},
 	export: {
 		// top level object for saving analyser information to other mediums
+		csvDownloadButton: function( csvArray, filename, buttonText, name ){
+			const csvUrl = colourLibraryAnalyser.convert.arrayTo.csvUrl( csvArray );
+			let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
+			let cta = document.createElement( 'a' );
+			cta.setAttribute( 'href', csvUrl );
+			cta.setAttribute( 'download', filename );
+			cta.setAttribute( 'name' , name );
+			cta.setAttribute( 'class', 'button' );
+			cta.textContent = buttonText;
+			parentContainer.appendChild( cta );
+		},
 		coloursTo: {
 			csv: function(){
 				let colourElements = document.querySelectorAll( '#colourLibrary input[type="color"]' );
@@ -417,14 +428,7 @@ var colourLibraryAnalyser = {
 					csvArray.push([ name, hex, rgb.red, rgb.green, rgb.blue, hsl.hue, hsl.saturation, hsl.lightness ]);
 				});
 
-				const csvUrl = colourLibraryAnalyser.convert.arrayTo.csvUrl( csvArray );
-				let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
-				let cta = document.createElement( 'button' );
-				cta.setAttribute( 'onclick', 'location.href="' + csvUrl + '"' );
-				cta.setAttribute( 'download', 'colour_library_analyser_colours.csv' );
-				cta.setAttribute( 'name' , 'downloadColours' );
-				cta.textContent = 'Colours';
-				parentContainer.appendChild( cta );
+				colourLibraryAnalyser.export.csvDownloadButton( csvArray, 'colour_library_analyser_colours.csv', 'Colours', 'downloadColours' );
 			}
 		},
 		colourMatrixTo: {
@@ -470,24 +474,17 @@ var colourLibraryAnalyser = {
 					record = [];
 				});
 
-				const csvUrl = colourLibraryAnalyser.convert.arrayTo.csvUrl( csvArray );
-				let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
-				let cta = document.createElement( 'button' );
-				cta.setAttribute( 'onclick', 'location.href="' + csvUrl + '"' );
-				cta.setAttribute( 'download', 'colour_library_analyser_matrix.csv' );
-				cta.setAttribute( 'name' , 'downloadColourContrastMatrix' );
-				cta.textContent = 'Colour Contrast Matrix';
-				parentContainer.appendChild( cta );
+				colourLibraryAnalyser.export.csvDownloadButton( csvArray, 'colour_library_analyser_contrast_matrix.csv', 'Colour Contrast Matrix', 'downloadColourContrastMatrix' );
 			}
 		},
 		pageTo: {
 			pdf: function(){
 				let parentContainer = document.querySelectorAll( '#libraryFooter' )[ 0 ];
-				let cta = document.createElement( 'button' );
-				cta.setAttribute( 'onclick', 'window.print();' );
+				let cta = document.createElement( 'a' );
+				cta.setAttribute( 'onclick', "document.title = 'colour_library_analyser.pdf'; window.print();" );
 				cta.setAttribute( 'name' , 'downloadPDF' );
-				cta.href = '';
-				cta.download = 'colour_library_analyser.pdf';
+				cta.setAttribute( 'class', 'button' );
+				cta.href = '#';
 				cta.textContent = 'PDF';
 				parentContainer.appendChild( cta );
 			}

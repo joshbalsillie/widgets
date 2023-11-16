@@ -7,21 +7,108 @@
 @use '../../../variable/_all/css/variable';
 
 #colourLibrary {
-	& > div {
+	font-family: Arial, sans-serif;
+	margin: 1rem;
+
+	& input[type="button"] {
+		border-color: transparent;
+		border-radius: 0.2rem;
+	}
+	& button, .button {
+		font-size: 1rem;
+		margin: 0.4rem;
+		margin-left: 0;
+		padding: 0.8rem;
+		border-radius: 0.4rem;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #000000;
+		background-color: #F0F0F0;
+		text-decoration: none;
+		color: #000000;
+	}
+	& > #libraryHeader {
 		padding: 0.4rem;
 		margin-bottom: 0.8rem;
 		border-radius: 0.8rem;
 		display: block;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #EFEFEF;
+		border-style: none;
 
 		& > div {
-			padding: 0.4rem;
 			display: flex;
-			height: 100%;
 
-			&:first-child {
+			& > * {
+				align-self: center;
+				display: inline-block;
+				margin: 1rem;
+			}
+			& > img {
+				height: 4rem;
+			}
+			& > h1 {
+				margin: 0;
+			}
+		}
+	}
+	& #libraryBody {
+		& > div {
+			padding: 0.4rem;
+			margin-bottom: 0.8rem;
+			border-radius: 0.8rem;
+			display: block;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #EFEFEF;
+
+			& > div {
+				padding: 0.4rem;
+				display: flex;
+				height: 100%;
+
+				& > div {
+					width: 33.33%;
+
+					& > p:first-child {
+						padding: 0.2rem;
+						border-color: transparent;
+						background-color: #FFFFFF;
+						border-radius: 0.4rem;
+						text-align: center;
+						width: 3rem;
+						color: #000000;
+						border-style: solid;
+						border-width: 1px;
+						border-color: #EFEFEF;
+					}
+				}
+				& > input[type="color"] {
+					padding: 0.2rem;
+					height: 3rem;
+					width: 3rem;
+					display: inline-block;
+					border-color: transparent;
+					border-radius: 0.2rem;
+				}
+				& > input[type="text"] {
+					padding: 0.2rem;
+					min-width: 4rem;
+					max-width: 6rem;
+					border-style: none;
+					border-bottom-style: solid;
+					border-width: 1px;
+					border-top-left-radius: 0.2rem;
+					border-top-right-radius: 0.2rem;
+					background-color: #EFEFEF;
+					margin-right: 0.4rem;
+				}
+				& > output {
+					text-transform: uppercase;
+					padding: 0.4rem;
+					display: inline-block;
+					margin-right: 0.4rem;
+				}
+			}
+			& > div:first-child {
 				padding: 0.4rem;
 				display: flex;
 				align-items: center;
@@ -30,60 +117,10 @@
 				background-color: #FFFFFF;
 				border-radius: 0.4rem;
 			}
-			& > div {
-				width: 33.33%;
-
-				& > p:first-child {
-					padding: 0.2rem;
-					border-color: transparent;
-					background-color: #FFFFFF;
-					border-radius: 0.4rem;
-					text-align: center;
-					width: 3rem;
-					color: #000000;
-					border-style: solid;
-					border-width: 1px;
-					border-color: #EFEFEF;
-				}
-			}
-			& > input[type="color"] {
-				padding: 0.2rem;
-				height: 3rem;
-				width: 3rem;
-				display: inline-block;
-				border-color: transparent;
-				border-radius: 0.2rem;
-			}
-			& > input[type="text"] {
-				padding: 0.2rem;
-				width: 6rem;
-				border-style: none;
-				border-bottom-style: solid;
-				border-width: 1px;
-				border-top-left-radius: 0.2rem;
-				border-top-right-radius: 0.2rem;
-				background-color: #EFEFEF;
-				margin-right: 0.4rem;
-			}
-			& > input[type="button"] {
-				border-color: transparent;
-				border-radius: 0.2rem;
-			}
-			& > output {
-				text-transform: uppercase;
-				padding: 0.4rem;
-				display: inline-block;
-				margin-right: 0.4rem;
-			}
 		}
 	}
-	& > .footer {
-	border-style: none;
-
-		& > * {
-			padding: 0.4rem;
-			border-radius: 0.4rem;
-			border-width: 1px;
-		}
+	& > #libraryFooter {
+		border-style: none;
+		padding-bottom: 2rem; 
 	}
 }

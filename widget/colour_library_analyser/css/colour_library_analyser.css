@@ -1,0 +1,135 @@
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2023-11-06
+ * Description: Import colour library analyser styles
+ */
+/* Widget Styles */
+/*
+ * Author:Joshua Balsillie
+ * Date Created:2023-11-03
+ * Description:define colour library analyser widget styles
+ */
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2020-07-26
+ * Description: forward all files found in variable directory
+ * Instructions: add @use '../variable/css/variable' before CSS styles;
+ */
+/* Collection of variable files to be used in other files */
+/*
+ * Author: Joshua Balsillie
+ * Date Created: 2016-08-18
+ * Description: define mixins for sass/scss files
+ */
+#colourLibrary {
+  font-family: Arial, sans-serif;
+  margin: 1rem;
+}
+#colourLibrary input[type=button] {
+  border-color: transparent;
+  border-radius: 0.2rem;
+}
+#colourLibrary button, #colourLibrary .button {
+  font-size: 1rem;
+  margin: 0.4rem;
+  margin-left: 0;
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000000;
+  background-color: #F0F0F0;
+  text-decoration: none;
+  color: #000000;
+}
+#colourLibrary > #libraryHeader {
+  padding: 0.4rem;
+  margin-bottom: 0.8rem;
+  border-radius: 0.8rem;
+  display: block;
+  border-style: none;
+}
+#colourLibrary > #libraryHeader > div {
+  display: flex;
+}
+#colourLibrary > #libraryHeader > div > * {
+  align-self: center;
+  display: inline-block;
+  margin: 1rem;
+}
+#colourLibrary > #libraryHeader > div > img {
+  height: 4rem;
+}
+#colourLibrary > #libraryHeader > div > h1 {
+  margin: 0;
+}
+#colourLibrary #libraryBody > div {
+  padding: 0.4rem;
+  margin-bottom: 0.8rem;
+  border-radius: 0.8rem;
+  display: block;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #EFEFEF;
+}
+#colourLibrary #libraryBody > div > div {
+  padding: 0.4rem;
+  display: flex;
+  height: 100%;
+}
+#colourLibrary #libraryBody > div > div > div {
+  width: 33.33%;
+}
+#colourLibrary #libraryBody > div > div > div > p:first-child {
+  padding: 0.2rem;
+  border-color: transparent;
+  background-color: #FFFFFF;
+  border-radius: 0.4rem;
+  text-align: center;
+  width: 3rem;
+  color: #000000;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #EFEFEF;
+}
+#colourLibrary #libraryBody > div > div > input[type=color] {
+  padding: 0.2rem;
+  height: 3rem;
+  width: 3rem;
+  display: inline-block;
+  border-color: transparent;
+  border-radius: 0.2rem;
+}
+#colourLibrary #libraryBody > div > div > input[type=text] {
+  padding: 0.2rem;
+  min-width: 4rem;
+  max-width: 6rem;
+  border-style: none;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
+  background-color: #EFEFEF;
+  margin-right: 0.4rem;
+}
+#colourLibrary #libraryBody > div > div > output {
+  text-transform: uppercase;
+  padding: 0.4rem;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+#colourLibrary #libraryBody > div > div:first-child {
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-color: transparent;
+  background-color: #FFFFFF;
+  border-radius: 0.4rem;
+}
+#colourLibrary > #libraryFooter {
+  border-style: none;
+  padding-bottom: 2rem;
+}
+
+/*# sourceMappingURL=colour_library_analyser.css.map */
