@@ -14,6 +14,7 @@ var colourLibraryAnalyser = {
 			// Analyse the library colours against each other and modify the DOM
 			let colourElements = document.querySelectorAll( '#colourLibrary input[type="color"]' );
 			let colourContainers = document.querySelectorAll( '#libraryBody > div');
+			let colourMode = document.getElementById( 'colourMode' ).value;
 			
 			colourContainers.forEach( function( element ){
 				// remove all previous elements resulting from analysis
@@ -54,7 +55,7 @@ var colourLibraryAnalyser = {
 					compareElement.style.color = compareHex;
 
 					if( contrastRatio > 3 ){
-						compareElement.innerText = compareHex + " " + textInput;
+						compareElement.innerText = textInput;
 
 						if( contrastRatio >= 7 ){
 							containerAAA.appendChild( compareElement );
@@ -77,16 +78,17 @@ var colourLibraryAnalyser = {
 					}
 					currentElement.parentElement.parentElement.appendChild( colourContainer );
 				});
+				colourLibraryAnalyser.update.colourMode( colourMode, [{ name:'name', value:'hex' }, { name:'name', value:'rgb' }, { name:'name', value:'hsl' }]);
 				colourLibraryAnalyser.update.downloadFiles();
 			});
 		},
 		relativeLuminance: {
 			// Calculate: the relative brightness of any point in a colorspace, normalized to 0 for darkest black and 1 for lightest white
 			// https://www.w3.org/TR/WCAG20/#relativeluminancedef
-			sRGB: function( red, green, blue ){
-				// Calculate the relative luminance of an sRGB colour
-				function convert( sRGBValue ){
-					let decimalValue = sRGBValue / 255;
+			rgb: function( red, green, blue ){
+				// Calculate the relative luminance of an RGB colour
+				function convert( rgbValue ){
+					let decimalValue = rgbValue / 255;
 					return ( decimalValue <= 0.03928 ) ? decimalValue / 12.92 : Math.pow(( decimalValue + 0.055 ) / 1.055, 2.4 );
 				}
 				let R = convert( red );
@@ -94,15 +96,15 @@ var colourLibraryAnalyser = {
 				let B = convert( blue );
 
 				// The relative brightness of any point in a colorspace, normalized to 0 for darkest black and 1 for lightest white
-				// For the sRGB colorspace, the relative luminance of a color is defined as: 
+				// For the RGB colorspace, the relative luminance of a color is defined as: 
 				let relativeLuminance = 0.2126 * R + 0.7152 * G + 0.0722 * B;
 
 				return relativeLuminance;
 			},
 			hex: function( hex ){
-				// Convert hex to sRGB then return sRGB relative luminance
-				let rgbObject = colourLibraryAnalyser.convert.hexTo.sRGB( hex );
-				let relativeLuminance = colourLibraryAnalyser.get.relativeLuminance.sRGB( rgbObject.red, rgbObject.green, rgbObject.blue );
+				// Convert hex to RGB then return RGB relative luminance
+				let rgbObject = colourLibraryAnalyser.convert.hexTo.rgb( hex );
+				let relativeLuminance = colourLibraryAnalyser.get.relativeLuminance.rgb( rgbObject.red, rgbObject.green, rgbObject.blue );
 
 				return relativeLuminance;
 			}
@@ -129,87 +131,109 @@ var colourLibraryAnalyser = {
 				}
 			});
 			return value;
+		},
+		blendedColour: function( rgba, rgb ){
+			// blend a transparent colour (rgba) with an opaque colour (rgb) to get a new RGB value
+			let blendedColour = {};
+
+			function channelValue( cv1, alpha, cv2 ){
+				let newChannelValue = Math.round(( cv1 * alpha ) + ( cv2 * ( 1 - alpha )));
+				return newChannelValue;
+			}
+
+			blendedColour.red = channelValue( rgba.red, rgba.alpha, rgb.red );
+			blendedColour.green = channelValue( rgba.green, rgba.alpha, rgb.green );
+			blendedColour.blue = channelValue( rgba.blue, rgba.alpha, rgb.blue );
+
+			return blendedColour;
 		}
 	},
 	convert: {
 		// top level object to convert information retrieved from the DOM into new information
 		hexTo: {
-			sRGB: function( hex ){
+			rgb: function( hex ){
 				// Convert hex value to sRGB i.e. #000000 to R:0, G:0, B:0
 				let cleanHex = hex.replaceAll( '#' , '' );
 				cleanHex = cleanHex.replaceAll( ' ' , '' );
 				cleanHex = cleanHex.toUpperCase();
 				let hexArray = cleanHex.split( "" );
 				let rgb = {};
+				let hex1 = null;
+				let hex2 = null;
 
-				if( hexArray.length === 6 ){
-					let hex1 = null;
-					let hex2 = null;
-
-					hexArray.forEach( function( hexValue, index ){
-						let numberOrNaN = Number( hexValue );
-						
-						if( index % 2 == 0 ){
-							// if index is even array position is odd i.e. #1_3_5_
-							if( !isNaN( numberOrNaN )){
-								// if value is a number i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-								hex1 = hexValue * 16;
-							}
-							else if( isNaN( numberOrNaN )){
-								// if value is not a number i.e. A, B, C, D, E, F
-								switch( hexValue ){
-									case "A" : hex1 = 160; break;
-									case "B" : hex1 = 176; break;
-									case "C" : hex1 = 192; break;
-									case "D" : hex1 = 208; break;
-									case "E" : hex1 = 224; break;
-									case "F" : hex1 = 240; break;
-								}
+				hexArray.forEach( function( hexValue, index ){
+					let numberOrNaN = Number( hexValue );
+					
+					if( index % 2 == 0 ){
+						// if index is even array position is odd i.e. #1_3_5_
+						if( !isNaN( numberOrNaN )){
+							// if value is a number i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+							hex1 = hexValue * 16;
+						}
+						else if( isNaN( numberOrNaN )){
+							// if value is not a number i.e. A, B, C, D, E, F
+							switch( hexValue ){
+								case "A" : hex1 = 160; break;
+								case "B" : hex1 = 176; break;
+								case "C" : hex1 = 192; break;
+								case "D" : hex1 = 208; break;
+								case "E" : hex1 = 224; break;
+								case "F" : hex1 = 240; break;
 							}
 						}
-						else{
-							// if index is odd array position is even i.e. #_2_4_6
-							if( !isNaN( numberOrNaN )){
-								// if value is a number i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-								hex2 = numberOrNaN;
-							}
-							else if( isNaN( numberOrNaN )){
-								// if value is not a number i.e. A, B, C, D, E, F
-								switch( hexValue ){
-									case "A" : hex2 = 10; break;
-									case "B" : hex2 = 11; break;
-									case "C" : hex2 = 12; break;
-									case "D" : hex2 = 13; break;
-									case "E" : hex2 = 14; break;
-									case "F" : hex2 = 15; break;
-								}
+					}
+					else{
+						// if index is odd array position is even i.e. #_2_4_6
+						if( !isNaN( numberOrNaN )){
+							// if value is a number i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+							hex2 = numberOrNaN;
+						}
+						else if( isNaN( numberOrNaN )){
+							// if value is not a number i.e. A, B, C, D, E, F
+							switch( hexValue ){
+								case "A" : hex2 = 10; break;
+								case "B" : hex2 = 11; break;
+								case "C" : hex2 = 12; break;
+								case "D" : hex2 = 13; break;
+								case "E" : hex2 = 14; break;
+								case "F" : hex2 = 15; break;
 							}
 						}
+					}
+					if( hexArray.length === 6 ){
+						switch( index ){
+							case 1 : rgb.red = hex1 + hex2;
+							case 3 : rgb.green = hex1 + hex2;
+							case 5 : rgb.blue = hex1 + hex2; break;
+						}
+					}
+					else if( hexArray.length === 8 ){
 						switch( index ){
 							case 1 : rgb.red = hex1 + hex2;
 							case 3 : rgb.green = hex1 + hex2;
 							case 5 : rgb.blue = hex1 + hex2;
+							case 7 : rgb.alpha = ( hex1 + hex2 ) / 255; break;
 						}
-					});
-				}
+					}
+				});
 				return rgb;
 			},
 			hsl: function( hex ){
 				// convert hex value to hsl
-				let rgb = colourLibraryAnalyser.convert.hexTo.sRGB( hex );
+				let rgb = colourLibraryAnalyser.convert.hexTo.rgb( hex );
 				let hsl = colourLibraryAnalyser.convert.rgbTo.hsl( rgb );
 
 				return hsl;
 			}
 		},
 		rgbTo: {
-			hsl: function( sRGB ){
+			hsl: function( rgb ){
 				// convert an RGB object to an hsl object i.e. R:0, G:0, B:0 to H:0, S:0%, L:0%
-				function convert( sRGBValue ){
-					let decimalValue = sRGBValue / 255;
+				function convert( rgbValue ){
+					let decimalValue = rgbValue / 255;
 					return decimalValue;
 				}
-				let decimals = { red:convert( sRGB.red ), green:convert( sRGB.green ), blue:convert( sRGB.blue ) }
+				let decimals = { red:convert( rgb.red ), green:convert( rgb.green ), blue:convert( rgb.blue ) }
 				let decimalArray = Object.values( decimals );
 				let min = Math.min( ...decimalArray );
 				let max = Math.max( ...decimalArray );
@@ -229,7 +253,7 @@ var colourLibraryAnalyser = {
 						hsl.saturation = ( max - min ) / ( 2 - max - min ) * 100; // epressed as real number i.e. 33.33333...
 					}
 				}
-				if( sRGB.red == sRGB.green && sRGB.red == sRGB.blue ){
+				if( rgb.red == rgb.green && rgb.red == rgb.blue ){
 					hsl.hue = 0;
 				}
 				else{
@@ -262,27 +286,27 @@ var colourLibraryAnalyser = {
 		colour: function( element, decimalPlaces ){
 			let realDecimal = Number( decimalPlaces );
 			let hex = element.value;
-			let rgb = colourLibraryAnalyser.convert.hexTo.sRGB( hex );
+			let rgb = colourLibraryAnalyser.convert.hexTo.rgb( hex );
 			let hsl = colourLibraryAnalyser.convert.rgbTo.hsl( rgb );
-			let hslNew = { hue:convertHSL( hsl.hue, realDecimal ), saturation:convertHSL( hsl.saturation, realDecimal ), lightness:convertHSL( hsl.lightness, realDecimal )};
+			let hslNew = { hue:roundHSL( hsl.hue, realDecimal ), saturation:roundHSL( hsl.saturation, realDecimal ), lightness:roundHSL( hsl.lightness, realDecimal )};
 			let colourContainer = element.parentElement.parentElement;
 
-			let hexOutput = undefined;
-			let rgbOutput = undefined;
-			let hslOutput = undefined;
+			let hexElement = undefined;
+			let rgbElement = undefined;
+			let hslElement = undefined;
 			
 			element.parentElement.childNodes.forEach( function( element ){
 				if( element.name == "hex" ){
-					hexOutput = element;
+					hexElement = element;
 				}
 				else if( element.name == 'rgb' ){
-					rgbOutput = element;
+					rgbElement = element;
 				}
 				else if( element.name == 'hsl' ){
-					hslOutput = element;
+					hslElement = element;
 				}
 			});
-			function convertHSL( value, realDecimal ){
+			function roundHSL( value, realDecimal ){
 				let decimalLimit = 4;
 				let decimals = ( typeof realDecimal === 'undefined' || isNaN( realDecimal ) || realDecimal > decimalLimit ) ? 0 : realDecimal;
 				let multiplier = Math.pow( 10, decimals );
@@ -297,9 +321,9 @@ var colourLibraryAnalyser = {
 				
 				return newValue;
 			}
-			hexOutput.value = element.value;
-			rgbOutput.value = 'R:' + rgb.red + ' G:' + rgb.green + ' B:' + rgb.blue;
-			hslOutput.value = 'H:' + hslNew.hue + ' S:' + hslNew.saturation + '% L:' + hslNew.lightness + '%';
+			hexElement.value = element.value.toUpperCase();
+			rgbElement.value = 'R:' + rgb.red + ' G:' + rgb.green + ' B:' + rgb.blue;
+			hslElement.value = 'H:' + hslNew.hue + ' S:' + hslNew.saturation + '% L:' + hslNew.lightness + '%';
 			colourContainer.style.backgroundColor = element.value;
 			colourLibraryAnalyser.get.analysis();
 		},
@@ -313,6 +337,37 @@ var colourLibraryAnalyser = {
 			colourElements.forEach( function( element ){
 				element.setAttribute( 'oninput', 'colourLibraryAnalyser.update.colour( this, ' + realDecimal + ');' );
 				colourLibraryAnalyser.update.colour( element, realDecimal );
+			});
+		},
+		colourMode: function( colourMode, attributeArray ){
+			attributeArray.forEach( function( attribute ){
+				let elements = document.querySelectorAll( '[' + attribute.name + '=' + attribute.value + ']' );
+				let hslContainer = document.getElementById( 'hslDecimalRangeContainer' );
+
+				elements.forEach( function( element ){
+					// hide element
+					element.setAttribute( 'style', 'display: none;' );
+
+					// show element
+					if( colourMode.toLowerCase() == 'hex' && element.getAttribute( 'name' ) == 'hex' ){
+						element.removeAttribute( 'style' );
+					}
+					else if( colourMode.toLowerCase() == 'rgb' && element.getAttribute( 'name' ) == 'rgb' ){
+						element.removeAttribute( 'style' );
+					}
+					else if( colourMode.toLowerCase() == 'hsl' && element.getAttribute( 'name' ) == 'hsl' ){
+						element.removeAttribute( 'style' );
+					}
+				});
+
+				if( colourMode.toLowerCase() != 'hsl' ){
+					// hide hsl button
+					hslContainer.setAttribute( 'style', 'display: none;' );
+				}
+				else if( colourMode.toLowerCase() == 'hsl' ){
+					// show hsl button
+					hslContainer.removeAttribute( 'style' );
+				}
 			});
 		},
 		downloadFiles: function(){
@@ -337,52 +392,58 @@ var colourLibraryAnalyser = {
 	},
 	colours: {
 		// top level object 
-		add: function( quantity ){
+		add: function( colourArray ){
 			// add colours to the end of the libary in the DOM
 			let form = document.getElementById( 'colourLibrary' );
+			let body = document.querySelectorAll( '#libraryBody' )[ 0 ];
+			//let colourMode = document.getElementById( 'colourMode' );
 
-			if( quantity > 0 ){
-				while( quantity > 0 ){
-					let body = document.querySelectorAll( '#libraryBody' )[ 0 ];
-					let grandParent = document.createElement( 'div' );
-					let parent = document.createElement( 'div' );
-					let colourInput = document.createElement( 'input' );
-					let hexOutput = document.createElement( 'output' );
-					let rgbOutput = document.createElement( 'output' );
-					let hslOutput = document.createElement( 'output' );
-					let colourName = document.createElement ( 'input' );
-					let remove = document.createElement( 'input' );
-
-					grandParent.style.backgroundColor = '#000000';
-					colourInput.type = 'color';
-					colourInput.setAttribute( 'value', '#000000' );
-					colourInput.setAttribute( 'oninput', 'colourLibraryAnalyser.update.colour( this );' );
-					hexOutput.innerText = '#000000';
-					hexOutput.name = 'hex';
-					rgbOutput.innerText = 'R:0, G:0, B:0';
-					rgbOutput.name = 'rgb';
-					hslOutput.innerText = 'H:0, S:0%, L:0%';
-					hslOutput.name = 'hsl';
-					colourName.type = 'text';
-					colourName.value = 'Colour ' + ( body.childElementCount + 1 );
-					colourName.name = 'name';
-					colourName.setAttribute( 'autocompete', 'off' );
-					colourName.setAttribute( 'oninput', 'colourLibraryAnalyser.get.analysis();' );
-					remove.type = 'button';
-					remove.setAttribute( 'value', '✕' );
-					remove.setAttribute( 'onClick', 'this.parentElement.parentElement.remove();' );
-
-					parent.appendChild( colourInput );
-					parent.appendChild( hexOutput );
-					parent.appendChild( colourName );
-					parent.appendChild( rgbOutput );
-					parent.appendChild( hslOutput );
-					parent.appendChild( remove );
-					grandParent.appendChild( parent );
-					body.insertBefore( grandParent, body.childNodes[ body.childElementCount ]);
-					quantity--;
-				}
+			if( !Array.isArray( colourArray )){
+				// the the provided variable is not an array, replace it with default values
+				colourArray = [ '#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF' ];
 			}
+			colourArray.forEach( function( colour ){
+				// add each colour to the DOM provided in the array
+				let rgb = colourLibraryAnalyser.convert.hexTo.rgb( colour );
+				let hsl = colourLibraryAnalyser.convert.hexTo.hsl( colour );
+				let grandParent = document.createElement( 'div' );
+				let parent = document.createElement( 'div' );
+				let colourInput = document.createElement( 'input' );
+				let hexOutput = document.createElement( 'output' );
+				let rgbOutput = document.createElement( 'output' );
+				let hslOutput = document.createElement( 'output' );
+				//let 
+				let colourName = document.createElement ( 'input' );
+				let remove = document.createElement( 'input' );
+
+				grandParent.style.backgroundColor = colour;
+				colourInput.type = 'color';
+				colourInput.setAttribute( 'value', colour );
+				colourInput.setAttribute( 'oninput', 'colourLibraryAnalyser.update.colour( this );' );
+				hexOutput.innerText = colour;
+				hexOutput.name = 'hex';
+				rgbOutput.innerText = 'R:' + rgb.red + ', G:' + rgb.green + ', B:' + rgb.blue;
+				rgbOutput.name = 'rgb';
+				hslOutput.innerText = 'H:' + hsl.hue + ', S:' + hsl.saturation + '%, L:' + hsl.lightness + '%';
+				hslOutput.name = 'hsl';
+				colourName.type = 'text';
+				colourName.value = 'Colour ' + ( body.childElementCount + 1 );
+				colourName.name = 'name';
+				colourName.setAttribute( 'autocompete', 'off' );
+				colourName.setAttribute( 'oninput', 'colourLibraryAnalyser.get.analysis();' );
+				remove.type = 'button';
+				remove.setAttribute( 'value', '✕' );
+				remove.setAttribute( 'onClick', 'this.parentElement.parentElement.remove();' );
+
+				parent.appendChild( colourInput );
+				parent.appendChild( hexOutput );
+				parent.appendChild( rgbOutput );
+				parent.appendChild( hslOutput );
+				parent.appendChild( colourName );
+				parent.appendChild( remove );
+				grandParent.appendChild( parent );
+				body.insertBefore( grandParent, body.childNodes[ body.childElementCount ]);
+			});
 			colourLibraryAnalyser.get.analysis();
 		},
 		remove: function( quantity ){
@@ -420,8 +481,8 @@ var colourLibraryAnalyser = {
 
 				colourElements.forEach( function( colourElement ){
 					// fill array with colour library data
-					let hex = colourElement.value;
-					let rgb = colourLibraryAnalyser.convert.hexTo.sRGB( hex );
+					let hex = colourElement.value.toUpperCase();
+					let rgb = colourLibraryAnalyser.convert.hexTo.rgb( hex );
 					let hsl = colourLibraryAnalyser.convert.rgbTo.hsl( rgb );
 					let name = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
 
@@ -442,26 +503,44 @@ var colourLibraryAnalyser = {
 
 				colourElements.forEach( function( colourElement, index ){
 					// get titles and write to record
-					hex = colourElement.value;
+					hex = colourElement.value.toUpperCase();
 					name = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
 
 					if( index == 0 ){
-						record.push( '', hex + '_' + name );
+						// first three cells in first record
+						record.push( 'name', '', name );
 					}
 					else if( index > 0 && index < numberOfColours ){
-						record.push( hex + '_' + name );
+						// all other cells in first record
+						record.push( name );
+					}
+				});
+				csvArray.push( record );
+				record = [];
+				colourElements.forEach( function( colourElement, index ){
+					// get titles and write to record
+					hex = colourElement.value.toUpperCase();
+					name = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
+
+					if( index == 0 ){
+						// first three cells in first record
+						record.push( '', 'hex', hex );
+					}
+					else if( index > 0 && index < numberOfColours ){
+						// all other cells in first record
+						record.push( hex );
 					}
 				});
 				csvArray.push( record );
 				record = [];
 				colourElements.forEach( function( colourElement, index ){
 					// fill array with colour library data
-					hex = colourElement.value;
+					hex = colourElement.value.toUpperCase();
 					name = colourLibraryAnalyser.get.colourName( colourElement, 'name' );
-					let rgb = colourLibraryAnalyser.convert.hexTo.sRGB( hex );
+					let rgb = colourLibraryAnalyser.convert.hexTo.rgb( hex );
 					let recordArray = [];
 
-					record.push( hex + '_' + name );
+					record.push( name, hex );
 
 					colourElements.forEach( function( colourElement, index ){
 						let compareHex = colourElement.value;

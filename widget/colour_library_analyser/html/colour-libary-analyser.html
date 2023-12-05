@@ -12,6 +12,8 @@
 	<link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="theme-color" content="#ffffff">
+	<meta name="description" content="A colour contrast tool made with UX in mind to simplify the colour selection process.">
+	<meta name="keywords" content="colour, contrast, library, analyser, analyzer, tool, picker, selector, user experience, ux">
 </head>
 <body>
 	<div id="colourLibrary">
@@ -21,15 +23,22 @@
 				<h1>Colour Library Analyser</h1>
 			</div>
 			<div>
-				<label for="hslDecimalRange">HSL Decimal Places</label>
-				<input type="range" name="hslDecimals" id="hslDecimalRange" min="0" max="4" step="1" value="0" oninput="colourLibraryAnalyser.update.hslDecimalPlaces(this, this.value)">
-				<output>0</output>
+				<select name="colourMode" id="colourMode" oninput="colourLibraryAnalyser.get.analysis();">
+					<option value="hex">HEX</option>
+					<option value="rgb">RGB</option>
+					<option value="hsl">HSL</option>
+				</select>
+				<button id="hslDecimalRangeContainer">
+					<label for="hslDecimalRange">HSL Decimal Places</label>
+					<input type="range" name="hslDecimalsRange" id="hslDecimalRange" min="0" max="4" step="1" value="0" oninput="colourLibraryAnalyser.update.hslDecimalPlaces(this, this.value)">
+					<output for="hslDecimalRange">0</output>
+				</button>
 			</div>
 		</div>
 		<div id="libraryBody"></div>
 		<div id="libraryFooter">
-			<button onclick="colourLibraryAnalyser.colours.add(1)">Add Colour</button>
-			<button onclick="colourLibraryAnalyser.colours.add(5)">+5</button>
+			<button onclick="colourLibraryAnalyser.colours.add(['#000000'])">Add Colour</button>
+			<button onclick="colourLibraryAnalyser.colours.add()">+5</button>
 			<button onclick="colourLibraryAnalyser.colours.remove(5)">-5</button>
 			<h2>Download</h2>
 		</div>
@@ -58,6 +67,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-	colourLibraryAnalyser.colours.add(5);
+	colourLibraryAnalyser.colours.add();
 </script>
 </html>

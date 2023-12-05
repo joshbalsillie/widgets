@@ -29,7 +29,7 @@
   border-color: transparent;
   border-radius: 0.2rem;
 }
-#colourLibrary button, #colourLibrary .button {
+#colourLibrary button, #colourLibrary .button, #colourLibrary select {
   font-size: 1rem;
   margin: 0.4rem;
   margin-left: 0;
@@ -42,8 +42,12 @@
   text-decoration: none;
   color: #000000;
 }
+#colourLibrary button, #colourLibrary .button > * {
+  align-self: center;
+  display: inline-block;
+}
 #colourLibrary > #libraryHeader {
-  padding: 0.4rem;
+  padding: 0;
   margin-bottom: 0.8rem;
   border-radius: 0.8rem;
   display: block;
@@ -53,14 +57,17 @@
   display: flex;
 }
 #colourLibrary > #libraryHeader > div > * {
-  align-self: center;
   display: inline-block;
-  margin: 1rem;
+  margin-top: 0.8rem;
+  margin-right: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 #colourLibrary > #libraryHeader > div > img {
+  align-self: center;
   height: 4rem;
 }
 #colourLibrary > #libraryHeader > div > h1 {
+  align-self: center;
   margin: 0;
 }
 #colourLibrary #libraryBody > div {
@@ -71,6 +78,7 @@
   border-style: solid;
   border-width: 1px;
   border-color: #EFEFEF;
+  page-break-inside: avoid;
 }
 #colourLibrary #libraryBody > div > div {
   padding: 0.4rem;
@@ -93,17 +101,17 @@
   border-color: #EFEFEF;
 }
 #colourLibrary #libraryBody > div > div > input[type=color] {
-  padding: 0.2rem;
   height: 3rem;
   width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
   display: inline-block;
   border-color: transparent;
   border-radius: 0.2rem;
 }
 #colourLibrary #libraryBody > div > div > input[type=text] {
   padding: 0.2rem;
-  min-width: 4rem;
-  max-width: 6rem;
+  width: 100%;
   border-style: none;
   border-bottom-style: solid;
   border-width: 1px;
@@ -117,6 +125,7 @@
   padding: 0.4rem;
   display: inline-block;
   margin-right: 0.4rem;
+  width: 15rem;
 }
 #colourLibrary #libraryBody > div > div:first-child {
   padding: 0.4rem;
